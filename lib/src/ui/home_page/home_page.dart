@@ -1,5 +1,8 @@
+import 'package:bidu_clone/src/ui/home_page/mini_banner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'banner.dart';
+import 'category.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -111,8 +114,15 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
           children: [
             Container(
-              height: 1000,
-              color: Colors.green,
+              height: 165,
+              color: Colors.transparent,
+              child: BannerWidget(),
+            ),
+            Category(),
+            Container(
+              height: 165,
+              color: Colors.transparent,
+              child: MiniBanner(),
             ),
             Container(
               height: 1000,
