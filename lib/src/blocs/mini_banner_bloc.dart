@@ -8,7 +8,7 @@ class MiniBannerBloc {
   get bannerStream => _miniBannerController.stream;
   void updateChange(respond) {
     Map data = jsonDecode(respond);
-    List banners = data['data'] ?? [];
+    List banners = data['data']['system_banner'] ?? [];
     _miniBannerController.sink.add(banners);
   }
 

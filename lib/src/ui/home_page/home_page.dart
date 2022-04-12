@@ -93,7 +93,7 @@ class MyHomePage extends StatelessWidget {
             ),
             Category(),
             Container(
-              height: 165,
+              height: 175,
               color: Colors.transparent,
               child: MiniBanner(),
             ),

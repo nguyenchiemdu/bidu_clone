@@ -22,7 +22,8 @@ class MiniBanner extends StatelessWidget {
               itemBuilder: (context, pagePosition) {
                 return Container(
                     margin: const EdgeInsets.all(0),
-                    child: Image.network(banners[pagePosition]['image']));
+                    child: Image.network(
+                        banners[pagePosition]['images'][0]['top']));
               });
         });
   }
