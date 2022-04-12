@@ -17,6 +17,7 @@ class TopSellers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Api.getListTopSellers().then(topSellersBloc.updateChange);
+    final widthUnit = (MediaQuery.of(context).size.width - 32) / 100;
     return StreamBuilder<List?>(
         stream: topSellersBloc.topSellersStream,
         builder: ((context, snapshot) {
@@ -54,6 +55,7 @@ class TopSellers extends StatelessWidget {
                               fontFamily: 'Lexend',
                               fontWeight: FontWeight.w500,
                               fontSize: 12);
+
                           return Container(
                             padding: const EdgeInsets.only(bottom: 21, top: 24),
                             decoration: const BoxDecoration(
@@ -65,163 +67,182 @@ class TopSellers extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Row(children: [
-                                  Container(
-                                    margin: const EdgeInsets.only(right: 20),
-                                    width: 20,
-                                    height: 20,
-                                    decoration: const BoxDecoration(
-                                        color: Color(0xff1A1A1A),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(5))),
-                                    child: Center(
-                                      child: Text(
-                                        seller['shop']['ranking_today']
-                                            .toString(),
-                                        style: const TextStyle(
-                                            color: Colors.white,
-                                            fontFamily: 'Lexend',
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 14),
+                                Container(
+                                  width: 90 * widthUnit,
+                                  child: Row(children: [
+                                    Container(
+                                      margin: const EdgeInsets.only(right: 20),
+                                      width: 20,
+                                      height: 20,
+                                      decoration: const BoxDecoration(
+                                          color: Color(0xff1A1A1A),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5))),
+                                      child: Center(
+                                        child: Text(
+                                          seller['shop']['ranking_today']
+                                              .toString(),
+                                          style: const TextStyle(
+                                              color: Colors.white,
+                                              fontFamily: 'Lexend',
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 14),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 16),
-                                    child: Stack(
-                                      children: [
-                                        Container(
-                                          decoration: BoxDecoration(
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 16),
+                                      child: Stack(
+                                        children: [
+                                          Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(34),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color:
+                                                        const Color(0xffBBBBBB)
+                                                            .withOpacity(0.25),
+                                                    spreadRadius: 0,
+                                                    blurRadius: 5,
+                                                    offset: const Offset(2,
+                                                        2), // changes position of shadow
+                                                  ),
+                                                ]),
+                                            child: ClipRRect(
                                               borderRadius:
                                                   BorderRadius.circular(34),
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  color: const Color(0xffBBBBBB)
-                                                      .withOpacity(0.25),
-                                                  spreadRadius: 0,
-                                                  blurRadius: 5,
-                                                  offset: const Offset(2,
-                                                      2), // changes position of shadow
-                                                ),
-                                              ]),
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(34),
-                                            child: Image.network(
-                                              seller['shop']['user']['avatar'],
-                                              fit: BoxFit.fill,
-                                              width: 68,
-                                              height: 68,
-                                            ),
-                                          ),
-                                        ),
-                                        Positioned.fill(
-                                          child: Align(
-                                            alignment: Alignment.bottomCenter,
-                                            child: Image.asset(
-                                              'assets/icons/add.png',
-                                              width: 24,
-                                            ),
-                                          ),
-                                        ),
-                                        Positioned.fill(
-                                          top: 3,
-                                          right: 3,
-                                          child: Align(
-                                            alignment: Alignment.topRight,
-                                            child: Image.asset(
-                                              getNoSeller(index),
-                                              width: 18.04,
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        seller['shop']['user']['userName']
-                                            .toString()
-                                            .toUpperCase(),
-                                        style: const TextStyle(
-                                            fontFamily: 'Lexend',
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 14),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 9),
-                                        child: Row(
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  right: 3.69),
-                                              child: Image.asset(
-                                                'assets/icons/heart.png',
-                                                width: 14.31,
+                                              child: Image.network(
+                                                seller['shop']['user']
+                                                    ['avatar'],
+                                                fit: BoxFit.fill,
+                                                width: 68,
+                                                height: 68,
                                               ),
                                             ),
-                                            Text(
-                                              rateFormat.format(seller['shop']
-                                                      ['avg_rating'] ??
-                                                  0),
-                                              style: const TextStyle(
-                                                  fontFamily: 'Lexend',
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 12),
-                                            ),
-                                            const Text(' | '),
-                                            Text(
-                                              seller['shop']['user']
-                                                          ['follow_count']
-                                                      .toString() +
-                                                  ' lượt theo dõi',
-                                              style: const TextStyle(
-                                                  fontFamily: 'Lexend',
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 12),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Row(
-                                        children: [
-                                          const Text(
-                                            'Xem shop',
-                                            style: TextStyle(
-                                                fontFamily: 'Lexend',
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 12),
                                           ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 8),
-                                            child: Image.asset(
-                                              'assets/icons/black_arrow.png',
-                                              width: 20,
+                                          Positioned.fill(
+                                            child: Align(
+                                              alignment: Alignment.bottomCenter,
+                                              child: Image.asset(
+                                                'assets/icons/add.png',
+                                                width: 24,
+                                              ),
+                                            ),
+                                          ),
+                                          Positioned.fill(
+                                            top: 3,
+                                            right: 3,
+                                            child: Align(
+                                              alignment: Alignment.topRight,
+                                              child: Image.asset(
+                                                getNoSeller(index),
+                                                width: 18.04,
+                                              ),
                                             ),
                                           )
                                         ],
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            seller['shop']['user']['userName']
+                                                .toString()
+                                                .toUpperCase(),
+                                            style: const TextStyle(
+                                                fontFamily: 'Lexend',
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 14),
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 9),
+                                            child: Row(
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          right: 3.69),
+                                                  child: Image.asset(
+                                                    'assets/icons/heart.png',
+                                                    width: 14.31,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  rateFormat.format(
+                                                      seller['shop']
+                                                              ['avg_rating'] ??
+                                                          0),
+                                                  style: const TextStyle(
+                                                      fontFamily: 'Lexend',
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      fontSize: 12),
+                                                ),
+                                                const Text(' | '),
+                                                Text(
+                                                  seller['shop']['user']
+                                                              ['follow_count']
+                                                          .toString() +
+                                                      ' lượt theo dõi',
+                                                  style: const TextStyle(
+                                                      fontFamily: 'Lexend',
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      fontSize: 12),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Row(
+                                            children: [
+                                              const Text(
+                                                'Xem shop',
+                                                style: TextStyle(
+                                                    fontFamily: 'Lexend',
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 12),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 8),
+                                                child: Image.asset(
+                                                  'assets/icons/black_arrow.png',
+                                                  width: 20,
+                                                ),
+                                              )
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ]),
+                                ),
+                                Expanded(
+                                  // color: Colors.blue,
+                                  // width: 10 * widthUnit,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(right: 4),
+                                        child: Image.asset(
+                                          developStatus,
+                                          width: 8,
+                                        ),
+                                      ),
+                                      Text(
+                                        seller['change']['value'].toString(),
+                                        style: developStyle,
                                       )
                                     ],
                                   ),
-                                ]),
-                                Row(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(right: 4),
-                                      child: Image.asset(
-                                        developStatus,
-                                        width: 8,
-                                      ),
-                                    ),
-                                    Text(
-                                      seller['change']['value'].toString(),
-                                      style: developStyle,
-                                    )
-                                  ],
                                 )
                               ],
                             ),
