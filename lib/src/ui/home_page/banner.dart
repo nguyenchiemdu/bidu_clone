@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:bidu_clone/src/resources/api.dart';
 import 'package:flutter/material.dart';
 

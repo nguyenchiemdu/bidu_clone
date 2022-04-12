@@ -32,7 +32,7 @@ class Category extends StatelessWidget {
               itemBuilder: (BuildContext context, int index) {
                 return GestureDetector(
                   onTap: () {
-                    print(categories[index]['name']);
+                    // print(categories[index]['name']);
                   },
                   child: SizedBox(
                     width: width / 5,

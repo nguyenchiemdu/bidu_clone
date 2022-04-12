@@ -22,4 +22,11 @@ class Api {
     });
     return response.body;
   }
+
+  static Future getListNewestProducts() async {
+    var url = Uri.parse(
+        'https://commerce-staging.bidu.com.vn/api/v2/mobile/home/newest-product');
+    var response = await http.get(url);
+    return response.body;
+  }
 }
