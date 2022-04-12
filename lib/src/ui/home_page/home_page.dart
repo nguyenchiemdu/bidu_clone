@@ -1,3 +1,4 @@
+import 'package:bidu_clone/src/ui/home_page/live.dart';
 import 'package:bidu_clone/src/ui/home_page/mini_banner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -124,6 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
               color: Colors.transparent,
               child: MiniBanner(),
             ),
+            const BiduLive(),
             Container(
               height: 1000,
               color: Colors.blue,
