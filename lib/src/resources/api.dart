@@ -29,4 +29,15 @@ class Api {
     var response = await http.get(url);
     return response.body;
   }
+
+  static Future getListTopSellers() async {
+    var url = Uri.parse(
+        'https://commerce.bidu.com.vn//api/v2/mobile/home/top-seller');
+    var response = await http.get(url, headers: {
+      'Authorization':
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxN2I2OGJjNTQ3MjlkMDAxYTA5YTI2MCIsImlhdCI6MTYzNTgzNjMzMSwiZXhwIjoxNjY3MzcyMzMxfQ.DVZR_t9CrnbKKxkuqZY_Ljt3lgrTe4MSsG84zy9mse4',
+      'Accept-Language': 'vi'
+    });
+    return response.body;
+  }
 }

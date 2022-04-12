@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'banner.dart';
 import 'category.dart';
 import 'newest_products.dart';
+import 'top_sellers.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -99,6 +100,7 @@ class MyHomePage extends StatelessWidget {
             ),
             const BiduLive(),
             NewestProducts(),
+            TopSellers(),
             Container(
               height: 1000,
               color: Colors.blue,

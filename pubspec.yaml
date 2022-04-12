@@ -69,6 +69,16 @@ flutter:
     - assets/icons/signal_column.png
     - assets/icons/location.png
     - assets/icons/mark.png
+    - assets/icons/heart.png
+    - assets/icons/up.png
+    - assets/icons/down.png
+    - assets/icons/black_arrow.png
+    - assets/icons/see_more.png
+    - assets/icons/collapse.png
+    - assets/icons/add.png
+    - assets/icons/no01.png
+    - assets/icons/no02.png
+    - assets/icons/no03.png
     - assets/images/avatar_live.png
     - assets/images/live_1.png
     - assets/images/live_2.png
