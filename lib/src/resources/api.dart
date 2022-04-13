@@ -47,4 +47,11 @@ class Api {
     var response = await http.get(url);
     return response.body;
   }
+
+  static Future getListSuggestion() async {
+    var url = Uri.parse(
+        'https://commerce-staging.bidu.com.vn/api/v2/mobile/suggest-products?page=1&limit=20&random_number=11');
+    var response = await http.get(url);
+    return response.body;
+  }
 }

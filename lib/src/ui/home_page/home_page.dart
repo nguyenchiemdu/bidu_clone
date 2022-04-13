@@ -1,5 +1,6 @@
 import 'package:bidu_clone/src/ui/home_page/live.dart';
 import 'package:bidu_clone/src/ui/home_page/mini_banner.dart';
+import 'package:bidu_clone/src/ui/home_page/suggestion.dart';
 import 'package:bidu_clone/src/ui/home_page/top_products.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -103,13 +104,9 @@ class MyHomePage extends StatelessWidget {
             NewestProducts(),
             TopSellers(),
             TopProducts(),
-            Container(
-              height: 1000,
-              color: Colors.blue,
-            ),
-            Container(
-              height: 1000,
-              color: Colors.red,
+            Suggestion(),
+            const SizedBox(
+              height: 65,
             )
           ],
         )),
