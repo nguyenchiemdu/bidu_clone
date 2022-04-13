@@ -1,3 +1,4 @@
+import 'package:bidu_clone/src/screen_size.dart';
 import 'package:bidu_clone/src/ui/home_page/live.dart';
 import 'package:bidu_clone/src/ui/home_page/mini_banner.dart';
 import 'package:bidu_clone/src/ui/home_page/suggestion.dart';
@@ -14,6 +15,8 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Screen.width = MediaQuery.of(context).size.width;
+    Screen.height = MediaQuery.of(context).size.height;
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -105,11 +108,76 @@ class MyHomePage extends StatelessWidget {
             TopSellers(),
             TopProducts(),
             Suggestion(),
-            const SizedBox(
-              height: 65,
-            )
           ],
         )),
+      ),
+      floatingActionButton: FloatingActionButton(
+          backgroundColor: Color(0xffE812A4),
+          onPressed: () {
+            // print('tapped');
+          },
+          child: Icon(Icons.add)),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.white,
+        notchMargin: 11.86,
+        shape: const AutomaticNotchedShape(
+          RoundedRectangleBorder(),
+          StadiumBorder(
+            side: BorderSide(),
+          ),
+        ),
+        elevation: 0,
+        child: Padding(
+          padding: EdgeInsets.only(right: Screen.width * 80 / 375),
+          child: BottomNavigationBar(
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            elevation: 0,
+            backgroundColor: Colors.transparent,
+            type: BottomNavigationBarType.fixed,
+            onTap: (index) {},
+            currentIndex: 0,
+            iconSize: 24,
+            items: [
+              BottomNavigationBarItem(
+                icon: Image.asset(
+                  'assets/icons/nav_bidu.png',
+                  width: 24,
+                ),
+                label: '',
+              ),
+              BottomNavigationBarItem(
+                icon: Image.asset(
+                  'assets/icons/nav_shop.png',
+                  width: 24,
+                ),
+                label: '',
+              ),
+              BottomNavigationBarItem(
+                icon: Image.asset(
+                  'assets/icons/nav_heart.png',
+                  width: 24,
+                ),
+                label: '',
+              ),
+              BottomNavigationBarItem(
+                icon: Image.asset(
+                  'assets/icons/nav_compass.png',
+                  width: 24,
+                ),
+                label: '',
+              ),
+              BottomNavigationBarItem(
+                icon: Image.asset(
+                  'assets/icons/nav_account.png',
+                  width: 24,
+                ),
+                label: '',
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
