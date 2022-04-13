@@ -40,4 +40,11 @@ class Api {
     });
     return response.body;
   }
+
+  static Future getListTopProducts() async {
+    var url = Uri.parse(
+        'https://commerce-staging.bidu.com.vn/api/v2/mobile/home/top-product');
+    var response = await http.get(url);
+    return response.body;
+  }
 }

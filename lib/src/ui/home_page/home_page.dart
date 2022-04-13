@@ -1,5 +1,6 @@
 import 'package:bidu_clone/src/ui/home_page/live.dart';
 import 'package:bidu_clone/src/ui/home_page/mini_banner.dart';
+import 'package:bidu_clone/src/ui/home_page/top_products.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'banner.dart';
@@ -83,7 +84,7 @@ class MyHomePage extends StatelessWidget {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        color: Colors.white,
+        color: const Color(0xffF1F1F1),
         child: SingleChildScrollView(
             child: Column(
           children: [
@@ -101,6 +102,7 @@ class MyHomePage extends StatelessWidget {
             const BiduLive(),
             NewestProducts(),
             TopSellers(),
+            TopProducts(),
             Container(
               height: 1000,
               color: Colors.blue,
