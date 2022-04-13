@@ -84,6 +84,7 @@ flutter:
     - assets/icons/nav_compass.png
     - assets/icons/nav_heart.png
     - assets/icons/nav_shop.png
+    - assets/icons/logo.png
     - assets/images/avatar_live.png
     - assets/images/live_1.png
     - assets/images/live_2.png

@@ -18,24 +18,23 @@ class MyHomePage extends StatelessWidget {
     Screen.width = MediaQuery.of(context).size.width;
     Screen.height = MediaQuery.of(context).size.height;
     return Scaffold(
-      extendBodyBehindAppBar: true,
+      extendBodyBehindAppBar: false,
       appBar: AppBar(
-        systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarIconBrightness: Brightness.dark, // For Android (dark icons)
-          statusBarBrightness: Brightness.light, // For iOS (dark icons)
-        ),
-        foregroundColor: Colors.transparent,
-        shadowColor: Colors.transparent,
-        backgroundColor: Colors.transparent,
+        // systemOverlayStyle: const SystemUiOverlayStyle(
+        //   statusBarIconBrightness: Brightness.dark, // For Android (dark icons)
+        //   statusBarBrightness: Brightness.light, // For iOS (dark icons)
+        // ),
+        // foregroundColor: Colors.transparent,
+        // shadowColor: Colors.transparent,
+        backgroundColor: Colors.white,
         toolbarHeight: 38,
-        leadingWidth: 48,
+        leadingWidth: 58.5,
         leading: Container(
           padding: const EdgeInsets.only(left: 16, top: 6),
           child: GestureDetector(
             child: Image.asset(
-              'assets/icons/search_icon.png',
-              width: 32,
-              height: 32,
+              'assets/icons/logo.png',
+              // height: 32,
             ),
             onTap: () {
               // print('tapped');
@@ -44,6 +43,19 @@ class MyHomePage extends StatelessWidget {
         ),
         // title: Text(widget.title),
         actions: [
+          Container(
+            padding: const EdgeInsets.only(right: 13, top: 6),
+            child: GestureDetector(
+              child: Image.asset(
+                'assets/icons/search_icon.png',
+                width: 32,
+                height: 32,
+              ),
+              onTap: () {
+                // print('tapped');
+              },
+            ),
+          ),
           Container(
             padding: const EdgeInsets.only(right: 13, top: 6),
             child: GestureDetector(
