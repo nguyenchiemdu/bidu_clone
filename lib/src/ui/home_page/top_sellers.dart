@@ -23,8 +23,10 @@ class TopSellers extends StatelessWidget {
         builder: ((context, snapshot) {
           List topSellers = snapshot.data ?? [];
           return Container(
+            margin: const EdgeInsets.only(top: 2),
+            color: Colors.white,
             child: Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16),
+              padding: const EdgeInsets.only(left: 16, right: 16, top: 24),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
