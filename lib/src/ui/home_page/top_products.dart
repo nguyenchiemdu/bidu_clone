@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:bidu_clone/src/resources/api.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -54,7 +56,7 @@ class TopProducts extends StatelessWidget {
                 margin: const EdgeInsets.only(top: 20),
                 height: 236,
                 child: ListView.builder(
-                    itemCount: 5,
+                    itemCount: min(topProducts.length, 5),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: ((context, index) {
                       // print(topProducts[index]['images'][0]);
