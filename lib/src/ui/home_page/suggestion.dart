@@ -20,35 +20,38 @@ class Suggestion extends StatelessWidget {
             margin: const EdgeInsets.only(top: 2),
             padding: const EdgeInsets.only(left: 16, top: 24, bottom: 45),
             child: Column(children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Gợi ý cho bạn',
-                    style: TextStyle(
-                        fontSize: 18,
-                        fontFamily: 'Lexend',
-                        fontWeight: FontWeight.w800),
-                  ),
-                  Row(
-                    children: [
-                      const Text(
-                        'Xem thêm',
-                        style: TextStyle(
-                            fontSize: 12,
-                            fontFamily: 'Lexend',
-                            fontWeight: FontWeight.w400),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(left: 8),
-                        child: Image.asset(
-                          'assets/icons/arrow.png',
-                          width: 20,
+              Container(
+                margin: const EdgeInsets.only(right: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Gợi ý cho bạn',
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontFamily: 'Lexend',
+                          fontWeight: FontWeight.w800),
+                    ),
+                    Row(
+                      children: [
+                        const Text(
+                          'Xem thêm',
+                          style: TextStyle(
+                              fontSize: 12,
+                              fontFamily: 'Lexend',
+                              fontWeight: FontWeight.w400),
                         ),
-                      )
-                    ],
-                  )
-                ],
+                        Container(
+                          margin: const EdgeInsets.only(left: 8),
+                          child: Image.asset(
+                            'assets/icons/arrow.png',
+                            width: 20,
+                          ),
+                        )
+                      ],
+                    )
+                  ],
+                ),
               ),
               Container(
                 margin: const EdgeInsets.only(top: 20),

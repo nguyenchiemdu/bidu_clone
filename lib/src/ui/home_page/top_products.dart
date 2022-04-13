@@ -20,36 +20,18 @@ class TopProducts extends StatelessWidget {
           return Container(
             color: Colors.white,
             margin: const EdgeInsets.only(top: 2),
-            padding: const EdgeInsets.only(left: 16, right: 16, top: 24),
+            padding: const EdgeInsets.only(left: 16, top: 24),
             child: Column(children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
+                children: const [
+                  Text(
                     'Top Sản Phẩm',
                     style: TextStyle(
                         fontSize: 18,
                         fontFamily: 'Lexend',
                         fontWeight: FontWeight.w800),
                   ),
-                  Row(
-                    children: [
-                      const Text(
-                        'Xem thêm',
-                        style: TextStyle(
-                            fontSize: 12,
-                            fontFamily: 'Lexend',
-                            fontWeight: FontWeight.w400),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(left: 8),
-                        child: Image.asset(
-                          'assets/icons/arrow.png',
-                          width: 20,
-                        ),
-                      )
-                    ],
-                  )
                 ],
               ),
               Container(

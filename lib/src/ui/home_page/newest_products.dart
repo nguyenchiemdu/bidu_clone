@@ -17,37 +17,40 @@ class NewestProducts extends StatelessWidget {
           List newestProducts = snapshot.data ?? [];
           return Container(
             color: Colors.white,
-            padding: const EdgeInsets.only(left: 16, right: 16, top: 24),
+            padding: const EdgeInsets.only(left: 16, top: 24),
             child: Column(children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Sản Phẩm Mới Nhất',
-                    style: TextStyle(
-                        fontSize: 18,
-                        fontFamily: 'Lexend',
-                        fontWeight: FontWeight.w800),
-                  ),
-                  Row(
-                    children: [
-                      const Text(
-                        'Xem thêm',
-                        style: TextStyle(
-                            fontSize: 12,
-                            fontFamily: 'Lexend',
-                            fontWeight: FontWeight.w400),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(left: 8),
-                        child: Image.asset(
-                          'assets/icons/arrow.png',
-                          width: 20,
+              Container(
+                margin: const EdgeInsets.only(right: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Sản Phẩm Mới Nhất',
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontFamily: 'Lexend',
+                          fontWeight: FontWeight.w800),
+                    ),
+                    Row(
+                      children: [
+                        const Text(
+                          'Xem thêm',
+                          style: TextStyle(
+                              fontSize: 12,
+                              fontFamily: 'Lexend',
+                              fontWeight: FontWeight.w400),
                         ),
-                      )
-                    ],
-                  )
-                ],
+                        Container(
+                          margin: const EdgeInsets.only(left: 8),
+                          child: Image.asset(
+                            'assets/icons/arrow.png',
+                            width: 20,
+                          ),
+                        )
+                      ],
+                    )
+                  ],
+                ),
               ),
               Container(
                 margin: const EdgeInsets.only(top: 20),
