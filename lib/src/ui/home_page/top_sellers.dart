@@ -4,16 +4,25 @@ import 'package:intl/intl.dart';
 
 import '../../resources/api.dart';
 
-class TopSellers extends StatelessWidget {
+class TopSellers extends StatefulWidget {
   TopSellers({Key? key}) : super(key: key);
+
+  @override
+  State<TopSellers> createState() => _TopSellersState();
+}
+
+class _TopSellersState extends State<TopSellers> {
   final TopSellersBloc topSellersBloc = TopSellersBloc();
+
   final NumberFormat rateFormat = NumberFormat('0.0');
+
   String getNoSeller(int index) {
     if (index == 0) return 'assets/icons/no01.png';
     if (index == 1) return 'assets/icons/no02.png';
     return 'assets/icons/no03.png';
   }
 
+  bool isExpanded = false;
   @override
   Widget build(BuildContext context) {
     Api.getListTopSellers().then(topSellersBloc.updateChange);
@@ -37,9 +46,11 @@ class TopSellers extends StatelessWidget {
                         fontWeight: FontWeight.w700,
                         fontSize: 18),
                   ),
-                  Container(
-                    height:
-                        ((21 + 24 + 68 + 1) * (topSellers.length)).toDouble(),
+                  AnimatedContainer(
+                    duration: Duration(milliseconds: 300),
+                    height: ((21 + 24 + 68 + 1) *
+                            (isExpanded ? topSellers.length : 3))
+                        .toDouble(),
                     child: ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),
                         padding: const EdgeInsets.all(0),
@@ -251,28 +262,38 @@ class TopSellers extends StatelessWidget {
                           );
                         })),
                   ),
-                  Container(
-                    height: 66,
-                    child: Center(
-                        child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.only(right: 13.8),
-                          child: Text(
-                            'Rút gọn',
-                            style: TextStyle(
-                                fontFamily: 'Lexend',
-                                fontWeight: FontWeight.w500,
-                                fontSize: 14),
+                  GestureDetector(
+                    onTap: () {
+                      print('tapped');
+                      setState(() {
+                        isExpanded = !isExpanded;
+                      });
+                    },
+                    child: Container(
+                      height: 66,
+                      child: Center(
+                          child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 13.8),
+                            child: Text(
+                              isExpanded ? 'Rút gọn' : 'Xem thêm',
+                              style: const TextStyle(
+                                  fontFamily: 'Lexend',
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14),
+                            ),
                           ),
-                        ),
-                        Image.asset(
-                          'assets/icons/collapse.png',
-                          width: 8.4,
-                        )
-                      ],
-                    )),
+                          Image.asset(
+                            isExpanded
+                                ? 'assets/icons/collapse.png'
+                                : 'assets/icons/see_more.png',
+                            width: 8.4,
+                          )
+                        ],
+                      )),
+                    ),
                   )
                 ],
               ),
