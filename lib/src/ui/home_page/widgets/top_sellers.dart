@@ -1,8 +1,9 @@
-import 'package:bidu_clone/src/blocs/top_sellers_bloc.dart';
+import 'package:bidu_clone/src/blocs/home_bloc.dart';
+import 'package:bidu_clone/src/blocs/home_state.dart';
+import 'package:bidu_clone/src/models/top_seller.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
-import '../../resources/api.dart';
+import 'package:provider/provider.dart';
 
 class TopSellers extends StatefulWidget {
   TopSellers({Key? key}) : super(key: key);
@@ -12,8 +13,6 @@ class TopSellers extends StatefulWidget {
 }
 
 class _TopSellersState extends State<TopSellers> {
-  final TopSellersBloc topSellersBloc = TopSellersBloc();
-
   final NumberFormat rateFormat = NumberFormat('0.0');
 
   String getNoSeller(int index) {
@@ -25,12 +24,16 @@ class _TopSellersState extends State<TopSellers> {
   bool isExpanded = false;
   @override
   Widget build(BuildContext context) {
-    Api.getListTopSellers().then(topSellersBloc.updateChange);
     final widthUnit = (MediaQuery.of(context).size.width - 32) / 100;
-    return StreamBuilder<List?>(
-        stream: topSellersBloc.topSellersStream,
+    return StreamBuilder<HomeState>(
+        stream: Provider.of<HomeBloc>(context).topSellerStream,
         builder: ((context, snapshot) {
-          List topSellers = snapshot.data ?? [];
+          final List<TopSeller> topSellers;
+          if (snapshot.data is TopSellerLoaded) {
+            topSellers = (snapshot.data as TopSellerLoaded).listTopSeller;
+          } else {
+            topSellers = [];
+          }
           return Container(
             margin: const EdgeInsets.only(top: 2),
             color: Colors.white,
@@ -56,13 +59,13 @@ class _TopSellersState extends State<TopSellers> {
                         padding: const EdgeInsets.all(0),
                         itemCount: topSellers.length,
                         itemBuilder: ((context, index) {
-                          Map seller = topSellers[index];
-                          String developStatus =
-                              seller['change']['type'] == 'UP'
-                                  ? 'assets/icons/up.png'
-                                  : 'assets/icons/down.png';
+                          TopSeller seller = topSellers[index];
+                          // print(seller);
+                          String developStatus = seller.changeType == 'UP'
+                              ? 'assets/icons/up.png'
+                              : 'assets/icons/down.png';
                           TextStyle developStyle = TextStyle(
-                              color: seller['change']['type'] == 'UP'
+                              color: seller.changeType == 'UP'
                                   ? const Color(0xff12B74A)
                                   : const Color(0xffFF3232),
                               fontFamily: 'Lexend',
@@ -93,8 +96,7 @@ class _TopSellersState extends State<TopSellers> {
                                               Radius.circular(5))),
                                       child: Center(
                                         child: Text(
-                                          seller['shop']['ranking_today']
-                                              .toString(),
+                                          seller.ranking.toString(),
                                           style: const TextStyle(
                                               color: Colors.white,
                                               fontFamily: 'Lexend',
@@ -126,8 +128,7 @@ class _TopSellersState extends State<TopSellers> {
                                               borderRadius:
                                                   BorderRadius.circular(34),
                                               child: Image.network(
-                                                seller['shop']['user']
-                                                    ['avatar'],
+                                                seller.avatar,
                                                 fit: BoxFit.fill,
                                                 width: 68,
                                                 height: 68,
@@ -163,9 +164,7 @@ class _TopSellersState extends State<TopSellers> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            seller['shop']['user']['userName']
-                                                .toString()
-                                                .toUpperCase(),
+                                            seller.userName.toUpperCase(),
                                             style: const TextStyle(
                                                 fontFamily: 'Lexend',
                                                 fontWeight: FontWeight.w700,
@@ -188,8 +187,7 @@ class _TopSellersState extends State<TopSellers> {
                                                 ),
                                                 Text(
                                                   rateFormat.format(
-                                                      seller['shop']
-                                                              ['avg_rating'] ??
+                                                      seller.avarageRating ??
                                                           0),
                                                   style: const TextStyle(
                                                       fontFamily: 'Lexend',
@@ -199,8 +197,7 @@ class _TopSellersState extends State<TopSellers> {
                                                 ),
                                                 const Text(' | '),
                                                 Text(
-                                                  seller['shop']['user']
-                                                              ['follow_count']
+                                                  seller.followCount
                                                           .toString() +
                                                       ' lượt theo dõi',
                                                   style: const TextStyle(
@@ -251,7 +248,7 @@ class _TopSellersState extends State<TopSellers> {
                                         ),
                                       ),
                                       Text(
-                                        seller['change']['value'].toString(),
+                                        seller.changeValue.toString(),
                                         style: developStyle,
                                       )
                                     ],

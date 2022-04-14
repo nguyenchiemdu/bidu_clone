@@ -1,18 +1,21 @@
+import 'package:bidu_clone/src/blocs/home_bloc.dart';
+import 'package:bidu_clone/src/blocs/home_event.dart';
 import 'package:bidu_clone/src/screen_size.dart';
-import 'package:bidu_clone/src/ui/home_page/live.dart';
-import 'package:bidu_clone/src/ui/home_page/mini_banner.dart';
-import 'package:bidu_clone/src/ui/home_page/suggestion.dart';
-import 'package:bidu_clone/src/ui/home_page/top_products.dart';
+import 'package:provider/provider.dart';
+import 'widgets/live.dart';
+import 'widgets/mini_banner.dart';
+import 'widgets/suggestion.dart';
+import 'widgets/top_products.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'banner.dart';
-import 'category.dart';
-import 'newest_products.dart';
-import 'top_sellers.dart';
+import 'widgets/banner.dart';
+import 'widgets/category.dart';
+import 'widgets/newest_products.dart';
+import 'widgets/top_sellers.dart';
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
-
+  MyHomePage({Key? key}) : super(key: key);
+  final HomeBloc homeBloc = HomeBloc();
   @override
   Widget build(BuildContext context) {
     Screen.width = MediaQuery.of(context).size.width;
@@ -97,31 +100,34 @@ class MyHomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        color: const Color(0xffF1F1F1),
-        child: SingleChildScrollView(
-            child: Column(
-          children: [
-            Container(
-              height: 165,
-              color: Colors.transparent,
-              child: BannerWidget(),
-            ),
-            Category(),
-            Container(
-              height: 175,
-              color: Colors.transparent,
-              child: MiniBanner(),
-            ),
-            const BiduLive(),
-            NewestProducts(),
-            TopSellers(),
-            TopProducts(),
-            Suggestion(),
-          ],
-        )),
+      body: ChangeNotifierProvider<HomeBloc>(
+        create: (context) => homeBloc..add(InitLoad()),
+        child: Container(
+          width: double.infinity,
+          height: double.infinity,
+          color: const Color(0xffF1F1F1),
+          child: SingleChildScrollView(
+              child: Column(
+            children: [
+              Container(
+                height: 165,
+                color: Colors.transparent,
+                child: BannerWidget(),
+              ),
+              Category(),
+              Container(
+                height: 175,
+                color: Colors.transparent,
+                child: MiniBanner(),
+              ),
+              const BiduLive(),
+              NewestProducts(),
+              TopSellers(),
+              TopProducts(),
+              Suggestion(),
+            ],
+          )),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
           backgroundColor: Color(0xffE812A4),

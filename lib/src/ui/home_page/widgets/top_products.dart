@@ -1,22 +1,26 @@
 import 'dart:math';
 
-import 'package:bidu_clone/src/resources/api.dart';
+import 'package:bidu_clone/src/blocs/home_bloc.dart';
+import 'package:bidu_clone/src/blocs/home_state.dart';
+import 'package:bidu_clone/src/models/top_product.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
-import '../../blocs/top_products_bloc.dart';
+import 'package:provider/provider.dart';
 
 class TopProducts extends StatelessWidget {
   TopProducts({Key? key}) : super(key: key);
   final priceFormat = NumberFormat('###,###,##0.##');
-  final TopProductBloc topProductBloc = TopProductBloc();
   @override
   Widget build(BuildContext context) {
-    Api.getListTopProducts().then(topProductBloc.updateChange);
-    return StreamBuilder<List?>(
-        stream: topProductBloc.topProductsStream,
+    return StreamBuilder<HomeState>(
+        stream: Provider.of<HomeBloc>(context).topProductStream,
         builder: (context, snapshot) {
-          List topProducts = snapshot.data ?? [];
+          final List<TopProduct> topProducts;
+          if (snapshot.data is TopProductLoaded) {
+            topProducts = (snapshot.data as TopProductLoaded).listTopProduct;
+          } else {
+            topProducts = [];
+          }
           return Container(
             color: Colors.white,
             margin: const EdgeInsets.only(top: 2),
@@ -41,7 +45,7 @@ class TopProducts extends StatelessWidget {
                     itemCount: min(topProducts.length, 5),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: ((context, index) {
-                      // print(topProducts[index]['images'][0]);
+                      // print(topProducts[index]);
                       return Container(
                         padding: const EdgeInsets.only(right: 8),
                         width: 150,
@@ -61,7 +65,7 @@ class TopProducts extends StatelessWidget {
                                     child: AspectRatio(
                                       aspectRatio: 1,
                                       child: Image.network(
-                                        topProducts[index]['images'][0],
+                                        topProducts[index].images[0].toString(),
                                         fit: BoxFit.cover,
                                       ),
                                     ),
@@ -102,7 +106,7 @@ class TopProducts extends StatelessWidget {
                               Container(
                                 margin: const EdgeInsets.only(top: 5),
                                 child: Text(
-                                  topProducts[index]['name'],
+                                  topProducts[index].name,
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   style: const TextStyle(
@@ -114,8 +118,8 @@ class TopProducts extends StatelessWidget {
                               Row(
                                 children: [
                                   Text(
-                                    priceFormat.format(
-                                        topProducts[index]['sale_price'] ?? 0),
+                                    priceFormat
+                                        .format(topProducts[index].salePrice),
                                     style: const TextStyle(
                                         fontFamily: 'Lexend',
                                         fontWeight: FontWeight.w700,

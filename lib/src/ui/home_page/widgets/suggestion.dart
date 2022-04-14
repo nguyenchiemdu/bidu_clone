@@ -1,20 +1,25 @@
-import 'package:bidu_clone/src/blocs/suggestion_bloc.dart';
-import 'package:bidu_clone/src/resources/api.dart';
+import 'package:bidu_clone/src/blocs/home_bloc.dart';
+import 'package:bidu_clone/src/blocs/home_state.dart';
+import 'package:bidu_clone/src/models/suggestion.dart' as suggestion_model;
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class Suggestion extends StatelessWidget {
   Suggestion({Key? key}) : super(key: key);
   final priceFormat = NumberFormat('###,###,##0.##');
-  final SuggestionBloc suggestionBloc = SuggestionBloc();
   @override
   Widget build(BuildContext context) {
-    Api.getListSuggestion().then(suggestionBloc.updateChange);
     final double screenWidth = MediaQuery.of(context).size.width;
-    return StreamBuilder<List?>(
-        stream: suggestionBloc.suggestionStream,
+    return StreamBuilder<HomeState>(
+        stream: Provider.of<HomeBloc>(context).suggestionStream,
         builder: (context, snapshot) {
-          List suggestions = snapshot.data ?? [];
+          final List<suggestion_model.Suggestion> suggestions;
+          if (snapshot.data is SuggestionLoaded) {
+            suggestions = (snapshot.data as SuggestionLoaded).listSuggestion;
+          } else {
+            suggestions = [];
+          }
           return Container(
             color: Colors.white,
             margin: const EdgeInsets.only(top: 2),
@@ -83,7 +88,7 @@ class Suggestion extends StatelessWidget {
                                     child: AspectRatio(
                                       aspectRatio: 1,
                                       child: Image.network(
-                                        suggestions[index]['images'][0],
+                                        suggestions[index].images[0].toString(),
                                         fit: BoxFit.cover,
                                       ),
                                     ),
@@ -107,7 +112,7 @@ class Suggestion extends StatelessWidget {
                                     children: [
                                       Container(
                                         child: Text(
-                                          suggestions[index]['name'],
+                                          suggestions[index].name,
                                           maxLines: 2,
                                           overflow: TextOverflow.ellipsis,
                                           style: const TextStyle(
@@ -123,9 +128,7 @@ class Suggestion extends StatelessWidget {
                                         children: [
                                           Text(
                                             priceFormat.format(
-                                                suggestions[index]
-                                                        ['sale_price'] ??
-                                                    0),
+                                                suggestions[index].salePrice),
                                             style: const TextStyle(
                                                 fontFamily: 'Lexend',
                                                 fontWeight: FontWeight.w700,

@@ -1,20 +1,26 @@
-import 'package:bidu_clone/src/blocs/newest_products_bloc.dart';
+import 'package:bidu_clone/src/blocs/home_bloc.dart';
+import 'package:bidu_clone/src/blocs/home_state.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
-import '../../resources/api.dart';
+import '../../../models/newest_product.dart';
 
 class NewestProducts extends StatelessWidget {
   NewestProducts({Key? key}) : super(key: key);
-  final NewestProductBloc newestProductBloc = NewestProductBloc();
   @override
   Widget build(BuildContext context) {
     final priceFormat = NumberFormat('###,###,##0.##');
-    Api.getListNewestProducts().then(newestProductBloc.updateChange);
-    return StreamBuilder<List?>(
-        stream: newestProductBloc.newestProductsStream,
+    return StreamBuilder<HomeState>(
+        stream: Provider.of<HomeBloc>(context).newestProductStream,
         builder: ((context, snapshot) {
-          List newestProducts = snapshot.data ?? [];
+          final List<NewestProduct> newestProducts;
+          if (snapshot.data is NewestProductLoaded) {
+            newestProducts =
+                (snapshot.data as NewestProductLoaded).listNewestProduct;
+          } else {
+            newestProducts = [];
+          }
           return Container(
             color: Colors.white,
             padding: const EdgeInsets.only(left: 16, top: 24),
@@ -80,7 +86,9 @@ class NewestProducts extends StatelessWidget {
                                     child: AspectRatio(
                                       aspectRatio: 1,
                                       child: Image.network(
-                                        newestProducts[index]['images'][0],
+                                        newestProducts[index]
+                                            .images[0]
+                                            .toString(),
                                         fit: BoxFit.cover,
                                       ),
                                     ),
@@ -98,7 +106,7 @@ class NewestProducts extends StatelessWidget {
                               Container(
                                 margin: const EdgeInsets.only(top: 5),
                                 child: Text(
-                                  newestProducts[index]['name'],
+                                  newestProducts[index].name,
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   style: const TextStyle(
@@ -110,9 +118,8 @@ class NewestProducts extends StatelessWidget {
                               Row(
                                 children: [
                                   Text(
-                                    priceFormat.format(newestProducts[index]
-                                            ['sale_price'] ??
-                                        0),
+                                    priceFormat.format(
+                                        newestProducts[index].salePrice),
                                     style: const TextStyle(
                                         fontFamily: 'Lexend',
                                         fontWeight: FontWeight.w700,

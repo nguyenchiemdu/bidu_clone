@@ -1,19 +1,23 @@
-import 'package:bidu_clone/src/blocs/category_bloc.dart';
+import 'package:bidu_clone/src/blocs/home_bloc.dart';
+import 'package:bidu_clone/src/blocs/home_state.dart';
+import 'package:bidu_clone/src/models/category.dart' as category_model;
 import 'package:flutter/material.dart';
-
-import '../../resources/api.dart';
+import 'package:provider/provider.dart';
 
 class Category extends StatelessWidget {
   Category({Key? key}) : super(key: key);
-  final CategoryBloc categoryBloc = CategoryBloc();
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    Api.getListCategory().then(categoryBloc.updateChange);
-    return StreamBuilder<List?>(
-      stream: categoryBloc.categoryStream,
+    return StreamBuilder<HomeState>(
+      stream: Provider.of<HomeBloc>(context).categoryStream,
       builder: (context, snapshot) {
-        List categories = snapshot.data ?? [];
+        final List<category_model.Category> categories;
+        if (snapshot.data is CategoryLoaded) {
+          categories = (snapshot.data as CategoryLoaded).listCategory;
+        } else {
+          categories = [];
+        }
         double height =
             (categories.length ~/ 5 + (categories.length % 5 != 0 ? 0 : 0)) *
                     width /
@@ -34,7 +38,7 @@ class Category extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
                     onTap: () {
-                      // print(categories[index]['name']);
+                      // print(categories[index]);
                     },
                     child: SizedBox(
                       width: width / 5,
@@ -42,13 +46,13 @@ class Category extends StatelessWidget {
                         Container(
                           padding: const EdgeInsets.only(bottom: 6),
                           child: Image.network(
-                            categories[index]['avatar'],
+                            categories[index].avatar,
                             width: 32,
                             height: 32,
                           ),
                         ),
                         Text(
-                          categories[index]['name'],
+                          categories[index].name,
                           style: const TextStyle(
                               fontFamily: "Lexend", fontSize: 10),
                         )
