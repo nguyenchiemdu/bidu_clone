@@ -1,26 +1,20 @@
 import 'dart:math';
 
+import 'package:bidu_clone/common/number_format.dart';
 import 'package:bidu_clone/src/blocs/home_bloc.dart';
-import 'package:bidu_clone/src/blocs/home_state.dart';
 import 'package:bidu_clone/src/models/top_product.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class TopProducts extends StatelessWidget {
-  TopProducts({Key? key}) : super(key: key);
-  final priceFormat = NumberFormat('###,###,##0.##');
+  const TopProducts({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<HomeState>(
+    return StreamBuilder<List<TopProduct>>(
         stream: Provider.of<HomeBloc>(context).topProductStream,
         builder: (context, snapshot) {
           final List<TopProduct> topProducts;
-          if (snapshot.data is TopProductLoaded) {
-            topProducts = (snapshot.data as TopProductLoaded).listTopProduct;
-          } else {
-            topProducts = [];
-          }
+          topProducts = snapshot.data ?? [];
           return Container(
             color: Colors.white,
             margin: const EdgeInsets.only(top: 2),
@@ -54,7 +48,7 @@ class TopProducts extends StatelessWidget {
                             children: [
                               Stack(
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     // decoration: BoxDecoration(
                                     //     border: Border.all(
                                     //         color: Colors.grey,
@@ -118,8 +112,7 @@ class TopProducts extends StatelessWidget {
                               Row(
                                 children: [
                                   Text(
-                                    priceFormat
-                                        .format(topProducts[index].salePrice),
+                                    priceFormnat(topProducts[index].salePrice),
                                     style: const TextStyle(
                                         fontFamily: 'Lexend',
                                         fontWeight: FontWeight.w700,

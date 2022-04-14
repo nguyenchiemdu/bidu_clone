@@ -1,26 +1,19 @@
+import 'package:bidu_clone/common/number_format.dart';
 import 'package:bidu_clone/src/blocs/home_bloc.dart';
-import 'package:bidu_clone/src/blocs/home_state.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../../../models/newest_product.dart';
 
 class NewestProducts extends StatelessWidget {
-  NewestProducts({Key? key}) : super(key: key);
+  const NewestProducts({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final priceFormat = NumberFormat('###,###,##0.##');
-    return StreamBuilder<HomeState>(
+    return StreamBuilder<List<NewestProduct>>(
         stream: Provider.of<HomeBloc>(context).newestProductStream,
         builder: ((context, snapshot) {
           final List<NewestProduct> newestProducts;
-          if (snapshot.data is NewestProductLoaded) {
-            newestProducts =
-                (snapshot.data as NewestProductLoaded).listNewestProduct;
-          } else {
-            newestProducts = [];
-          }
+          newestProducts = snapshot.data ?? [];
           return Container(
             color: Colors.white,
             padding: const EdgeInsets.only(left: 16, top: 24),
@@ -118,7 +111,7 @@ class NewestProducts extends StatelessWidget {
                               Row(
                                 children: [
                                   Text(
-                                    priceFormat.format(
+                                    priceFormnat(
                                         newestProducts[index].salePrice),
                                     style: const TextStyle(
                                         fontFamily: 'Lexend',

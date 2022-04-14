@@ -1,25 +1,19 @@
+import 'package:bidu_clone/common/number_format.dart';
 import 'package:bidu_clone/src/blocs/home_bloc.dart';
-import 'package:bidu_clone/src/blocs/home_state.dart';
 import 'package:bidu_clone/src/models/suggestion.dart' as suggestion_model;
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class Suggestion extends StatelessWidget {
-  Suggestion({Key? key}) : super(key: key);
-  final priceFormat = NumberFormat('###,###,##0.##');
+  const Suggestion({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
-    return StreamBuilder<HomeState>(
+    return StreamBuilder<List<suggestion_model.Suggestion>>(
         stream: Provider.of<HomeBloc>(context).suggestionStream,
         builder: (context, snapshot) {
           final List<suggestion_model.Suggestion> suggestions;
-          if (snapshot.data is SuggestionLoaded) {
-            suggestions = (snapshot.data as SuggestionLoaded).listSuggestion;
-          } else {
-            suggestions = [];
-          }
+          suggestions = snapshot.data ?? [];
           return Container(
             color: Colors.white,
             margin: const EdgeInsets.only(top: 2),
@@ -77,7 +71,7 @@ class Suggestion extends StatelessWidget {
                             children: [
                               Stack(
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     // decoration: BoxDecoration(
                                     //     border: Border.all(
                                     //         color: Colors.grey,
@@ -110,7 +104,7 @@ class Suggestion extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Container(
+                                      SizedBox(
                                         child: Text(
                                           suggestions[index].name,
                                           maxLines: 2,
@@ -127,7 +121,7 @@ class Suggestion extends StatelessWidget {
                                       Row(
                                         children: [
                                           Text(
-                                            priceFormat.format(
+                                            priceFormnat(
                                                 suggestions[index].salePrice),
                                             style: const TextStyle(
                                                 fontFamily: 'Lexend',

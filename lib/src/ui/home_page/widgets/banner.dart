@@ -1,22 +1,17 @@
 import 'package:bidu_clone/src/blocs/home_bloc.dart';
-import 'package:bidu_clone/src/blocs/home_state.dart';
 import 'package:bidu_clone/src/models/banner.dart' as banner_model;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class BannerWidget extends StatelessWidget {
-  BannerWidget({Key? key}) : super(key: key);
+  const BannerWidget({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<HomeState>(
+    return StreamBuilder<List<banner_model.Banner>>(
         stream: Provider.of<HomeBloc>(context).bannerStream,
         builder: (context, snapshot) {
           final List<banner_model.Banner> banners;
-          if (snapshot.data is BannerLoaded) {
-            banners = (snapshot.data as BannerLoaded).listBanner;
-          } else {
-            banners = [];
-          }
+          banners = snapshot.data ?? [];
           return PageView.builder(
               itemCount: banners.length,
               pageSnapping: true,

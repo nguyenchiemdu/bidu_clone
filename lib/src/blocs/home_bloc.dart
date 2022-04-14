@@ -1,79 +1,86 @@
 import 'dart:async';
 
+import 'package:bidu_clone/src/models/banner.dart';
+import 'package:bidu_clone/src/models/category.dart';
+import 'package:bidu_clone/src/models/newest_product.dart';
+import 'package:bidu_clone/src/models/suggestion.dart';
+import 'package:bidu_clone/src/models/top_product.dart';
+import 'package:bidu_clone/src/models/top_seller.dart';
 import 'package:bidu_clone/src/resources/home_resource.dart';
-import 'package:flutter/foundation.dart';
 
-import 'home_event.dart';
-import 'home_state.dart';
-
-class HomeBloc with ChangeNotifier {
+class HomeBloc {
   final HomeResource homeResource = HomeResource();
 
-  final _homeEventController = StreamController<HomeEvent>();
-  final _bannerController = StreamController<HomeState>.broadcast();
-  final _categoryController = StreamController<HomeState>();
-  final _newestProductController = StreamController<HomeState>();
-  final _suggestionController = StreamController<HomeState>();
-  final _topProductController = StreamController<HomeState>();
-  final _topSellerController = StreamController<HomeState>();
+  // final _homeEventController = StreamController<HomeEvent>();
+  final _bannerController = StreamController<List<Banner>>.broadcast();
+  final _categoryController = StreamController<List<Category>>();
+  final _newestProductController = StreamController<List<NewestProduct>>();
+  final _suggestionController = StreamController<List<Suggestion>>();
+  final _topProductController = StreamController<List<TopProduct>>();
+  final _topSellerController = StreamController<List<TopSeller>>();
 
-  Stream<HomeState> get bannerStream => _bannerController.stream;
-  Stream<HomeState> get categoryStream => _categoryController.stream;
-  Stream<HomeState> get newestProductStream => _newestProductController.stream;
-  Stream<HomeState> get suggestionStream => _suggestionController.stream;
-  Stream<HomeState> get topProductStream => _topProductController.stream;
-  Stream<HomeState> get topSellerStream => _topSellerController.stream;
+  Stream<List<Banner>> get bannerStream => _bannerController.stream;
+  Stream<List<Category>> get categoryStream => _categoryController.stream;
+  Stream<List<NewestProduct>> get newestProductStream =>
+      _newestProductController.stream;
+  Stream<List<Suggestion>> get suggestionStream => _suggestionController.stream;
+  Stream<List<TopProduct>> get topProductStream => _topProductController.stream;
+  Stream<List<TopSeller>> get topSellerStream => _topSellerController.stream;
 
   HomeBloc() {
-    _homeEventController.stream.listen(_handleEvent);
+    // _homeEventController.stream.listen(_handleEvent);
+    initLoad();
   }
 
-  void add(HomeEvent event) {
-    _homeEventController.add(event);
+  void initLoad() {
+    _loadBanner();
+    _loadCategory();
+    _loadNewestProduct();
+    _loadSuggestion();
+    _loadTopProduct();
+    _loadTopSeller();
   }
-
-  void _handleEvent(HomeEvent event) async {
-    if (event is InitLoad) {
-      _loadBanner();
-      _loadCategory();
-      _loadNewestProduct();
-      _loadSuggestion();
-      _loadTopProduct();
-      _loadTopSeller();
-    }
-  }
+  // void add(HomeEvent event) {
+  //   _homeEventController.add(event);
+  // }
+  // void _handleEvent(HomeEvent event) async {
+  //   if (event is InitLoad) {
+  //     _loadBanner();
+  //     _loadCategory();
+  //     _loadNewestProduct();
+  //     _loadSuggestion();
+  //     _loadTopProduct();
+  //     _loadTopSeller();
+  //   }
+  // }
 
   void _loadBanner() async {
     final listBanner = await homeResource.loadBanner();
-    _bannerController.sink.add(BannerLoaded(listBanner: listBanner));
+    _bannerController.sink.add(listBanner);
   }
 
   void _loadCategory() async {
     final listCategory = await homeResource.loadCategory();
-    _categoryController.sink.add(CategoryLoaded(listCategory: listCategory));
+    _categoryController.sink.add(listCategory);
   }
 
   void _loadNewestProduct() async {
     final listNewestProduct = await homeResource.loadNewestProduct();
-    _newestProductController.sink
-        .add(NewestProductLoaded(listNewestProduct: listNewestProduct));
+    _newestProductController.sink.add(listNewestProduct);
   }
 
   void _loadSuggestion() async {
     final listSuggestion = await homeResource.loadSuggestion();
-    _suggestionController.sink
-        .add(SuggestionLoaded(listSuggestion: listSuggestion));
+    _suggestionController.sink.add(listSuggestion);
   }
 
   void _loadTopProduct() async {
     final listTopProduct = await homeResource.loadTopProduct();
-    _topProductController.sink
-        .add(TopProductLoaded(listTopProduct: listTopProduct));
+    _topProductController.sink.add(listTopProduct);
   }
 
   void _loadTopSeller() async {
     final listTopSeller = await homeResource.loadTopSeller();
-    _topSellerController.sink
-        .add(TopSellerLoaded(listTopSeller: listTopSeller));
+    _topSellerController.sink.add(listTopSeller);
   }
 }

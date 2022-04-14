@@ -26,9 +26,9 @@ class HomeResource {
     'Authorization':
         'Bidu eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZWViNTQ2MTliMTU5MDAxOTY2YWQyMCIsImlhdCI6MTYzMDExNjk0NywiZXhwIjoxNjYxNjUyOTQ3fQ.17QwyyVE5q_TGNvC97gF76ZYzm2FbQQE0VA26A5U7HY'
   };
-  // final _newestProductHeader = {};
-  // final _suggestionHeader = {};
-  // final _topProductHeader = {};
+  final _newestProductHeader = {'': ''};
+  final _suggestionHeader = {'': ''};
+  final _topProductHeader = {'': ''};
   final _topSellerHeader = {
     'Authorization':
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxN2I2OGJjNTQ3MjlkMDAxYTA5YTI2MCIsImlhdCI6MTYzNTgzNjMzMSwiZXhwIjoxNjY3MzcyMzMxfQ.DVZR_t9CrnbKKxkuqZY_Ljt3lgrTe4MSsG84zy9mse4',
@@ -58,7 +58,6 @@ class HomeResource {
 
   Future<List<Category>> loadCategory() async {
     try {
-      print('$endPoint2$_categoryUrl');
       var url = Uri.parse('$endPoint2$_categoryUrl');
       final respond = await http.get(url, headers: _categoryHeader);
       final rawData = respond.body;
@@ -80,7 +79,7 @@ class HomeResource {
   Future<List<NewestProduct>> loadNewestProduct() async {
     try {
       var url = Uri.parse('$endPoint1$_newestProductUrl');
-      final respond = await http.get(url, headers: {});
+      final respond = await http.get(url, headers: _newestProductHeader);
       final rawData = respond.body;
       final dataDecode = json.decode(rawData);
       if (dataDecode['success'] == true) {
@@ -100,7 +99,7 @@ class HomeResource {
   Future<List<Suggestion>> loadSuggestion() async {
     try {
       var url = Uri.parse('$endPoint1$_suggestionUrl');
-      final respond = await http.get(url, headers: {});
+      final respond = await http.get(url, headers: _suggestionHeader);
       final rawData = respond.body;
       final dataDecode = json.decode(rawData);
       if (dataDecode['success'] == true) {
@@ -120,7 +119,7 @@ class HomeResource {
   Future<List<TopProduct>> loadTopProduct() async {
     try {
       var url = Uri.parse('$endPoint1$_topProductUrl');
-      final respond = await http.get(url, headers: {});
+      final respond = await http.get(url, headers: _topProductHeader);
       final rawData = respond.body;
       final dataDecode = json.decode(rawData);
       if (dataDecode['success'] == true) {

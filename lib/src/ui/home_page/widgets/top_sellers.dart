@@ -1,12 +1,11 @@
 import 'package:bidu_clone/src/blocs/home_bloc.dart';
-import 'package:bidu_clone/src/blocs/home_state.dart';
 import 'package:bidu_clone/src/models/top_seller.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class TopSellers extends StatefulWidget {
-  TopSellers({Key? key}) : super(key: key);
+  const TopSellers({Key? key}) : super(key: key);
 
   @override
   State<TopSellers> createState() => _TopSellersState();
@@ -25,15 +24,11 @@ class _TopSellersState extends State<TopSellers> {
   @override
   Widget build(BuildContext context) {
     final widthUnit = (MediaQuery.of(context).size.width - 32) / 100;
-    return StreamBuilder<HomeState>(
+    return StreamBuilder<List<TopSeller>>(
         stream: Provider.of<HomeBloc>(context).topSellerStream,
         builder: ((context, snapshot) {
           final List<TopSeller> topSellers;
-          if (snapshot.data is TopSellerLoaded) {
-            topSellers = (snapshot.data as TopSellerLoaded).listTopSeller;
-          } else {
-            topSellers = [];
-          }
+          topSellers = snapshot.data ?? [];
           return Container(
             margin: const EdgeInsets.only(top: 2),
             color: Colors.white,
@@ -50,7 +45,7 @@ class _TopSellersState extends State<TopSellers> {
                         fontSize: 18),
                   ),
                   AnimatedContainer(
-                    duration: Duration(milliseconds: 300),
+                    duration: const Duration(milliseconds: 300),
                     height: ((21 + 24 + 68 + 1) *
                             (isExpanded ? topSellers.length : 3))
                         .toDouble(),
@@ -83,7 +78,7 @@ class _TopSellersState extends State<TopSellers> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Container(
+                                SizedBox(
                                   width: 90 * widthUnit,
                                   child: Row(children: [
                                     Container(
@@ -261,12 +256,12 @@ class _TopSellersState extends State<TopSellers> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      print('tapped');
+                      // print('tapped');
                       setState(() {
                         isExpanded = !isExpanded;
                       });
                     },
-                    child: Container(
+                    child: SizedBox(
                       height: 66,
                       child: Center(
                           child: Row(
