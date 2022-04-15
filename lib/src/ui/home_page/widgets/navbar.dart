@@ -18,8 +18,16 @@ class HomeNavBar extends StatelessWidget {
               {required int index, required VoidCallback onPressed}) {
             const _selectedColor = Color(0xffE812A4);
             return IconButton(
-              icon: SvgPicture.asset(assets,
-                  color: selectedIndex == index ? _selectedColor : null),
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              iconSize: 24,
+              padding: const EdgeInsets.only(top: 20),
+              icon: SvgPicture.asset(
+                assets,
+                color: selectedIndex == index ? _selectedColor : null,
+                width: 24,
+                height: 24,
+              ),
               onPressed: () {
                 Provider.of<HomeBloc>(context, listen: false).changePage(index);
                 onPressed.call();
