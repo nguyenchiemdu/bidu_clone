@@ -60,7 +60,10 @@ class HomeBloc {
   }
 
   void _loadBanner() async {
-    final listBanner = await homeResource.loadBanner();
+    var listBanner = await homeResource.loadBanner();
+    //remove two first banner
+    listBanner.removeAt(0);
+    listBanner.removeAt(0);
     _bannerController.sink.add(listBanner);
   }
 

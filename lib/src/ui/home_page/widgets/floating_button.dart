@@ -31,7 +31,7 @@ class HomeFloatingButton extends StatelessWidget {
                 child: SvgPicture.asset(
                   'assets/icons/nav_plus.svg',
                   color: Colors.white,
-                  width: 30,
+                  width: 20,
                 ),
                 alignment: Alignment.center),
           ]),

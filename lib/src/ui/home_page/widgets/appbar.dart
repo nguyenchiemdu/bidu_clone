@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 AppBar appBarWidget() => AppBar(
       // systemOverlayStyle: const SystemUiOverlayStyle(
@@ -7,11 +8,17 @@ AppBar appBarWidget() => AppBar(
       // ),
       // foregroundColor: Colors.transparent,
       // shadowColor: Colors.transparent,
+      // remove bottom shadow
+      elevation: 0,
+
       backgroundColor: Colors.white,
-      toolbarHeight: 38,
-      leadingWidth: 58.5,
+      toolbarHeight: 48,
+      // leadingWidth: 58.5,
+      leadingWidth: 75,
       leading: Container(
-        padding: const EdgeInsets.only(left: 16, top: 6),
+        alignment: Alignment.bottomCenter,
+        padding: const EdgeInsets.only(bottom: 10),
+        margin: const EdgeInsets.only(left: 16),
         child: GestureDetector(
           child: Image.asset(
             'assets/icons/logo.png',
@@ -25,12 +32,12 @@ AppBar appBarWidget() => AppBar(
       // title: Text(widget.title),
       actions: [
         Container(
-          padding: const EdgeInsets.only(right: 13, top: 6),
+          margin: const EdgeInsets.only(right: 22, top: 6),
           child: GestureDetector(
             child: Image.asset(
               'assets/icons/search_icon.png',
-              width: 32,
-              height: 32,
+              width: 24,
+              height: 24,
             ),
             onTap: () {
               // print('tapped');
@@ -38,12 +45,12 @@ AppBar appBarWidget() => AppBar(
           ),
         ),
         Container(
-          padding: const EdgeInsets.only(right: 13, top: 6),
+          padding: const EdgeInsets.only(right: 22, top: 6),
           child: GestureDetector(
             child: Image.asset(
               'assets/icons/message_icon.png',
-              width: 32,
-              height: 32,
+              width: 24,
+              height: 24,
             ),
             onTap: () {
               // print('tapped');
@@ -51,12 +58,12 @@ AppBar appBarWidget() => AppBar(
           ),
         ),
         Container(
-          padding: const EdgeInsets.only(right: 13, top: 6),
+          padding: const EdgeInsets.only(right: 22, top: 6),
           child: GestureDetector(
             child: Image.asset(
               'assets/icons/notification_icon.png',
-              width: 32,
-              height: 32,
+              width: 24,
+              height: 24,
             ),
             onTap: () {
               // print('tapped');
@@ -64,12 +71,12 @@ AppBar appBarWidget() => AppBar(
           ),
         ),
         Container(
-          padding: const EdgeInsets.only(right: 16, top: 6),
+          padding: const EdgeInsets.only(right: 17, top: 6),
           child: GestureDetector(
             child: Image.asset(
               'assets/icons/cart_icon.png',
-              width: 32,
-              height: 32,
+              width: 24,
+              height: 24,
             ),
             onTap: () {
               // print('tapped');

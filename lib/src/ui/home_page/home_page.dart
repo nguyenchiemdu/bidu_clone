@@ -34,23 +34,18 @@ class MyHomePage extends StatelessWidget {
             color: const Color(0xffF1F1F1),
             child: SingleChildScrollView(
                 child: Column(
-              children: [
-                Container(
-                  height: 165,
-                  color: Colors.transparent,
-                  child: const BannerWidget(),
-                ),
-                const Category(),
-                Container(
-                  height: 175,
-                  color: Colors.transparent,
-                  child: const MiniBanner(),
-                ),
-                const BiduLive(),
-                const NewestProducts(),
-                const TopSellers(),
-                const TopProducts(),
-                const Suggestion(),
+              children: const [
+                BannerWidget(),
+                Category(),
+                MiniBanner(),
+                BiduLive(),
+                NewestProducts(),
+                TopSellers(),
+                TopProducts(),
+                Suggestion(),
+                SizedBox(
+                  height: 80,
+                )
               ],
             )),
           ),
