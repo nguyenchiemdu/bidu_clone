@@ -19,11 +19,10 @@ class BiduLive extends StatelessWidget {
     return Container(
       color: const Color(0xffF5F5F5),
       child: Container(
-        margin: const EdgeInsets.only(left: 16),
         child: Column(children: [
           Container(
             alignment: Alignment.centerLeft,
-            margin: const EdgeInsets.only(top: 30, bottom: 20),
+            margin: const EdgeInsets.only(left: 16, top: 30, bottom: 20),
             child: Image.asset(
               'assets/icons/bidu_live.png',
               height: 23,
@@ -39,7 +38,8 @@ class BiduLive extends StatelessWidget {
                     if (index < streamChannels.length) {
                       return Container(
                         width: 140,
-                        margin: const EdgeInsets.only(right: 10),
+                        margin: EdgeInsets.only(
+                            right: 10, left: index == 0 ? 16 : 0),
                         child: Stack(
                           children: [
                             Image.asset(

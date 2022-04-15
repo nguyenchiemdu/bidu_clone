@@ -1,6 +1,7 @@
 import 'package:bidu_clone/common/number_format.dart';
 import 'package:bidu_clone/src/blocs/home_bloc.dart';
 import 'package:bidu_clone/src/models/suggestion.dart' as suggestion_model;
+import 'package:bidu_clone/src/ui/home_page/widgets/item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,10 +15,13 @@ class Suggestion extends StatelessWidget {
         builder: (context, snapshot) {
           final List<suggestion_model.Suggestion> suggestions;
           suggestions = snapshot.data ?? [];
+          final int numberColumns =
+              suggestions.length ~/ 2 + (suggestions.length % 2 != 0 ? 1 : 0);
           return Container(
             color: Colors.white,
             margin: const EdgeInsets.only(top: 2),
-            padding: const EdgeInsets.only(left: 16, top: 24, bottom: 45),
+            padding:
+                const EdgeInsets.only(left: 16, top: 24, bottom: 45, right: 16),
             child: Column(children: [
               Container(
                 margin: const EdgeInsets.only(right: 16),
@@ -53,130 +57,35 @@ class Suggestion extends StatelessWidget {
                 ),
               ),
               Container(
+                // color: Colors.red,
                 margin: const EdgeInsets.only(top: 20),
-                height: (screenWidth - 0) * 104 / 375,
-                child: ListView.builder(
+                height: numberColumns == 0
+                    ? 0
+                    : (screenWidth - 16 * 2 - 10) /
+                            2 *
+                            280 /
+                            166 *
+                            numberColumns +
+                        20 * (numberColumns - 1),
+                child: GridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    // padding: const EdgeInsets.only(top: 21),
+
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 20,
+                      childAspectRatio: 166 / 280,
+                      crossAxisCount: 2,
+                    ),
                     itemCount: suggestions.length,
-                    scrollDirection: Axis.horizontal,
+                    scrollDirection: Axis.vertical,
                     itemBuilder: ((context, index) {
                       final double itemWidth = (screenWidth - 0) * 313 / 375;
                       // print(suggestions[index]);
                       // print(suggestions[index]['images'][0]);
-                      return Container(
-                        padding: const EdgeInsets.only(right: 10),
-                        width: itemWidth,
-                        height: (screenWidth - 0) * 104 / 375,
-                        child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Stack(
-                                children: [
-                                  SizedBox(
-                                    // decoration: BoxDecoration(
-                                    //     border: Border.all(
-                                    //         color: Colors.grey,
-                                    //         width: 1,
-                                    //         style: BorderStyle.solid)),
-                                    width: (screenWidth - 0) * 104 / 375,
-                                    height: (screenWidth - 0) * 104 / 375,
-                                    child: AspectRatio(
-                                      aspectRatio: 1,
-                                      child: Image.network(
-                                        suggestions[index].images[0].toString(),
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    top: 5.31,
-                                    right: 7.08,
-                                    child: Image.asset(
-                                      'assets/icons/mark.png',
-                                      width: 13.27,
-                                    ),
-                                  )
-                                ],
-                              ),
-                              Expanded(
-                                child: Container(
-                                  padding: const EdgeInsets.only(left: 16),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        child: Text(
-                                          suggestions[index].name,
-                                          maxLines: 2,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: const TextStyle(
-                                              fontFamily: 'Lexend',
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 12),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 6,
-                                      ),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            priceFormnat(
-                                                suggestions[index].salePrice),
-                                            style: const TextStyle(
-                                                fontFamily: 'Lexend',
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 14),
-                                          ),
-                                          const Text(
-                                            ' ₫',
-                                            style: TextStyle(
-                                                fontFamily: 'Lexend',
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 14),
-                                          )
-                                        ],
-                                      ),
-                                      const SizedBox(
-                                        height: 4,
-                                      ),
-                                      Row(
-                                        children: [
-                                          Image.asset(
-                                            'assets/icons/location.png',
-                                            width: 7.08,
-                                          ),
-                                          const Text(
-                                            'Việt Nam',
-                                            style: TextStyle(
-                                                fontFamily: 'Lexend',
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 10),
-                                          )
-                                        ],
-                                      ),
-                                      Expanded(
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: const [
-                                            Text(
-                                              'Đã bán 120',
-                                              style: TextStyle(
-                                                  color: Color(0xff9A9A9A),
-                                                  fontFamily: 'Lexend',
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 10),
-                                            ),
-                                          ],
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              )
-                            ]),
-                      );
+                      return productItem(suggestions[index],
+                          selled: 123, isQuaranteed: true);
                     })),
               )
             ]),

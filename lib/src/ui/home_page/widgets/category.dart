@@ -14,10 +14,11 @@ class Category extends StatelessWidget {
         final List<category_model.Category> categories;
         categories = snapshot.data ?? [];
         double height =
-            (categories.length ~/ 5 + (categories.length % 5 != 0 ? 0 : 0)) *
+            (categories.length ~/ 5 + (categories.length % 5 != 0 ? 1 : 0)) *
                     width /
                     5 +
                 21;
+        categories.sort((a, b) => a.priority.compareTo(b.priority));
         return Container(
           color: Colors.white,
           child: SizedBox(
@@ -26,7 +27,7 @@ class Category extends StatelessWidget {
             child: GridView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 padding: const EdgeInsets.only(top: 21),
-                itemCount: (categories.length ~/ 5) * 5,
+                itemCount: categories.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 5,
                 ),
