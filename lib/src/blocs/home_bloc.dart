@@ -10,7 +10,6 @@ import 'package:bidu_clone/src/resources/home_resource.dart';
 
 class HomeBloc {
   final HomeResource homeResource = HomeResource();
-
   // final _homeEventController = StreamController<HomeEvent>();
   final _bannerController = StreamController<List<Banner>>.broadcast();
   final _categoryController = StreamController<List<Category>>();
@@ -18,6 +17,7 @@ class HomeBloc {
   final _suggestionController = StreamController<List<Suggestion>>();
   final _topProductController = StreamController<List<TopProduct>>();
   final _topSellerController = StreamController<List<TopSeller>>();
+  final _navBarController = StreamController<int>.broadcast();
 
   Stream<List<Banner>> get bannerStream => _bannerController.stream;
   Stream<List<Category>> get categoryStream => _categoryController.stream;
@@ -26,6 +26,7 @@ class HomeBloc {
   Stream<List<Suggestion>> get suggestionStream => _suggestionController.stream;
   Stream<List<TopProduct>> get topProductStream => _topProductController.stream;
   Stream<List<TopSeller>> get topSellerStream => _topSellerController.stream;
+  Stream<int> get navBarStream => _navBarController.stream;
 
   HomeBloc() {
     // _homeEventController.stream.listen(_handleEvent);
@@ -53,6 +54,10 @@ class HomeBloc {
   //     _loadTopSeller();
   //   }
   // }
+
+  void changePage(index) {
+    _navBarController.sink.add(index);
+  }
 
   void _loadBanner() async {
     final listBanner = await homeResource.loadBanner();

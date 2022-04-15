@@ -38,7 +38,7 @@ dependencies:
   intl: ^0.17.0
   equatable: ^2.0.3
   provider: ^6.0.2
-
+  flutter_svg: ^1.0.3
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -81,11 +81,12 @@ flutter:
     - assets/icons/no01.png
     - assets/icons/no02.png
     - assets/icons/no03.png
-    - assets/icons/nav_account.png
-    - assets/icons/nav_bidu.png
-    - assets/icons/nav_compass.png
-    - assets/icons/nav_heart.png
-    - assets/icons/nav_shop.png
+    - assets/icons/nav_account.svg
+    - assets/icons/nav_bidu.svg
+    - assets/icons/nav_compass.svg
+    - assets/icons/nav_heart.svg
+    - assets/icons/nav_shop.svg
+    - assets/icons/nav_plus.svg
     - assets/icons/logo.png
     - assets/images/avatar_live.png
     - assets/images/live_1.png
