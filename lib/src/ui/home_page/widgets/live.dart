@@ -52,43 +52,73 @@ class BiduLive extends StatelessWidget {
                                 children: [
                                   Row(
                                     children: [
-                                      Stack(
-                                        children: [
-                                          Container(
-                                            width: 30,
-                                            height: 30,
-                                            decoration: BoxDecoration(
-                                                color: const Color(0xffE812A4),
-                                                borderRadius:
-                                                    BorderRadius.circular(15)),
+                                      Container(
+                                        width: 30,
+                                        height: 30,
+                                        padding: const EdgeInsets.all(1),
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          border: Border.all(
+                                              color: const Color(0xffE812A4)),
+                                        ),
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: Image.asset(
+                                            streamChannels[index]['avatar'],
+                                            width: 28,
+                                            height: 28,
                                           ),
-                                          Positioned.fill(
-                                            child: Align(
-                                              alignment: Alignment.center,
-                                              child: Image.asset(
-                                                streamChannels[index]['avatar'],
-                                                width: 28,
-                                                height: 28,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
+                                        ),
                                       ),
-                                      Text(streamChannels[index]['name'],
+                                      Container(
+                                        margin: const EdgeInsets.only(left: 6),
+                                        child: Text(
+                                          streamChannels[index]['name'],
                                           style: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w700,
-                                              fontFamily: 'Lexend'))
+                                            color: Colors.white,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w700,
+                                            fontFamily: 'Lexend',
+                                            shadows: <Shadow>[
+                                              Shadow(
+                                                offset: Offset(2, 2),
+                                                blurRadius: 3.0,
+                                                color: Color.fromARGB(
+                                                    255, 0, 0, 0),
+                                              ),
+                                              // Shadow(
+                                              //   offset: Offset(10.0, 10.0),
+                                              //   blurRadius: 8.0,
+                                              //   color: Color.fromARGB(
+                                              //       125, 0, 0, 255),
+                                              // ),
+                                            ],
+                                          ),
+                                        ),
+                                      )
                                     ],
                                   ),
                                   Text(
                                     streamChannels[index]['title'],
                                     style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w500,
-                                        fontFamily: 'Lexend'),
+                                      color: Colors.white,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w500,
+                                      fontFamily: 'Lexend',
+                                      shadows: <Shadow>[
+                                        Shadow(
+                                          offset: Offset(2, 2),
+                                          blurRadius: 3.0,
+                                          color: Color.fromARGB(255, 0, 0, 0),
+                                        ),
+                                        // Shadow(
+                                        //   offset: Offset(10.0, 10.0),
+                                        //   blurRadius: 8.0,
+                                        //   color: Color.fromARGB(
+                                        //       125, 0, 0, 255),
+                                        // ),
+                                      ],
+                                    ),
                                   )
                                 ],
                               ),
