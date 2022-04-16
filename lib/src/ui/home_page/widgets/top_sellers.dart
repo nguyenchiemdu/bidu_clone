@@ -103,8 +103,11 @@ class _TopSellersState extends State<TopSellers> {
                                     Padding(
                                       padding: const EdgeInsets.only(right: 16),
                                       child: Stack(
+                                        alignment: Alignment.topCenter,
                                         children: [
                                           Container(
+                                            padding:
+                                                const EdgeInsets.only(top: 4),
                                             decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(34),
@@ -132,22 +135,20 @@ class _TopSellersState extends State<TopSellers> {
                                           ),
                                           Positioned.fill(
                                             child: Align(
-                                              alignment: Alignment.bottomCenter,
+                                              alignment:
+                                                  const Alignment(0, 1.5),
                                               child: Image.asset(
                                                 'assets/icons/add.png',
                                                 width: 24,
                                               ),
                                             ),
                                           ),
-                                          Positioned.fill(
-                                            top: 3,
-                                            right: 3,
-                                            child: Align(
-                                              alignment: Alignment.topRight,
-                                              child: Image.asset(
-                                                getNoSeller(index),
-                                                width: 18.04,
-                                              ),
+                                          Positioned(
+                                            top: 0,
+                                            right: 10.29,
+                                            child: Image.asset(
+                                              getNoSeller(index),
+                                              width: 18.04,
                                             ),
                                           )
                                         ],
@@ -204,24 +205,30 @@ class _TopSellersState extends State<TopSellers> {
                                               ],
                                             ),
                                           ),
-                                          Row(
-                                            children: [
-                                              const Text(
-                                                'Xem shop',
-                                                style: TextStyle(
-                                                    fontFamily: 'Lexend',
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 12),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 8),
-                                                child: Image.asset(
-                                                  'assets/icons/black_arrow.png',
-                                                  width: 20,
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 9.0),
+                                            child: Row(
+                                              children: [
+                                                const Text(
+                                                  'Xem shop',
+                                                  style: TextStyle(
+                                                      fontFamily: 'Lexend',
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      fontSize: 12),
                                                 ),
-                                              )
-                                            ],
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 8),
+                                                  child: Image.asset(
+                                                    'assets/icons/black_arrow.png',
+                                                    width: 20,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
                                           )
                                         ],
                                       ),
