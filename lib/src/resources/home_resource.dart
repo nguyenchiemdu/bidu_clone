@@ -9,7 +9,16 @@ import 'package:bidu_clone/src/models/top_product.dart';
 import 'package:bidu_clone/src/models/top_seller.dart';
 import 'package:http/http.dart' as http;
 
-class HomeResource {
+class IHomeResource {
+  Future loadBanner() async {}
+  Future loadCategory() async {}
+  Future loadNewestProduct() async {}
+  Future loadSuggestion() async {}
+  Future loadTopProduct() async {}
+  Future loadTopSeller() async {}
+}
+
+class HomeResource implements IHomeResource {
   final _bannerUrl = 'api/v2/mobile/home/banner-categories-v2';
   final _categoryUrl = '/api/v1/mobile/categories';
   final _newestProductUrl = 'api/v2/mobile/home/newest-product';
@@ -34,6 +43,7 @@ class HomeResource {
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxN2I2OGJjNTQ3MjlkMDAxYTA5YTI2MCIsImlhdCI6MTYzNTgzNjMzMSwiZXhwIjoxNjY3MzcyMzMxfQ.DVZR_t9CrnbKKxkuqZY_Ljt3lgrTe4MSsG84zy9mse4',
     'Accept-Language': 'vi'
   };
+  @override
   Future<List<Banner>> loadBanner() async {
     try {
       var url = Uri.parse('$endPoint1$_bannerUrl');
@@ -56,6 +66,7 @@ class HomeResource {
     }
   }
 
+  @override
   Future<List<Category>> loadCategory() async {
     try {
       var url = Uri.parse('$endPoint2$_categoryUrl');
@@ -76,6 +87,7 @@ class HomeResource {
     }
   }
 
+  @override
   Future<List<NewestProduct>> loadNewestProduct() async {
     try {
       var url = Uri.parse('$endPoint1$_newestProductUrl');
@@ -96,6 +108,7 @@ class HomeResource {
     }
   }
 
+  @override
   Future<List<Suggestion>> loadSuggestion() async {
     try {
       var url = Uri.parse('$endPoint1$_suggestionUrl');
@@ -116,6 +129,7 @@ class HomeResource {
     }
   }
 
+  @override
   Future<List<TopProduct>> loadTopProduct() async {
     try {
       var url = Uri.parse('$endPoint1$_topProductUrl');
@@ -136,6 +150,7 @@ class HomeResource {
     }
   }
 
+  @override
   Future<List<TopSeller>> loadTopSeller() async {
     try {
       var url = Uri.parse('$endPoint1$_topSellerUrl');

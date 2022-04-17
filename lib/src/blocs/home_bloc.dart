@@ -9,7 +9,7 @@ import 'package:bidu_clone/src/models/top_seller.dart';
 import 'package:bidu_clone/src/resources/home_resource.dart';
 
 class HomeBloc {
-  final HomeResource homeResource = HomeResource();
+  late IHomeResource homeResource;
   // final _homeEventController = StreamController<HomeEvent>();
   final _bannerController = StreamController<List<Banner>>.broadcast();
   final _categoryController = StreamController<List<Category>>();
@@ -28,7 +28,7 @@ class HomeBloc {
   Stream<List<TopSeller>> get topSellerStream => _topSellerController.stream;
   Stream<int> get navBarStream => _navBarController.stream;
 
-  HomeBloc() {
+  HomeBloc(this.homeResource) {
     // _homeEventController.stream.listen(_handleEvent);
     initLoad();
   }

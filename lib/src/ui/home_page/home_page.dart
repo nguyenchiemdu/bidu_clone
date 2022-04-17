@@ -1,4 +1,5 @@
 import 'package:bidu_clone/src/blocs/home_bloc.dart';
+import 'package:bidu_clone/src/resources/home_resource.dart';
 import 'package:bidu_clone/src/screen_size.dart';
 import 'package:bidu_clone/src/ui/home_page/widgets/navbar.dart';
 import 'package:provider/provider.dart';
@@ -15,43 +16,51 @@ import 'widgets/newest_products.dart';
 import 'widgets/top_sellers.dart';
 
 class MyHomePage extends StatelessWidget {
-  MyHomePage({Key? key}) : super(key: key);
-  final HomeBloc homeBloc = HomeBloc();
+  const MyHomePage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     Screen.width = MediaQuery.of(context).size.width;
     Screen.height = MediaQuery.of(context).size.height;
-    return Provider(
-      create: (context) => homeBloc,
-      child: Scaffold(
-          extendBodyBehindAppBar: false,
-          // this line to make a transpanrent curve for navbar
-          extendBody: true,
-          appBar: appBarWidget(),
-          body: Container(
-            width: double.infinity,
-            height: double.infinity,
-            color: const Color(0xffF1F1F1),
-            child: SingleChildScrollView(
-                child: Column(
-              children: const [
-                BannerWidget(),
-                Category(),
-                MiniBanner(),
-                BiduLive(),
-                NewestProducts(),
-                TopSellers(),
-                TopProducts(),
-                Suggestion(),
-                SizedBox(
-                  height: 80,
-                )
-              ],
-            )),
-          ),
-          floatingActionButton: const HomeFloatingButton(),
-          floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-          bottomNavigationBar: const HomeNavBar()),
+    return
+        // This provider is as DI container
+        Provider<IHomeResource>(
+      // Dependency
+      create: (context) => HomeResource(),
+      builder: (context, child) {
+        return Provider<HomeBloc>(
+            // Injeciton, HomeBloc depend on interface instead of class
+            create: (_) => HomeBloc(context.read<IHomeResource>()),
+            child: Scaffold(
+                extendBodyBehindAppBar: false,
+                // this line to make a transpanrent curve for navbar
+                extendBody: true,
+                appBar: appBarWidget(),
+                body: Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  color: const Color(0xffF1F1F1),
+                  child: SingleChildScrollView(
+                      child: Column(
+                    children: const [
+                      BannerWidget(),
+                      Category(),
+                      MiniBanner(),
+                      BiduLive(),
+                      NewestProducts(),
+                      TopSellers(),
+                      TopProducts(),
+                      Suggestion(),
+                      SizedBox(
+                        height: 80,
+                      )
+                    ],
+                  )),
+                ),
+                floatingActionButton: const HomeFloatingButton(),
+                floatingActionButtonLocation:
+                    FloatingActionButtonLocation.endDocked,
+                bottomNavigationBar: const HomeNavBar()));
+      },
     );
   }
 }
