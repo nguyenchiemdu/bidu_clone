@@ -6,10 +6,10 @@ import 'package:bidu_clone/src/models/newest_product.dart';
 import 'package:bidu_clone/src/models/suggestion.dart';
 import 'package:bidu_clone/src/models/top_product.dart';
 import 'package:bidu_clone/src/models/top_seller.dart';
-import 'package:bidu_clone/src/resources/home_resource.dart';
+import 'package:bidu_clone/src/resources/home_repository.dart';
 
 class HomeBloc {
-  late IHomeResource homeResource;
+  late IHomeRepository homeResource;
   // final _homeEventController = StreamController<HomeEvent>();
   final _bannerController = StreamController<List<Banner>>.broadcast();
   final _categoryController = StreamController<List<Category>>();

@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import '../../common/server.dart';
+import '../models/banner.dart';
 import 'package:bidu_clone/common/server.dart';
 import 'package:bidu_clone/src/models/banner.dart';
 import 'package:bidu_clone/src/models/category.dart';
@@ -9,16 +11,16 @@ import 'package:bidu_clone/src/models/top_product.dart';
 import 'package:bidu_clone/src/models/top_seller.dart';
 import 'package:http/http.dart' as http;
 
-class IHomeResource {
-  Future loadBanner() async {}
-  Future loadCategory() async {}
-  Future loadNewestProduct() async {}
-  Future loadSuggestion() async {}
-  Future loadTopProduct() async {}
-  Future loadTopSeller() async {}
+class IHomeDataSource {
+  Future getListBanner() async {}
+  Future getListCategory() async {}
+  Future getListNewestProduct() async {}
+  Future getListSuggestion() async {}
+  Future getListTopProduct() async {}
+  Future getListTopSeller() async {}
 }
 
-class HomeResource implements IHomeResource {
+class HomeCloudDataSource implements IHomeDataSource {
   final _bannerUrl = 'api/v2/mobile/home/banner-categories-v2';
   final _categoryUrl = '/api/v1/mobile/categories';
   final _newestProductUrl = 'api/v2/mobile/home/newest-product';
@@ -44,14 +46,13 @@ class HomeResource implements IHomeResource {
     'Accept-Language': 'vi'
   };
   @override
-  Future<List<Banner>> loadBanner() async {
+  Future<List<Banner>> getListBanner() async {
     try {
       var url = Uri.parse('$endPoint1$_bannerUrl');
       final respond = await http.get(url, headers: _bannerHeader);
       final rawData = respond.body;
       final dataDecode = json.decode(rawData);
       if (dataDecode['success'] == true) {
-        // print(dataDecode['data']['system_banner']);
         final listBanner =
             listBannerFromMap(dataDecode['data']['system_banner']);
         return listBanner;
@@ -67,7 +68,7 @@ class HomeResource implements IHomeResource {
   }
 
   @override
-  Future<List<Category>> loadCategory() async {
+  Future<List<Category>> getListCategory() async {
     try {
       var url = Uri.parse('$endPoint2$_categoryUrl');
       final respond = await http.get(url, headers: _categoryHeader);
@@ -88,7 +89,7 @@ class HomeResource implements IHomeResource {
   }
 
   @override
-  Future<List<NewestProduct>> loadNewestProduct() async {
+  Future<List<NewestProduct>> getListNewestProduct() async {
     try {
       var url = Uri.parse('$endPoint1$_newestProductUrl');
       final respond = await http.get(url, headers: _newestProductHeader);
@@ -109,7 +110,7 @@ class HomeResource implements IHomeResource {
   }
 
   @override
-  Future<List<Suggestion>> loadSuggestion() async {
+  Future<List<Suggestion>> getListSuggestion() async {
     try {
       var url = Uri.parse('$endPoint1$_suggestionUrl');
       final respond = await http.get(url, headers: _suggestionHeader);
@@ -130,7 +131,7 @@ class HomeResource implements IHomeResource {
   }
 
   @override
-  Future<List<TopProduct>> loadTopProduct() async {
+  Future<List<TopProduct>> getListTopProduct() async {
     try {
       var url = Uri.parse('$endPoint1$_topProductUrl');
       final respond = await http.get(url, headers: _topProductHeader);
@@ -151,7 +152,7 @@ class HomeResource implements IHomeResource {
   }
 
   @override
-  Future<List<TopSeller>> loadTopSeller() async {
+  Future<List<TopSeller>> getListTopSeller() async {
     try {
       var url = Uri.parse('$endPoint1$_topSellerUrl');
       final respond = await http.get(url, headers: _topSellerHeader);

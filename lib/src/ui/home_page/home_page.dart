@@ -1,5 +1,5 @@
 import 'package:bidu_clone/src/blocs/home_bloc.dart';
-import 'package:bidu_clone/src/resources/home_resource.dart';
+import 'package:bidu_clone/src/resources/home_repository.dart';
 import 'package:bidu_clone/src/screen_size.dart';
 import 'package:bidu_clone/src/ui/home_page/widgets/navbar.dart';
 import 'package:provider/provider.dart';
@@ -23,13 +23,13 @@ class MyHomePage extends StatelessWidget {
     Screen.height = MediaQuery.of(context).size.height;
     return
         // This provider is as DI container
-        Provider<IHomeResource>(
+        Provider<IHomeRepository>(
       // Dependency
-      create: (context) => HomeResource(),
+      create: (context) => HomeRepository(),
       builder: (context, child) {
         return Provider<HomeBloc>(
             // Injeciton, HomeBloc depend on interface instead of class
-            create: (_) => HomeBloc(context.read<IHomeResource>()),
+            create: (_) => HomeBloc(context.read<IHomeRepository>()),
             child: Scaffold(
                 extendBodyBehindAppBar: false,
                 // this line to make a transpanrent curve for navbar
