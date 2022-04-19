@@ -1,20 +1,20 @@
 import 'dart:math';
 
-import 'package:bidu_clone/common/number_format.dart';
 import 'package:bidu_clone/src/blocs/home_bloc.dart';
-import 'package:bidu_clone/src/models/top_product.dart';
 import 'package:bidu_clone/src/ui/home_page/widgets/item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../../models/product.dart';
 
 class TopProducts extends StatelessWidget {
   const TopProducts({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<TopProduct>>(
+    return StreamBuilder<List<Product>>(
         stream: Provider.of<HomeBloc>(context).topProductStream,
         builder: (context, snapshot) {
-          final List<TopProduct> topProducts;
+          final List<Product> topProducts;
           topProducts = snapshot.data ?? [];
           return Container(
             color: Colors.white,
@@ -44,7 +44,7 @@ class TopProducts extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     itemBuilder: ((context, index) {
                       // print(topProducts[index]);
-                      return productItem(topProducts[index],
+                      return productItem(context, topProducts[index],
                           top: index + 1,
                           selled: 120,
                           marginLeft: index == 0 ? 16 : 0,

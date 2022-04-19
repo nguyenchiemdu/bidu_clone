@@ -18,7 +18,7 @@ class BiduLive extends StatelessWidget {
     ];
     return Container(
       color: const Color(0xffF5F5F5),
-      child: Container(
+      child: SizedBox(
         child: Column(children: [
           Container(
             alignment: Alignment.centerLeft,
@@ -73,6 +73,7 @@ class BiduLive extends StatelessWidget {
                                       Container(
                                         margin: const EdgeInsets.only(left: 6),
                                         child: Text(
+                                          //TODO : Shadow
                                           streamChannels[index]['name'],
                                           style: const TextStyle(
                                             color: Colors.white,

@@ -1,10 +1,9 @@
 import 'package:bidu_clone/src/models/banner.dart';
 import 'package:bidu_clone/src/models/category.dart';
-import 'package:bidu_clone/src/models/newest_product.dart';
-import 'package:bidu_clone/src/models/suggestion.dart';
-import 'package:bidu_clone/src/models/top_product.dart';
 import 'package:bidu_clone/src/models/top_seller.dart';
 import 'package:bidu_clone/src/resources/home_cloud_datasource.dart';
+
+import '../models/product.dart';
 
 class IHomeRepository {
   Future loadBanner() async {}
@@ -46,7 +45,7 @@ class HomeRepository implements IHomeRepository {
   }
 
   @override
-  Future<List<NewestProduct>> loadNewestProduct() async {
+  Future<List<Product>> loadNewestProduct() async {
     try {
       final listNewestProduct =
           await _homeCloudDataSource.getListNewestProduct();
@@ -61,7 +60,7 @@ class HomeRepository implements IHomeRepository {
   }
 
   @override
-  Future<List<Suggestion>> loadSuggestion() async {
+  Future<List<Product>> loadSuggestion() async {
     try {
       final listSuggestion = await _homeCloudDataSource.getListSuggestion();
       return listSuggestion;
@@ -75,7 +74,7 @@ class HomeRepository implements IHomeRepository {
   }
 
   @override
-  Future<List<TopProduct>> loadTopProduct() async {
+  Future<List<Product>> loadTopProduct() async {
     try {
       final listTopProduct = await _homeCloudDataSource.getListTopProduct();
       return listTopProduct;

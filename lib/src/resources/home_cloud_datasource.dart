@@ -5,11 +5,10 @@ import '../models/banner.dart';
 import 'package:bidu_clone/common/server.dart';
 import 'package:bidu_clone/src/models/banner.dart';
 import 'package:bidu_clone/src/models/category.dart';
-import 'package:bidu_clone/src/models/newest_product.dart';
-import 'package:bidu_clone/src/models/suggestion.dart';
-import 'package:bidu_clone/src/models/top_product.dart';
 import 'package:bidu_clone/src/models/top_seller.dart';
 import 'package:http/http.dart' as http;
+
+import '../models/product.dart';
 
 class IHomeDataSource {
   Future getListBanner() async {}
@@ -89,14 +88,14 @@ class HomeCloudDataSource implements IHomeDataSource {
   }
 
   @override
-  Future<List<NewestProduct>> getListNewestProduct() async {
+  Future<List<Product>> getListNewestProduct() async {
     try {
       var url = Uri.parse('$endPoint1$_newestProductUrl');
       final respond = await http.get(url, headers: _newestProductHeader);
       final rawData = respond.body;
       final dataDecode = json.decode(rawData);
       if (dataDecode['success'] == true) {
-        final listNewestProduct = listNewestProductFromMap(dataDecode['data']);
+        final listNewestProduct = listProductFromMap(dataDecode['data']);
         return listNewestProduct;
       }
       return [];
@@ -110,14 +109,14 @@ class HomeCloudDataSource implements IHomeDataSource {
   }
 
   @override
-  Future<List<Suggestion>> getListSuggestion() async {
+  Future<List<Product>> getListSuggestion() async {
     try {
       var url = Uri.parse('$endPoint1$_suggestionUrl');
       final respond = await http.get(url, headers: _suggestionHeader);
       final rawData = respond.body;
       final dataDecode = json.decode(rawData);
       if (dataDecode['success'] == true) {
-        final listSuggestion = listSuggestionFromMap(dataDecode['data']);
+        final listSuggestion = listProductFromMap(dataDecode['data']);
         return listSuggestion;
       }
       return [];
@@ -131,14 +130,14 @@ class HomeCloudDataSource implements IHomeDataSource {
   }
 
   @override
-  Future<List<TopProduct>> getListTopProduct() async {
+  Future<List<Product>> getListTopProduct() async {
     try {
       var url = Uri.parse('$endPoint1$_topProductUrl');
       final respond = await http.get(url, headers: _topProductHeader);
       final rawData = respond.body;
       final dataDecode = json.decode(rawData);
       if (dataDecode['success'] == true) {
-        final listTopProduct = listTopProductFromMap(dataDecode['data']);
+        final listTopProduct = listProductFromMap(dataDecode['data']);
         return listTopProduct;
       }
       return [];

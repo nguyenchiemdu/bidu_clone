@@ -1,19 +1,19 @@
-import 'package:bidu_clone/common/number_format.dart';
 import 'package:bidu_clone/src/blocs/home_bloc.dart';
-import 'package:bidu_clone/src/models/suggestion.dart' as suggestion_model;
 import 'package:bidu_clone/src/ui/home_page/widgets/item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../../models/product.dart';
 
 class Suggestion extends StatelessWidget {
   const Suggestion({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
-    return StreamBuilder<List<suggestion_model.Suggestion>>(
+    return StreamBuilder<List<Product>>(
         stream: Provider.of<HomeBloc>(context).suggestionStream,
         builder: (context, snapshot) {
-          final List<suggestion_model.Suggestion> suggestions;
+          final List<Product> suggestions;
           suggestions = snapshot.data ?? [];
           final int numberColumns =
               suggestions.length ~/ 2 + (suggestions.length % 2 != 0 ? 1 : 0);
@@ -76,15 +76,18 @@ class Suggestion extends StatelessWidget {
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 20,
                       childAspectRatio: 166 / 280,
+                      //TODO: moi hang co 1 height rieng
+                      //TODO: Cached Image
+                      //TODO: Seemore category
+                      //TODO: Inkwell
                       crossAxisCount: 2,
                     ),
                     itemCount: suggestions.length,
                     scrollDirection: Axis.vertical,
                     itemBuilder: ((context, index) {
-                      final double itemWidth = (screenWidth - 0) * 313 / 375;
                       // print(suggestions[index]);
                       // print(suggestions[index]['images'][0]);
-                      return productItem(suggestions[index],
+                      return productItem(context, suggestions[index],
                           selled: 123, isQuaranteed: true);
                     })),
               )

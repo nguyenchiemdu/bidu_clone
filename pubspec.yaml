@@ -71,6 +71,7 @@ flutter:
     - assets/icons/signal_column.png
     - assets/icons/location.png
     - assets/icons/mark.png
+    - assets/icons/mark.svg
     - assets/icons/heart.png
     - assets/icons/up.png
     - assets/icons/down.png
@@ -81,6 +82,7 @@ flutter:
     - assets/icons/no01.png
     - assets/icons/no02.png
     - assets/icons/no03.png
+    - assets/icons/feedback.png
     - assets/icons/nav_account.svg
     - assets/icons/nav_bidu.svg
     - assets/icons/nav_compass.svg
@@ -89,6 +91,12 @@ flutter:
     - assets/icons/nav_plus.svg
     - assets/icons/logo.png
     - assets/icons/see_more_category.svg
+    - assets/icons/back_button.svg
+    - assets/icons/share_button.svg
+    - assets/icons/cart_button.svg
+    - assets/icons/cart_button.svg
+    - assets/icons/shop_avatar.png
+    - assets/icons/information_product.png
     - assets/images/avatar_live.png
     - assets/images/live_1.png
     - assets/images/live_2.png

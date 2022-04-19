@@ -27,6 +27,7 @@ class MyHomePage extends StatelessWidget {
       // Dependency
       create: (context) => HomeRepository(),
       builder: (context, child) {
+        //TODO : tao HomeBloc ben trong Scafold
         return Provider<HomeBloc>(
             // Injeciton, HomeBloc depend on interface instead of class
             create: (_) => HomeBloc(context.read<IHomeRepository>()),

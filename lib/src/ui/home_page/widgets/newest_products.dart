@@ -1,19 +1,17 @@
-import 'package:bidu_clone/common/number_format.dart';
 import 'package:bidu_clone/src/blocs/home_bloc.dart';
+import 'package:bidu_clone/src/models/product.dart';
 import 'package:bidu_clone/src/ui/home_page/widgets/item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../../../models/newest_product.dart';
 
 class NewestProducts extends StatelessWidget {
   const NewestProducts({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<NewestProduct>>(
+    return StreamBuilder<List<Product>>(
         stream: Provider.of<HomeBloc>(context).newestProductStream,
         builder: ((context, snapshot) {
-          final List<NewestProduct> newestProducts;
+          final List<Product> newestProducts;
           newestProducts = snapshot.data ?? [];
           return Container(
             color: Colors.white,
@@ -61,7 +59,7 @@ class NewestProducts extends StatelessWidget {
                     itemBuilder: ((context, index) {
                       // print(newestProducts[index]);
                       // print(newestProducts[index]['images'][0]);
-                      return productItem(newestProducts[index],
+                      return productItem(context, newestProducts[index],
                           selled: 300,
                           discountPercent:
                               newestProducts[index].discountPercent,
