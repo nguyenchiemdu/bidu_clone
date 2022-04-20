@@ -62,7 +62,7 @@ class Suggestion extends StatelessWidget {
               //TODO : moi hang co 1 height rieng done
               //TODO : Cached Image done
               //TODO : Seemore category
-              //TODO : Inkwell
+              //TODO : Inkwell done
               rowSizes.isNotEmpty
                   ? Container(
                       margin: const EdgeInsets.only(top: 20),

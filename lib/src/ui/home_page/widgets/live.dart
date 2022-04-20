@@ -86,7 +86,7 @@ class BiduLive extends StatelessWidget {
                                       Container(
                                         margin: const EdgeInsets.only(left: 6),
                                         child: Text(
-                                          //TODO : Shadow
+                                          //TODO : Shadow done
                                           streamChannels[index]['name'],
                                           style: const TextStyle(
                                             color: Colors.white,
