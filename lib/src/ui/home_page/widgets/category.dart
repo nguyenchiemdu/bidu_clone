@@ -1,3 +1,4 @@
+import 'package:bidu_clone/common/cached_network_image.dart';
 import 'package:bidu_clone/src/blocs/home_bloc.dart';
 import 'package:bidu_clone/src/models/category.dart' as category_model;
 import 'package:flutter/material.dart';
@@ -41,10 +42,13 @@ class Category extends StatelessWidget {
                       child: Column(children: [
                         Container(
                           padding: const EdgeInsets.only(bottom: 6),
-                          child: Image.network(
-                            categories[index].avatar,
+                          child: SizedBox(
                             width: 32,
                             height: 32,
+                            child: CachedImageCustom(
+                              categories[index].avatar,
+                              circleSize: 10,
+                            ),
                           ),
                         ),
                         Text(

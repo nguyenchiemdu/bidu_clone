@@ -1,3 +1,4 @@
+import 'package:bidu_clone/common/cached_network_image.dart';
 import 'package:bidu_clone/src/blocs/home_bloc.dart';
 import 'package:bidu_clone/src/models/banner.dart' as banner_model;
 import 'package:bidu_clone/src/screen_size.dart';
@@ -23,7 +24,7 @@ class BannerWidget extends StatelessWidget {
                 itemBuilder: (context, pagePosition) {
                   return Container(
                       margin: const EdgeInsets.all(0),
-                      child: Image.network(
+                      child: CachedImageCustom(
                           banners[pagePosition].images?[0].top ?? ''));
                 }),
           );

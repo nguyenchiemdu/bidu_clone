@@ -2,6 +2,7 @@ import 'package:bidu_clone/src/screen_size.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:bidu_clone/src/models/banner.dart' as banner_model;
+import '../../../../common/cached_network_image.dart';
 import '../../../blocs/home_bloc.dart';
 
 class MiniBanner extends StatelessWidget {
@@ -22,7 +23,7 @@ class MiniBanner extends StatelessWidget {
                 itemBuilder: (context, pagePosition) {
                   return Container(
                       margin: const EdgeInsets.all(0),
-                      child: Image.network(
+                      child: CachedImageCustom(
                           banners[pagePosition].images?[0].top ?? ''));
                 }),
           );

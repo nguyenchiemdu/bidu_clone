@@ -1,7 +1,9 @@
 import 'package:bidu_clone/src/models/product.dart';
 import 'package:bidu_clone/src/ui/product_detail/product_detail.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../common/cached_network_image.dart';
 import '../../../../common/number_format.dart';
 
 Widget productItem(BuildContext context, Product product,
@@ -35,15 +37,7 @@ Widget productItem(BuildContext context, Product product,
                 // height: 150,
                 child: AspectRatio(
                   aspectRatio: 1,
-                  child: Image.network(
-                    product.images[0].toString(),
-                    fit: BoxFit.cover,
-                    errorBuilder: (context, object, stackTrace) {
-                      return Container(
-                        color: Colors.red,
-                      );
-                    },
-                  ),
+                  child: CachedImageCustom(product.images[0]),
                 ),
               ),
               Positioned(

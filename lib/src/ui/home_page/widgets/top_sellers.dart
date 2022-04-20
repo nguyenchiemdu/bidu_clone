@@ -1,3 +1,4 @@
+import 'package:bidu_clone/common/cached_network_image.dart';
 import 'package:bidu_clone/src/blocs/home_bloc.dart';
 import 'package:bidu_clone/src/models/top_seller.dart';
 import 'package:flutter/material.dart';
@@ -122,15 +123,16 @@ class _TopSellersState extends State<TopSellers> {
                                                         2), // changes position of shadow
                                                   ),
                                                 ]),
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(34),
-                                              child: Image.network(
-                                                seller.avatar,
-                                                fit: BoxFit.fill,
-                                                width: 68,
-                                                height: 68,
-                                              ),
+                                            child: SizedBox(
+                                              width: 68,
+                                              height: 68,
+                                              child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(34),
+                                                  child: CachedImageCustom(
+                                                    seller.avatar,
+                                                    boxFit: BoxFit.fill,
+                                                  )),
                                             ),
                                           ),
                                           Positioned.fill(
