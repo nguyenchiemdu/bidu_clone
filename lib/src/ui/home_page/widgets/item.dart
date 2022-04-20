@@ -1,23 +1,26 @@
+import 'package:bidu_clone/src/models/product.dart';
 import 'package:bidu_clone/src/ui/product_detail/product_detail.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../common/number_format.dart';
 
-Widget productItem(BuildContext context, product,
+Widget productItem(BuildContext context, Product product,
         {int? top,
         int? selled,
         num? discountPercent,
         bool isQuaranteed = false,
         double marginLeft = 0,
-        double marginRight = 0}) =>
+        double marginRight = 0,
+        double? containerWidth}) =>
     GestureDetector(
       onTap: () => Navigator.push(
           context,
           MaterialPageRoute(
               builder: (context) => ProductDetailScreen(product))),
       child: Container(
+        decoration: BoxDecoration(border: Border.all(color: Colors.red)),
         margin: EdgeInsets.only(left: marginLeft, right: marginRight),
-        width: 150,
+        width: containerWidth,
         // decoration: BoxDecoration(border: Border.all(color: Colors.red)),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Stack(

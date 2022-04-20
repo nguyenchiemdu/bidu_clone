@@ -64,7 +64,8 @@ class NewestProducts extends StatelessWidget {
                           discountPercent:
                               newestProducts[index].discountPercent,
                           marginLeft: index == 0 ? 16 : 0,
-                          marginRight: 8);
+                          marginRight: 8,
+                          containerWidth: 150);
                     })),
               )
             ]),

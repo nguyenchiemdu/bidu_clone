@@ -48,7 +48,8 @@ class TopProducts extends StatelessWidget {
                           top: index + 1,
                           selled: 120,
                           marginLeft: index == 0 ? 16 : 0,
-                          marginRight: 8);
+                          marginRight: 8,
+                          containerWidth: 150);
                     })),
               )
             ]),

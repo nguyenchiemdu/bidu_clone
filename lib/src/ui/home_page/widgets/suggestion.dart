@@ -1,6 +1,7 @@
 import 'package:bidu_clone/src/blocs/home_bloc.dart';
 import 'package:bidu_clone/src/ui/home_page/widgets/item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 import 'package:provider/provider.dart';
 
 import '../../../models/product.dart';
@@ -21,10 +22,9 @@ class Suggestion extends StatelessWidget {
             color: Colors.white,
             margin: const EdgeInsets.only(top: 2),
             padding:
-                const EdgeInsets.only(left: 16, top: 24, bottom: 45, right: 16),
+                const EdgeInsets.only(left: 16, top: 24, bottom: 24, right: 16),
             child: Column(children: [
               Container(
-                margin: const EdgeInsets.only(right: 16),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -56,41 +56,24 @@ class Suggestion extends StatelessWidget {
                   ],
                 ),
               ),
+              //TODO : moi hang co 1 height rieng
+              //TODO : Cached Image
+              //TODO : Seemore category
+              //TODO : Inkwell
               Container(
-                // color: Colors.red,
+                color: Colors.red,
                 margin: const EdgeInsets.only(top: 20),
-                height: numberColumns == 0
-                    ? 0
-                    : (screenWidth - 16 * 2 - 10) /
-                            2 *
-                            280 /
-                            166 *
-                            numberColumns +
-                        20 * (numberColumns - 1),
-                child: GridView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    // padding: const EdgeInsets.only(top: 21),
-
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 20,
-                      childAspectRatio: 166 / 280,
-                      //TODO : moi hang co 1 height rieng
-                      //TODO : Cached Image
-                      //TODO : Seemore category
-                      //TODO : Inkwell
-                      crossAxisCount: 2,
-                    ),
-                    itemCount: suggestions.length,
-                    scrollDirection: Axis.vertical,
-                    itemBuilder: ((context, index) {
-                      // print(suggestions[index]);
-                      // print(suggestions[index]['images'][0]);
-                      return productItem(context, suggestions[index],
-                          selled: 123, isQuaranteed: true);
-                    })),
-              )
+                child: LayoutGrid(
+                  columnSizes: [1.fr, 1.fr],
+                  rowSizes: const [auto, auto, auto, auto, auto, auto],
+                  rowGap: 20,
+                  columnGap: 10,
+                  children: suggestions
+                      .map((suggestion) => productItem(context, suggestion,
+                          selled: 123, isQuaranteed: true))
+                      .toList(),
+                ),
+              ),
             ]),
           );
         });
