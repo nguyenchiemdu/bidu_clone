@@ -1,5 +1,7 @@
+import 'package:bidu_clone/src/blocs/home_bloc.dart';
 import 'package:bidu_clone/src/screen_size.dart';
 import 'package:bidu_clone/src/ui/home_page/widgets/navbar.dart';
+import 'package:provider/provider.dart';
 import 'widgets/appbar.dart';
 import 'widgets/floating_button.dart';
 import 'widgets/live.dart';
@@ -12,8 +14,21 @@ import 'widgets/category.dart';
 import 'widgets/newest_products.dart';
 import 'widgets/top_sellers.dart';
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  late ScrollController _scrollController;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = context.read<HomeBloc>().scrollController;
+  }
+
   @override
   Widget build(BuildContext context) {
     Screen.width = MediaQuery.of(context).size.width;
@@ -28,21 +43,22 @@ class MyHomePage extends StatelessWidget {
           height: double.infinity,
           color: const Color(0xffF1F1F1),
           child: SingleChildScrollView(
+              controller: _scrollController,
               child: Column(
-            children: const [
-              BannerWidget(),
-              Category(),
-              MiniBanner(),
-              BiduLive(),
-              NewestProducts(),
-              TopSellers(),
-              TopProducts(),
-              Suggestion(),
-              SizedBox(
-                height: 80,
-              )
-            ],
-          )),
+                children: [
+                  const BannerWidget(),
+                  Category(),
+                  const MiniBanner(),
+                  const BiduLive(),
+                  const NewestProducts(),
+                  const TopSellers(),
+                  const TopProducts(),
+                  const Suggestion(),
+                  const SizedBox(
+                    height: 80,
+                  )
+                ],
+              )),
         ),
         floatingActionButton: const HomeFloatingButton(),
         floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,

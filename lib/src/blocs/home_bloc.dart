@@ -1,24 +1,29 @@
 import 'dart:async';
 
-import 'package:bidu_clone/src/models/banner.dart';
+import 'package:bidu_clone/src/models/banner.dart' as banner_model;
 import 'package:bidu_clone/src/models/category.dart';
 import 'package:bidu_clone/src/models/top_seller.dart';
 import 'package:bidu_clone/src/resources/home_repository.dart';
+import 'package:flutter/material.dart';
 
 import '../models/product.dart';
 
 class HomeBloc {
   late IHomeRepository homeRepository;
   // final _homeEventController = StreamController<HomeEvent>();
-  final _bannerController = StreamController<List<Banner>>.broadcast();
+  final _bannerController =
+      StreamController<List<banner_model.Banner>>.broadcast();
   final _categoryController = StreamController<List<Category>>();
   final _newestProductController = StreamController<List<Product>>();
   final _suggestionController = StreamController<List<Product>>();
   final _topProductController = StreamController<List<Product>>();
   final _topSellerController = StreamController<List<TopSeller>>();
   final _navBarController = StreamController<int>.broadcast();
+  final _scrollStreamController = StreamController<double>();
+  final ScrollController scrollController = ScrollController();
 
-  Stream<List<Banner>> get bannerStream => _bannerController.stream;
+  Stream<List<banner_model.Banner>> get bannerStream =>
+      _bannerController.stream;
   Stream<List<Category>> get categoryStream => _categoryController.stream;
   Stream<List<Product>> get newestProductStream =>
       _newestProductController.stream;
@@ -26,7 +31,7 @@ class HomeBloc {
   Stream<List<Product>> get topProductStream => _topProductController.stream;
   Stream<List<TopSeller>> get topSellerStream => _topSellerController.stream;
   Stream<int> get navBarStream => _navBarController.stream;
-
+  Stream<double> get scrollStream => _scrollStreamController.stream;
   HomeBloc(this.homeRepository) {
     // _homeEventController.stream.listen(_handleEvent);
     initLoad();
@@ -39,7 +44,27 @@ class HomeBloc {
     _loadSuggestion();
     _loadTopProduct();
     _loadTopSeller();
+    scrollController.addListener(_onScroll);
   }
+
+  void _onScroll() {
+    double pixels = scrollController.position.pixels;
+    // debugPrint(pixels.toString());
+    if (pixels < 332) {
+      updateScroll(pixels);
+    }
+  }
+
+  void updateScroll(double pixels) {
+    _scrollStreamController.sink.add(pixels);
+  }
+
+  void scrollTo(double pixel) {
+    scrollController.animateTo(pixel,
+        duration: const Duration(seconds: 1),
+        curve: Curves.fastLinearToSlowEaseIn);
+  }
+
   // void add(HomeEvent event) {
   //   _homeEventController.add(event);
   // }

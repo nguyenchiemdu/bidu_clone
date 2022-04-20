@@ -11,6 +11,7 @@ class ProductInfor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<Product>(
+        //TODO : thu hoi stream
         initialData: context.read<ProductDetailBloc>().product,
         stream: Provider.of<ProductDetailBloc>(context).productStream,
         builder: (context, snapshot) {
