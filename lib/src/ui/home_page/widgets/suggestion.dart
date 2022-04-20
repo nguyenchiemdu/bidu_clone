@@ -61,7 +61,6 @@ class Suggestion extends StatelessWidget {
               //TODO : Seemore category
               //TODO : Inkwell
               Container(
-                color: Colors.red,
                 margin: const EdgeInsets.only(top: 20),
                 child: LayoutGrid(
                   columnSizes: [1.fr, 1.fr],

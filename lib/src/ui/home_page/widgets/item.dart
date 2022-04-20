@@ -18,7 +18,7 @@ Widget productItem(BuildContext context, Product product,
           MaterialPageRoute(
               builder: (context) => ProductDetailScreen(product))),
       child: Container(
-        decoration: BoxDecoration(border: Border.all(color: Colors.red)),
+        // decoration: BoxDecoration(border: Border.all(color: Colors.red)),
         margin: EdgeInsets.only(left: marginLeft, right: marginRight),
         width: containerWidth,
         // decoration: BoxDecoration(border: Border.all(color: Colors.red)),
