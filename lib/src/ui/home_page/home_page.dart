@@ -33,35 +33,63 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     Screen.width = MediaQuery.of(context).size.width;
     Screen.height = MediaQuery.of(context).size.height;
-    return Scaffold(
-        extendBodyBehindAppBar: false,
-        // this line to make a transpanrent curve for navbar
-        extendBody: true,
-        appBar: appBarWidget(),
-        body: Container(
-          width: double.infinity,
-          height: double.infinity,
-          color: const Color(0xffF1F1F1),
-          child: SingleChildScrollView(
-              controller: _scrollController,
-              child: Column(
-                children: [
-                  const BannerWidget(),
-                  Category(),
-                  const MiniBanner(),
-                  const BiduLive(),
-                  const NewestProducts(),
-                  const TopSellers(),
-                  const TopProducts(),
-                  const Suggestion(),
-                  const SizedBox(
-                    height: 80,
-                  )
-                ],
-              )),
-        ),
-        floatingActionButton: const HomeFloatingButton(),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-        bottomNavigationBar: const HomeNavBar());
+    return Stack(
+      alignment: AlignmentDirectional.bottomCenter,
+      children: [
+        Scaffold(
+            extendBodyBehindAppBar: false,
+            // this line to make a transpanrent curve for navbar
+            extendBody: true,
+            appBar: appBarWidget(),
+            body: Container(
+              width: double.infinity,
+              height: double.infinity,
+              color: const Color(0xffF1F1F1),
+              child: SingleChildScrollView(
+                  controller: _scrollController,
+                  child: Column(
+                    children: [
+                      const BannerWidget(),
+                      Category(),
+                      const MiniBanner(),
+                      const BiduLive(),
+                      const NewestProducts(),
+                      const TopSellers(),
+                      const TopProducts(),
+                      const Suggestion(),
+                      const SizedBox(
+                        height: 80,
+                      )
+                    ],
+                  )),
+            ),
+            floatingActionButton: const HomeFloatingButton(),
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.endDocked,
+            bottomNavigationBar: const HomeNavBar()),
+        Positioned(
+          bottom: 100,
+          child: StreamBuilder<bool>(
+              stream: context.read<HomeBloc>().backToTopStream,
+              builder: (context, snapshot) {
+                // debugPrint('build');
+                bool backToTop = snapshot.data ?? false;
+                return backToTop
+                    ? ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          primary: Colors.white,
+                        ),
+                        onPressed: () => context.read<HomeBloc>().scrollTo(0),
+                        child: const Text('Back to Top',
+                            style: TextStyle(color: Color(0xffE812A4))),
+                      )
+                    : const SizedBox();
+              }),
+        )
+      ],
+    );
   }
 }

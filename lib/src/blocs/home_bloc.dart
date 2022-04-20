@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:bidu_clone/src/blocs/base_bloc.dart';
 import 'package:bidu_clone/src/models/banner.dart' as banner_model;
 import 'package:bidu_clone/src/models/category.dart';
 import 'package:bidu_clone/src/models/top_seller.dart';
@@ -8,8 +9,9 @@ import 'package:flutter/material.dart';
 
 import '../models/product.dart';
 
-class HomeBloc {
+class HomeBloc extends BaseBLoC {
   late IHomeRepository homeRepository;
+  bool _isShowedBackToTop = false;
   // final _homeEventController = StreamController<HomeEvent>();
   final _bannerController =
       StreamController<List<banner_model.Banner>>.broadcast();
@@ -20,6 +22,8 @@ class HomeBloc {
   final _topSellerController = StreamController<List<TopSeller>>();
   final _navBarController = StreamController<int>.broadcast();
   final _scrollStreamController = StreamController<double>();
+  final _backtoTopController = StreamController<bool>();
+
   final ScrollController scrollController = ScrollController();
 
   Stream<List<banner_model.Banner>> get bannerStream =>
@@ -32,6 +36,7 @@ class HomeBloc {
   Stream<List<TopSeller>> get topSellerStream => _topSellerController.stream;
   Stream<int> get navBarStream => _navBarController.stream;
   Stream<double> get scrollStream => _scrollStreamController.stream;
+  Stream<bool> get backToTopStream => _backtoTopController.stream;
   HomeBloc(this.homeRepository) {
     // _homeEventController.stream.listen(_handleEvent);
     initLoad();
@@ -49,18 +54,37 @@ class HomeBloc {
 
   void _onScroll() {
     double pixels = scrollController.position.pixels;
-    // debugPrint(pixels.toString());
+    //
     if (pixels < 332) {
-      updateScroll(pixels);
+      _updateCategory(pixels);
+    }
+    // Hien thi Back to top
+    if (pixels > 1000 && !_isShowedBackToTop) {
+      _updateBackToTopButton();
+    }
+    // An Back to top
+    if (pixels < 1000 && _isShowedBackToTop) {
+      _updateBackToTopButton();
     }
   }
 
-  void updateScroll(double pixels) {
+  void _updateCategory(double pixels) {
     _scrollStreamController.sink.add(pixels);
+  }
+
+  void _updateBackToTopButton() {
+    _isShowedBackToTop = !_isShowedBackToTop;
+    _backtoTopController.sink.add(_isShowedBackToTop);
   }
 
   void scrollTo(double pixel) {
     scrollController.animateTo(pixel,
+        duration: const Duration(seconds: 2),
+        curve: Curves.fastLinearToSlowEaseIn);
+  }
+
+  void seeMore() {
+    scrollController.animateTo(0,
         duration: const Duration(seconds: 1),
         curve: Curves.fastLinearToSlowEaseIn);
   }
@@ -114,5 +138,18 @@ class HomeBloc {
   void _loadTopSeller() async {
     final listTopSeller = await homeRepository.loadTopSeller();
     _topSellerController.sink.add(listTopSeller);
+  }
+
+  @override
+  void dispose() {
+    _bannerController.close();
+    _categoryController.close();
+    _newestProductController.close();
+    _suggestionController.close();
+    _topProductController.close();
+    _topSellerController.close();
+    _navBarController.close();
+    _scrollStreamController.close();
+    _backtoTopController.close();
   }
 }

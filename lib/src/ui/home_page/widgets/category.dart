@@ -77,7 +77,7 @@ class Category extends StatelessWidget {
                                       : GestureDetector(
                                           onTap: () => context
                                               .read<HomeBloc>()
-                                              .scrollTo(0),
+                                              .seeMore(),
                                           child: SvgPicture.asset(
                                               categories[index].avatar),
                                         ),

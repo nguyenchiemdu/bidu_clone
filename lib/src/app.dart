@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
             update: ((context, homeCloudDataSource, previous) =>
                 previous ?? HomeRepository(homeCloudDataSource))),
         ProxyProvider<HomeRepository, HomeBloc>(
+            dispose: (context, homeBloc) => homeBloc.dispose(),
             update: (context, homeRepository, previous) =>
                 previous ?? HomeBloc(homeRepository))
       ], child: const MyHomePage()),
