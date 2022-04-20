@@ -63,19 +63,22 @@ class Suggestion extends StatelessWidget {
               //TODO : Cached Image
               //TODO : Seemore category
               //TODO : Inkwell
-              Container(
-                margin: const EdgeInsets.only(top: 20),
-                child: LayoutGrid(
-                  columnSizes: [1.fr, 1.fr],
-                  rowSizes: rowSizes,
-                  rowGap: 20,
-                  columnGap: 10,
-                  children: suggestions
-                      .map((suggestion) => productItem(context, suggestion,
-                          selled: 123, isQuaranteed: true))
-                      .toList(),
-                ),
-              ),
+              rowSizes.isNotEmpty
+                  ? Container(
+                      margin: const EdgeInsets.only(top: 20),
+                      child: LayoutGrid(
+                        columnSizes: [1.fr, 1.fr],
+                        rowSizes: rowSizes,
+                        rowGap: 20,
+                        columnGap: 10,
+                        children: suggestions
+                            .map((suggestion) => productItem(
+                                context, suggestion,
+                                selled: 123, isQuaranteed: true))
+                            .toList(),
+                      ),
+                    )
+                  : const SizedBox(),
             ]),
           );
         });
