@@ -7,7 +7,7 @@ class DeliverInfor extends StatelessWidget {
   //TODO : tai su dung text style
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       child: Column(children: [
         Row(
           children: [

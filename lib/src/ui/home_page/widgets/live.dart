@@ -42,7 +42,7 @@ class BiduLive extends StatelessWidget {
                             right: 10, left: index == 0 ? 16 : 0),
                         child: Stack(
                           children: [
-                            Container(
+                            SizedBox(
                               child: Image.asset(
                                 streamChannels[index]['image'],
                               ),

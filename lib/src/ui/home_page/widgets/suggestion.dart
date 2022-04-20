@@ -10,7 +10,6 @@ class Suggestion extends StatelessWidget {
   const Suggestion({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final double screenWidth = MediaQuery.of(context).size.width;
     return StreamBuilder<List<Product>>(
         stream: Provider.of<HomeBloc>(context).suggestionStream,
         builder: (context, snapshot) {
@@ -18,13 +17,17 @@ class Suggestion extends StatelessWidget {
           suggestions = snapshot.data ?? [];
           final int numberColumns =
               suggestions.length ~/ 2 + (suggestions.length % 2 != 0 ? 1 : 0);
+          List<TrackSize> rowSizes = [];
+          for (int i = 0; i < numberColumns; i++) {
+            rowSizes.add(auto);
+          }
           return Container(
             color: Colors.white,
             margin: const EdgeInsets.only(top: 2),
             padding:
                 const EdgeInsets.only(left: 16, top: 24, bottom: 24, right: 16),
             child: Column(children: [
-              Container(
+              SizedBox(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -64,7 +67,7 @@ class Suggestion extends StatelessWidget {
                 margin: const EdgeInsets.only(top: 20),
                 child: LayoutGrid(
                   columnSizes: [1.fr, 1.fr],
-                  rowSizes: const [auto, auto, auto, auto, auto, auto],
+                  rowSizes: rowSizes,
                   rowGap: 20,
                   columnGap: 10,
                   children: suggestions
