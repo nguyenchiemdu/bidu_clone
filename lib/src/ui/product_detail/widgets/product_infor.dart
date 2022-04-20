@@ -21,7 +21,7 @@ class ProductInfor extends StatelessWidget {
             width: double.infinity,
             child: Column(
               children: [
-                Container(
+                SizedBox(
                   height: 253,
                   child: Column(
                     children: [
@@ -30,14 +30,19 @@ class ProductInfor extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              product?.name ?? '',
-                              style: const TextStyle(
-                                  fontFamily: 'Lexend',
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w400),
+                            Expanded(
+                              child: Text(
+                                product?.name ?? '',
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                    fontFamily: 'Lexend',
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w400),
+                              ),
                             ),
-                            SizedBox(
+                            Container(
+                                margin: const EdgeInsets.only(left: 16),
                                 width: 13.27,
                                 child:
                                     SvgPicture.asset('assets/icons/mark.svg'))

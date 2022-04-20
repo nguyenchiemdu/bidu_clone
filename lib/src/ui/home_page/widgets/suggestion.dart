@@ -59,8 +59,8 @@ class Suggestion extends StatelessWidget {
                   ],
                 ),
               ),
-              //TODO : moi hang co 1 height rieng
-              //TODO : Cached Image
+              //TODO : moi hang co 1 height rieng done
+              //TODO : Cached Image done
               //TODO : Seemore category
               //TODO : Inkwell
               rowSizes.isNotEmpty
