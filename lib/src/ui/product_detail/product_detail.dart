@@ -15,8 +15,9 @@ class ProductDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Provider<ProductDetailBloc>(
-        create: (context) => ProductDetailBloc(productData),
+        create: (context) => ProductDetailBloc(),
         builder: (context, child) {
+          context.read<ProductDetailBloc>().product = productData;
           return const _DetailPage();
         });
   }

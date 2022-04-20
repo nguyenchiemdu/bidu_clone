@@ -15,11 +15,12 @@ class IHomeRepository {
 }
 
 class HomeRepository implements IHomeRepository {
-  final IHomeDataSource _homeCloudDataSource = HomeCloudDataSource();
+  final IHomeDataSource homeCloudDataSource;
+  HomeRepository(this.homeCloudDataSource);
   @override
   Future<List<Banner>> loadBanner() async {
     try {
-      final listBanner = await _homeCloudDataSource.getListBanner();
+      final listBanner = await homeCloudDataSource.getListBanner();
       return listBanner;
     } catch (e, s) {
       // ignore: avoid_print
@@ -33,7 +34,7 @@ class HomeRepository implements IHomeRepository {
   @override
   Future<List<Category>> loadCategory() async {
     try {
-      final listCategory = await _homeCloudDataSource.getListCategory();
+      final listCategory = await homeCloudDataSource.getListCategory();
       return listCategory;
     } catch (e, s) {
       // ignore: avoid_print
@@ -48,7 +49,7 @@ class HomeRepository implements IHomeRepository {
   Future<List<Product>> loadNewestProduct() async {
     try {
       final listNewestProduct =
-          await _homeCloudDataSource.getListNewestProduct();
+          await homeCloudDataSource.getListNewestProduct();
       return listNewestProduct;
     } catch (e, s) {
       // ignore: avoid_print
@@ -62,7 +63,7 @@ class HomeRepository implements IHomeRepository {
   @override
   Future<List<Product>> loadSuggestion() async {
     try {
-      final listSuggestion = await _homeCloudDataSource.getListSuggestion();
+      final listSuggestion = await homeCloudDataSource.getListSuggestion();
       return listSuggestion;
     } catch (e, s) {
       // ignore: avoid_print
@@ -76,7 +77,7 @@ class HomeRepository implements IHomeRepository {
   @override
   Future<List<Product>> loadTopProduct() async {
     try {
-      final listTopProduct = await _homeCloudDataSource.getListTopProduct();
+      final listTopProduct = await homeCloudDataSource.getListTopProduct();
       return listTopProduct;
     } catch (e, s) {
       // ignore: avoid_print
@@ -90,7 +91,7 @@ class HomeRepository implements IHomeRepository {
   @override
   Future<List<TopSeller>> loadTopSeller() async {
     try {
-      final listTopSeller = await _homeCloudDataSource.getListTopSeller();
+      final listTopSeller = await homeCloudDataSource.getListTopSeller();
       return listTopSeller;
     } catch (e, s) {
       // ignore: avoid_print

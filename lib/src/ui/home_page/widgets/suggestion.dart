@@ -76,10 +76,10 @@ class Suggestion extends StatelessWidget {
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 20,
                       childAspectRatio: 166 / 280,
-                      //TODO: moi hang co 1 height rieng
-                      //TODO: Cached Image
-                      //TODO: Seemore category
-                      //TODO: Inkwell
+                      //TODO : moi hang co 1 height rieng
+                      //TODO : Cached Image
+                      //TODO : Seemore category
+                      //TODO : Inkwell
                       crossAxisCount: 2,
                     ),
                     itemCount: suggestions.length,

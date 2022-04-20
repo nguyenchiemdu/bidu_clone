@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 
 class DeliverInfor extends StatelessWidget {
   const DeliverInfor({Key? key}) : super(key: key);
-
+  //TODO : tai su dung code
+  //TODO : tai su dung text style
   @override
   Widget build(BuildContext context) {
     return Container(

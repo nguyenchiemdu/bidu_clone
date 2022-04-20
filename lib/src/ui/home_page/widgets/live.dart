@@ -42,8 +42,21 @@ class BiduLive extends StatelessWidget {
                             right: 10, left: index == 0 ? 16 : 0),
                         child: Stack(
                           children: [
-                            Image.asset(
-                              streamChannels[index]['image'],
+                            Container(
+                              child: Image.asset(
+                                streamChannels[index]['image'],
+                              ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                    begin: Alignment.bottomCenter,
+                                    end: Alignment.topCenter,
+                                    colors: [
+                                      const Color(0xff000000).withOpacity(0.5),
+                                      const Color(0xffFFFFFF).withOpacity(0),
+                                    ]),
+                              ),
                             ),
                             Container(
                               margin: const EdgeInsets.only(left: 6, bottom: 9),
@@ -80,20 +93,6 @@ class BiduLive extends StatelessWidget {
                                             fontSize: 12,
                                             fontWeight: FontWeight.w700,
                                             fontFamily: 'Lexend',
-                                            shadows: <Shadow>[
-                                              Shadow(
-                                                offset: Offset(2, 2),
-                                                blurRadius: 3.0,
-                                                color: Color.fromARGB(
-                                                    255, 0, 0, 0),
-                                              ),
-                                              // Shadow(
-                                              //   offset: Offset(10.0, 10.0),
-                                              //   blurRadius: 8.0,
-                                              //   color: Color.fromARGB(
-                                              //       125, 0, 0, 255),
-                                              // ),
-                                            ],
                                           ),
                                         ),
                                       )
@@ -106,19 +105,6 @@ class BiduLive extends StatelessWidget {
                                       fontSize: 12,
                                       fontWeight: FontWeight.w500,
                                       fontFamily: 'Lexend',
-                                      shadows: <Shadow>[
-                                        Shadow(
-                                          offset: Offset(2, 2),
-                                          blurRadius: 3.0,
-                                          color: Color.fromARGB(255, 0, 0, 0),
-                                        ),
-                                        // Shadow(
-                                        //   offset: Offset(10.0, 10.0),
-                                        //   blurRadius: 8.0,
-                                        //   color: Color.fromARGB(
-                                        //       125, 0, 0, 255),
-                                        // ),
-                                      ],
                                     ),
                                   )
                                 ],

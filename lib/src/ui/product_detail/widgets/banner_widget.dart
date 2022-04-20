@@ -8,7 +8,7 @@ class BannerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<Product>(
-        initialData: Provider.of<ProductDetailBloc>(context).product,
+        initialData: context.read<ProductDetailBloc>().product,
         stream: Provider.of<ProductDetailBloc>(context).productStream,
         builder: ((context, snapshot) {
           final List listImage = snapshot.data?.images ?? [];

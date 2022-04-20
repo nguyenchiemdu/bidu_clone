@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import 'blocs/home_bloc.dart';
+import 'resources/home_cloud_datasource.dart';
+import 'resources/home_repository.dart';
 import 'ui/home_page/home_page.dart';
 
 class MyApp extends StatelessWidget {
@@ -11,7 +15,16 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
+      home: MultiProvider(providers: [
+        Provider<HomeCloudDataSource>(
+            create: (context) => HomeCloudDataSource()),
+        ProxyProvider<HomeCloudDataSource, HomeRepository>(
+            update: ((context, homeCloudDataSource, previous) =>
+                previous ?? HomeRepository(homeCloudDataSource))),
+        ProxyProvider<HomeRepository, HomeBloc>(
+            update: (context, homeRepository, previous) =>
+                previous ?? HomeBloc(homeRepository))
+      ], child: const MyHomePage()),
     );
   }
 }
