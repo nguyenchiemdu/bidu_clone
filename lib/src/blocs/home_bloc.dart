@@ -5,15 +5,11 @@ import 'package:bidu_clone/src/models/banner.dart' as banner_model;
 import 'package:bidu_clone/src/models/category.dart';
 import 'package:bidu_clone/src/models/top_seller.dart';
 import 'package:bidu_clone/src/resources/home_repository.dart';
-import 'package:flutter/material.dart';
-
 import '../models/product.dart';
 
 class HomeBloc extends BaseBLoC {
   late IHomeRepository homeRepository;
-  bool _isShowedBackToTop = false;
-  // final _homeEventController = StreamController<HomeEvent>();
-  //TODO: remove UI loic ra khoi BLoC
+  //TODO: remove UI loic ra khoi BLoC done
   final _bannerController =
       StreamController<List<banner_model.Banner>>.broadcast();
   final _categoryController = StreamController<List<Category>>();
@@ -24,8 +20,6 @@ class HomeBloc extends BaseBLoC {
   final _navBarController = StreamController<int>.broadcast();
   final _scrollStreamController = StreamController<double>();
   final _backtoTopController = StreamController<bool>();
-
-  final ScrollController scrollController = ScrollController();
 
   Stream<List<banner_model.Banner>> get bannerStream =>
       _bannerController.stream;
@@ -38,8 +32,10 @@ class HomeBloc extends BaseBLoC {
   Stream<int> get navBarStream => _navBarController.stream;
   Stream<double> get scrollStream => _scrollStreamController.stream;
   Stream<bool> get backToTopStream => _backtoTopController.stream;
+  bool isCategoryCollapsed = false;
+  bool _isShowedBackToTop = false;
+  double? categoryHeight;
   HomeBloc(this.homeRepository) {
-    // _homeEventController.stream.listen(_handleEvent);
     initLoad();
   }
 
@@ -50,59 +46,26 @@ class HomeBloc extends BaseBLoC {
     _loadSuggestion();
     _loadTopProduct();
     _loadTopSeller();
-    scrollController.addListener(_onScroll);
   }
 
-  void _onScroll() {
-    double pixels = scrollController.position.pixels;
-    //
-    if (pixels < 332) {
-      _updateCategory(pixels);
-    }
-    // Hien thi Back to top
-    if (pixels > 1000 && !_isShowedBackToTop) {
-      _updateBackToTopButton();
-    }
-    // An Back to top
-    if (pixels < 1000 && _isShowedBackToTop) {
-      _updateBackToTopButton();
-    }
-  }
-
-  void _updateCategory(double pixels) {
+  void updateCategory(
+    double pixels,
+  ) {
     _scrollStreamController.sink.add(pixels);
   }
 
-  void _updateBackToTopButton() {
-    _isShowedBackToTop = !_isShowedBackToTop;
-    _backtoTopController.sink.add(_isShowedBackToTop);
+  void updateBackToTopButton(double pixels) {
+    if ((pixels > 1000 && !_isShowedBackToTop) ||
+        (pixels < 1000 && _isShowedBackToTop)) {
+      _isShowedBackToTop = !_isShowedBackToTop;
+      _backtoTopController.sink.add(_isShowedBackToTop);
+    }
   }
 
-  void scrollTo(double pixel) {
-    scrollController.animateTo(pixel,
-        duration: const Duration(seconds: 2),
-        curve: Curves.fastLinearToSlowEaseIn);
+  void seeMore(double pixels) {
+    updateCategory(pixels);
+    isCategoryCollapsed = false;
   }
-
-  void seeMore() {
-    scrollController.animateTo(0,
-        duration: const Duration(seconds: 1),
-        curve: Curves.fastLinearToSlowEaseIn);
-  }
-
-  // void add(HomeEvent event) {
-  //   _homeEventController.add(event);
-  // }
-  // void _handleEvent(HomeEvent event) async {
-  //   if (event is InitLoad) {
-  //     _loadBanner();
-  //     _loadCategory();
-  //     _loadNewestProduct();
-  //     _loadSuggestion();
-  //     _loadTopProduct();
-  //     _loadTopSeller();
-  //   }
-  // }
 
   void changePage(index) {
     _navBarController.sink.add(index);

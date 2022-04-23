@@ -42,7 +42,7 @@ Widget productItem(BuildContext context, Product product,
                   child: AspectRatio(
                     aspectRatio: 1,
                     child: CachedImageCustom(
-                      '',
+                      product.images[0],
                       boxFit: BoxFit.cover,
                     ),
                   ),

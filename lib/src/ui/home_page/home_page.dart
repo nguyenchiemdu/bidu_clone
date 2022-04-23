@@ -21,12 +21,29 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  late ScrollController _scrollController;
-
+  final ScrollController _scrollController = ScrollController();
   @override
   void initState() {
     super.initState();
-    _scrollController = context.read<HomeBloc>().scrollController;
+  }
+
+  bool _onScrollNotification(
+      BuildContext context, ScrollUpdateNotification notification) {
+    // print(notification.scrollDelta);
+    double? delta = notification.scrollDelta;
+    double pixels = notification.metrics.pixels;
+    final HomeBloc homeBloc = context.read<HomeBloc>();
+    if (delta != null && !homeBloc.isCategoryCollapsed) {
+      context.read<HomeBloc>().updateCategory(delta);
+    }
+    homeBloc.updateBackToTopButton(pixels);
+    return true;
+  }
+
+  void _scrollToTop() {
+    _scrollController.animateTo(0,
+        duration: const Duration(seconds: 2),
+        curve: Curves.fastLinearToSlowEaseIn);
   }
 
   @override
@@ -45,23 +62,27 @@ class _MyHomePageState extends State<MyHomePage> {
               width: double.infinity,
               height: double.infinity,
               color: const Color(0xffF1F1F1),
-              child: SingleChildScrollView(
-                  controller: _scrollController,
-                  child: Column(
-                    children: [
-                      const BannerWidget(),
-                      Category(),
-                      const MiniBanner(),
-                      const BiduLive(),
-                      const NewestProducts(),
-                      const TopSellers(),
-                      const TopProducts(),
-                      const Suggestion(),
-                      const SizedBox(
-                        height: 80,
-                      )
-                    ],
-                  )),
+              child: NotificationListener<ScrollUpdateNotification>(
+                onNotification: (ScrollUpdateNotification notification) =>
+                    _onScrollNotification(context, notification),
+                child: SingleChildScrollView(
+                    controller: _scrollController,
+                    child: Column(
+                      children: [
+                        const BannerWidget(),
+                        Category(),
+                        const MiniBanner(),
+                        const BiduLive(),
+                        const NewestProducts(),
+                        const TopSellers(),
+                        const TopProducts(),
+                        const Suggestion(),
+                        const SizedBox(
+                          height: 80,
+                        )
+                      ],
+                    )),
+              ),
             ),
             floatingActionButton: const HomeFloatingButton(),
             floatingActionButtonLocation:
@@ -72,7 +93,6 @@ class _MyHomePageState extends State<MyHomePage> {
           child: StreamBuilder<bool>(
               stream: context.read<HomeBloc>().backToTopStream,
               builder: (context, snapshot) {
-                // debugPrint('build');
                 bool backToTop = snapshot.data ?? false;
                 return backToTop
                     ? ElevatedButton(
@@ -82,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                           primary: Colors.white,
                         ),
-                        onPressed: () => context.read<HomeBloc>().scrollTo(0),
+                        onPressed: _scrollToTop,
                         child: const Text('Back to Top',
                             style: TextStyle(color: Color(0xffE812A4))),
                       )
