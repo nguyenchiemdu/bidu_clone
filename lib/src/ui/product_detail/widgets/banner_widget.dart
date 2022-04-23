@@ -1,3 +1,4 @@
+import 'package:bidu_clone/common/cached_network_image.dart';
 import 'package:bidu_clone/src/blocs/product_detail_bloc.dart';
 import 'package:bidu_clone/src/models/product.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +13,9 @@ class BannerWidget extends StatelessWidget {
         stream: Provider.of<ProductDetailBloc>(context).productStream,
         builder: ((context, snapshot) {
           final List listImage = snapshot.data?.images ?? [];
+          //TODO: aspecratio
           return SizedBox(
-            height: 400,
+            height: 300,
             width: double.infinity,
             child: PageView.builder(
                 itemCount: listImage.length,
@@ -23,14 +25,9 @@ class BannerWidget extends StatelessWidget {
                     child: SizedBox(
                       child: AspectRatio(
                         aspectRatio: 1,
-                        child: Image.network(
+                        child: CachedImageCustom(
                           listImage[index],
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, object, stacktrace) {
-                            return Container(
-                              color: Colors.blue,
-                            );
-                          },
+                          boxFit: BoxFit.cover,
                         ),
                       ),
                     ),

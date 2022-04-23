@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../common/font.dart';
 import 'package:flutter_svg/svg.dart';
 
 const kAvatarSize = 36.0;
@@ -30,7 +31,7 @@ class ShopInFor extends StatelessWidget {
                   const Text(
                     'MUTINE',
                     style: TextStyle(
-                        fontFamily: 'Lexend',
+                        fontFamily: defaultFont,
                         fontWeight: FontWeight.w700,
                         fontSize: 14),
                   ),
@@ -46,7 +47,7 @@ class ShopInFor extends StatelessWidget {
                           child: Text(
                             '4.9',
                             style: TextStyle(
-                                fontFamily: 'Lexend',
+                                fontFamily: defaultFont,
                                 fontWeight: FontWeight.w400,
                                 fontSize: 12),
                           ),
@@ -61,7 +62,7 @@ class ShopInFor extends StatelessWidget {
                           child: Text(
                             'Tỷ lệ phản hồi Chat 95%',
                             style: TextStyle(
-                                fontFamily: 'Lexend',
+                                fontFamily: defaultFont,
                                 fontWeight: FontWeight.w400,
                                 fontSize: 12),
                           ),
@@ -87,7 +88,7 @@ class ShopInFor extends StatelessWidget {
               '2.3k',
               style: TextStyle(
                   color: Color(0xffFD37AE),
-                  fontFamily: 'Lexend',
+                  fontFamily: defaultFont,
                   fontWeight: FontWeight.w400,
                   fontSize: 14),
             )

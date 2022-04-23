@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../common/font.dart';
 import '../../../models/product.dart';
 
 class Suggestion extends StatelessWidget {
@@ -35,7 +36,7 @@ class Suggestion extends StatelessWidget {
                       'Gợi ý cho bạn',
                       style: TextStyle(
                           fontSize: 18,
-                          fontFamily: 'Lexend',
+                          fontFamily: defaultFont,
                           fontWeight: FontWeight.w800),
                     ),
                     Row(
@@ -44,7 +45,7 @@ class Suggestion extends StatelessWidget {
                           'Xem thêm',
                           style: TextStyle(
                               fontSize: 12,
-                              fontFamily: 'Lexend',
+                              fontFamily: defaultFont,
                               fontWeight: FontWeight.w400),
                         ),
                         Container(
@@ -59,10 +60,8 @@ class Suggestion extends StatelessWidget {
                   ],
                 ),
               ),
-              //TODO : moi hang co 1 height rieng done
-              //TODO : Cached Image done
-              //TODO : Seemore category done
-              //TODO : Inkwell done
+              //TODO : moi hang co 1 height rieng done research thu vien
+              //TODO : Seemore category , khi keo len k duoc tu dong dan ra, khi bam vao xem them k duoc back to top
               rowSizes.isNotEmpty
                   ? Container(
                       margin: const EdgeInsets.only(top: 20),

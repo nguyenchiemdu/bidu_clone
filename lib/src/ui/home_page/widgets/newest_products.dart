@@ -4,6 +4,8 @@ import 'package:bidu_clone/src/ui/home_page/widgets/item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../common/font.dart';
+
 class NewestProducts extends StatelessWidget {
   const NewestProducts({Key? key}) : super(key: key);
   @override
@@ -26,7 +28,7 @@ class NewestProducts extends StatelessWidget {
                       'Sản Phẩm Mới Nhất',
                       style: TextStyle(
                           fontSize: 18,
-                          fontFamily: 'Lexend',
+                          fontFamily: defaultFont,
                           fontWeight: FontWeight.w800),
                     ),
                     Row(
@@ -35,7 +37,7 @@ class NewestProducts extends StatelessWidget {
                           'Xem thêm',
                           style: TextStyle(
                               fontSize: 12,
-                              fontFamily: 'Lexend',
+                              fontFamily: defaultFont,
                               fontWeight: FontWeight.w400),
                         ),
                         Container(
@@ -50,6 +52,7 @@ class NewestProducts extends StatelessWidget {
                   ],
                 ),
               ),
+              //TODO: loading, api bi loi
               Container(
                 margin: const EdgeInsets.only(top: 20),
                 height: 236,

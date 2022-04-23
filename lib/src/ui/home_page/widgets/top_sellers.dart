@@ -4,6 +4,7 @@ import 'package:bidu_clone/src/models/top_seller.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import '../../../../common/font.dart';
 
 class TopSellers extends StatefulWidget {
   const TopSellers({Key? key}) : super(key: key);
@@ -41,12 +42,15 @@ class _TopSellersState extends State<TopSellers> {
                   const Text(
                     'Top Người Bán',
                     style: TextStyle(
-                        fontFamily: 'Lexend',
+                        fontFamily: defaultFont,
                         fontWeight: FontWeight.w700,
                         fontSize: 18),
                   ),
                   AnimatedContainer(
                     duration: const Duration(milliseconds: 300),
+                    //TODO: research thu vien ky
+                    //TODO: Tach wiget thanh cac ham return ve widget
+                    //TODO: animated size de tu dong thay doi chieu cao, dat const o tren, k su dung +
                     height: ((21 + 24 + 68 + 1) *
                             (isExpanded ? topSellers.length : 3))
                         .toDouble(),
@@ -64,10 +68,10 @@ class _TopSellersState extends State<TopSellers> {
                               color: seller.changeType == 'UP'
                                   ? const Color(0xff12B74A)
                                   : const Color(0xffFF3232),
-                              fontFamily: 'Lexend',
+                              fontFamily: defaultFont,
                               fontWeight: FontWeight.w500,
                               fontSize: 12);
-
+                          //TODO: tach
                           return Container(
                             padding: const EdgeInsets.only(bottom: 21, top: 24),
                             decoration: const BoxDecoration(
@@ -95,7 +99,7 @@ class _TopSellersState extends State<TopSellers> {
                                           seller.ranking.toString(),
                                           style: const TextStyle(
                                               color: Colors.white,
-                                              fontFamily: 'Lexend',
+                                              fontFamily: defaultFont,
                                               fontWeight: FontWeight.w500,
                                               fontSize: 14),
                                         ),
@@ -135,6 +139,7 @@ class _TopSellersState extends State<TopSellers> {
                                                   )),
                                             ),
                                           ),
+                                          //TODO:
                                           Positioned.fill(
                                             child: Align(
                                               alignment:
@@ -164,7 +169,7 @@ class _TopSellersState extends State<TopSellers> {
                                           Text(
                                             seller.userName.toUpperCase(),
                                             style: const TextStyle(
-                                                fontFamily: 'Lexend',
+                                                fontFamily: defaultFont,
                                                 fontWeight: FontWeight.w700,
                                                 fontSize: 14),
                                             overflow: TextOverflow.ellipsis,
@@ -188,7 +193,7 @@ class _TopSellersState extends State<TopSellers> {
                                                       seller.avarageRating ??
                                                           0),
                                                   style: const TextStyle(
-                                                      fontFamily: 'Lexend',
+                                                      fontFamily: defaultFont,
                                                       fontWeight:
                                                           FontWeight.w400,
                                                       fontSize: 12),
@@ -199,7 +204,7 @@ class _TopSellersState extends State<TopSellers> {
                                                           .toString() +
                                                       ' lượt theo dõi',
                                                   style: const TextStyle(
-                                                      fontFamily: 'Lexend',
+                                                      fontFamily: defaultFont,
                                                       fontWeight:
                                                           FontWeight.w400,
                                                       fontSize: 12),
@@ -215,7 +220,7 @@ class _TopSellersState extends State<TopSellers> {
                                                 const Text(
                                                   'Xem shop',
                                                   style: TextStyle(
-                                                      fontFamily: 'Lexend',
+                                                      fontFamily: defaultFont,
                                                       fontWeight:
                                                           FontWeight.w400,
                                                       fontSize: 12),
@@ -270,6 +275,7 @@ class _TopSellersState extends State<TopSellers> {
                         isExpanded = !isExpanded;
                       });
                     },
+                    //TODO: bam o ben ngoai xem them
                     child: SizedBox(
                       height: 66,
                       child: Center(
@@ -281,12 +287,13 @@ class _TopSellersState extends State<TopSellers> {
                             child: Text(
                               isExpanded ? 'Rút gọn' : 'Xem thêm',
                               style: const TextStyle(
-                                  fontFamily: 'Lexend',
+                                  fontFamily: defaultFont,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 14),
                             ),
                           ),
                           Image.asset(
+                            // toan tu 3 ngoi de o ngoai widget
                             isExpanded
                                 ? 'assets/icons/collapse.png'
                                 : 'assets/icons/see_more.png',

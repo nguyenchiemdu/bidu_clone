@@ -3,7 +3,9 @@ import 'package:bidu_clone/src/ui/product_detail/product_detail.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../common/cached_network_image.dart';
+import '../../../../common/font.dart';
 import '../../../../common/number_format.dart';
+import '../../common_widget/discount.dart';
 
 Widget productItem(BuildContext context, Product product,
         {int? top,
@@ -16,7 +18,7 @@ Widget productItem(BuildContext context, Product product,
     Material(
       color: Colors.white,
       child: Container(
-        // decoration: const BoxDecoration(color: Colors.transparent),
+        // decoration: const BoxDecoration(color: Colors.red),
         margin: EdgeInsets.only(left: marginLeft, right: marginRight),
         width: containerWidth,
         child: InkWell(
@@ -40,7 +42,7 @@ Widget productItem(BuildContext context, Product product,
                   child: AspectRatio(
                     aspectRatio: 1,
                     child: CachedImageCustom(
-                      product.images[0],
+                      '',
                       boxFit: BoxFit.cover,
                     ),
                   ),
@@ -70,7 +72,7 @@ Widget productItem(BuildContext context, Product product,
                               (top).toString(),
                               style: const TextStyle(
                                   color: Colors.white,
-                                  fontFamily: 'Lexend',
+                                  fontFamily: defaultFont,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 14),
                             ),
@@ -91,7 +93,7 @@ Widget productItem(BuildContext context, Product product,
                       'Đảm bảo',
                       style: TextStyle(
                           color: Color(0xffFD374F),
-                          fontFamily: 'Lexend',
+                          fontFamily: defaultFont,
                           fontWeight: FontWeight.w500,
                           fontSize: 6),
                     ),
@@ -104,7 +106,7 @@ Widget productItem(BuildContext context, Product product,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
-                    fontFamily: 'Lexend',
+                    fontFamily: defaultFont,
                     fontWeight: FontWeight.w400,
                     fontSize: 12),
               ),
@@ -116,42 +118,19 @@ Widget productItem(BuildContext context, Product product,
                   Text(
                     priceFormnat(product.salePrice),
                     style: const TextStyle(
-                        fontFamily: 'Lexend',
+                        fontFamily: defaultFont,
                         fontWeight: FontWeight.w700,
                         fontSize: 14),
                   ),
                   const Text(
                     ' ₫',
                     style: TextStyle(
-                        fontFamily: 'Lexend',
+                        fontFamily: defaultFont,
                         fontWeight: FontWeight.w400,
                         fontSize: 14),
                   ),
                   discountPercent != null
-                      ? Container(
-                          width: 24,
-                          height: 10,
-                          margin: const EdgeInsets.only(left: 8),
-                          padding: const EdgeInsets.only(left: 4),
-                          decoration: const BoxDecoration(
-                            gradient: LinearGradient(
-                                begin: Alignment.bottomLeft,
-                                end: Alignment.topRight,
-                                colors: [
-                                  Color(0xffFF7C79),
-                                  Color(0xffE812A4),
-                                ]),
-                          ),
-                          child: Text(
-                            discountPercent.toString() + '%',
-                            textAlign: TextAlign.left,
-                            style: const TextStyle(
-                                color: Colors.white,
-                                fontFamily: 'Lexend',
-                                fontSize: 8,
-                                fontWeight: FontWeight.w700),
-                          ),
-                        )
+                      ? dicount(discountPercent, fontSize: 8)
                       : const SizedBox()
                 ],
               ),
@@ -167,7 +146,7 @@ Widget productItem(BuildContext context, Product product,
                   const Text(
                     'Việt Nam',
                     style: TextStyle(
-                        fontFamily: 'Lexend',
+                        fontFamily: defaultFont,
                         fontWeight: FontWeight.w400,
                         fontSize: 10),
                   )
@@ -181,7 +160,7 @@ Widget productItem(BuildContext context, Product product,
                       'Đã bán ' + (selled).toString(),
                       style: const TextStyle(
                           color: Color(0xff9A9A9A),
-                          fontFamily: 'Lexend',
+                          fontFamily: defaultFont,
                           fontWeight: FontWeight.w400,
                           fontSize: 10),
                     ),

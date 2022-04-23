@@ -45,54 +45,54 @@ class Category extends StatelessWidget {
               }
               return Container(
                 color: Colors.white,
-                child: SizedBox(
-                  width: double.infinity,
-                  height: height,
-                  child: GridView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      padding: const EdgeInsets.only(top: 21),
-                      itemCount: categories.length,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 5,
-                      ),
-                      itemBuilder: (BuildContext context, int index) {
-                        return GestureDetector(
-                          onTap: () {
-                            // print(categories[index]);
-                          },
-                          child: SizedBox(
-                            width: width / 5,
-                            child: Column(children: [
-                              Container(
-                                padding: const EdgeInsets.only(bottom: 6),
-                                child: SizedBox(
-                                  width: 32,
-                                  height: 32,
-                                  child: categories[index].id != 'seemore'
-                                      ? CachedImageCustom(
-                                          categories[index].avatar,
-                                          circleSize: 10,
-                                        )
-                                      : GestureDetector(
-                                          onTap: () => context
-                                              .read<HomeBloc>()
-                                              .seeMore(),
-                                          child: SvgPicture.asset(
-                                              categories[index].avatar),
-                                        ),
-                                ),
+                width: double.infinity,
+                height: height,
+                child: GridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    padding: const EdgeInsets.only(top: 21),
+                    itemCount: categories.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 5,
+                    ),
+                    itemBuilder: (BuildContext context, int index) {
+                      //TODO: tach thanh 1 widget nho, dung InkWell
+                      return GestureDetector(
+                        onTap: () {
+                          // print(categories[index]);
+                        },
+                        child: SizedBox(
+                          width: width / 5,
+                          child: Column(children: [
+                            Container(
+                              padding: const EdgeInsets.only(bottom: 6),
+                              child: SizedBox(
+                                width: 32,
+                                height: 32,
+                                child: categories[index].id != 'seemore'
+                                    ? CachedImageCustom(
+                                        index == 1
+                                            ? ''
+                                            : categories[index].avatar,
+                                        circleSize: 10,
+                                      )
+                                    : GestureDetector(
+                                        onTap: () =>
+                                            context.read<HomeBloc>().seeMore(),
+                                        child: SvgPicture.asset(
+                                            categories[index].avatar),
+                                      ),
                               ),
-                              Text(
-                                categories[index].name,
-                                style: const TextStyle(
-                                    fontFamily: "Lexend", fontSize: 10),
-                              )
-                            ]),
-                          ),
-                        );
-                      }),
-                ),
+                            ),
+                            Text(
+                              categories[index].name,
+                              style: const TextStyle(
+                                  fontFamily: "Lexend", fontSize: 10),
+                            )
+                          ]),
+                        ),
+                      );
+                    }),
               );
             });
       },

@@ -17,6 +17,7 @@ class BannerWidget extends StatelessWidget {
 
           return SizedBox(
             // size of the banner is 750x348
+            //TODO : them indicator
             height: Screen.width * 348 / 750,
             child: PageView.builder(
                 itemCount: banners.length,

@@ -5,6 +5,7 @@ import 'package:bidu_clone/src/ui/home_page/widgets/item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../common/font.dart';
 import '../../../models/product.dart';
 
 class TopProducts extends StatelessWidget {
@@ -30,7 +31,7 @@ class TopProducts extends StatelessWidget {
                       'Top Sản Phẩm',
                       style: TextStyle(
                           fontSize: 18,
-                          fontFamily: 'Lexend',
+                          fontFamily: defaultFont,
                           fontWeight: FontWeight.w800),
                     ),
                   ],

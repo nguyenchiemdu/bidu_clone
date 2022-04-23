@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 
 class DeliverInfor extends StatelessWidget {
   const DeliverInfor({Key? key}) : super(key: key);
-  //TODO : tai su dung code
-  //TODO : tai su dung text style
+  Widget deliverOption(
+      {String branch = 'GHTK', int startPrice = 30, int endPrice = 60}) {
+    return Row(
+      children: [Text(branch), Text('đ $startPrice ~ đ $endPrice')],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -13,13 +18,9 @@ class DeliverInfor extends StatelessWidget {
           children: [
             Column(
               children: [
-                Text('Thông tin giao hàng'),
-                Row(
-                  children: [Text('GHTK'), Text('đ 30k ~ đ 60k')],
-                ),
-                Row(
-                  children: [Text('J&T'), Text('đ 30k ~ đ 60k')],
-                )
+                const Text('Thông tin giao hàng'),
+                deliverOption(),
+                deliverOption(),
               ],
             ),
             Column(

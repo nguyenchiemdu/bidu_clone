@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../common/font.dart';
+
 class BiduLive extends StatelessWidget {
   const BiduLive({Key? key}) : super(key: key);
 
@@ -36,6 +38,7 @@ class BiduLive extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
                     if (index < streamChannels.length) {
+                      //TODO: Tach widget
                       return Container(
                         width: 140,
                         margin: EdgeInsets.only(
@@ -48,12 +51,13 @@ class BiduLive extends StatelessWidget {
                               ),
                             ),
                             Container(
+                              //TODO: gradient
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
                                     begin: Alignment.bottomCenter,
                                     end: Alignment.topCenter,
                                     colors: [
-                                      const Color(0xff000000).withOpacity(0.5),
+                                      const Color(0xff000000),
                                       const Color(0xffFFFFFF).withOpacity(0),
                                     ]),
                               ),
@@ -86,13 +90,13 @@ class BiduLive extends StatelessWidget {
                                       Container(
                                         margin: const EdgeInsets.only(left: 6),
                                         child: Text(
-                                          //TODO : Shadow done
                                           streamChannels[index]['name'],
+                                          //TODO: Overflow text
                                           style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 12,
                                             fontWeight: FontWeight.w700,
-                                            fontFamily: 'Lexend',
+                                            fontFamily: defaultFont,
                                           ),
                                         ),
                                       )
@@ -104,7 +108,7 @@ class BiduLive extends StatelessWidget {
                                       color: Colors.white,
                                       fontSize: 12,
                                       fontWeight: FontWeight.w500,
-                                      fontFamily: 'Lexend',
+                                      fontFamily: defaultFont,
                                     ),
                                   )
                                 ],
@@ -115,6 +119,7 @@ class BiduLive extends StatelessWidget {
                               width: 12,
                               height: 12,
                               child:
+                                  //TODO: set const for link
                                   Image.asset('assets/icons/signal_column.png'),
                             )
                           ],
@@ -154,7 +159,7 @@ class BiduLive extends StatelessWidget {
                             child: Text(
                               'Xem thêm',
                               style: TextStyle(
-                                  fontFamily: 'Lexend',
+                                  fontFamily: defaultFont,
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500),
                             ),

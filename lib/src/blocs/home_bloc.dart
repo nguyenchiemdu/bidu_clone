@@ -13,6 +13,7 @@ class HomeBloc extends BaseBLoC {
   late IHomeRepository homeRepository;
   bool _isShowedBackToTop = false;
   // final _homeEventController = StreamController<HomeEvent>();
+  //TODO: remove UI loic ra khoi BLoC
   final _bannerController =
       StreamController<List<banner_model.Banner>>.broadcast();
   final _categoryController = StreamController<List<Category>>();
