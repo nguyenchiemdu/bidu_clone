@@ -20,7 +20,7 @@ class HomeBloc extends BaseBLoC {
   final _navBarController = StreamController<int>.broadcast();
   final _scrollStreamController = StreamController<double>();
   final _backtoTopController = StreamController<bool>();
-
+  final _bannerIndicatorController = StreamController<int>.broadcast();
   Stream<List<banner_model.Banner>> get bannerStream =>
       _bannerController.stream;
   Stream<List<Category>> get categoryStream => _categoryController.stream;
@@ -32,6 +32,7 @@ class HomeBloc extends BaseBLoC {
   Stream<int> get navBarStream => _navBarController.stream;
   Stream<double> get scrollStream => _scrollStreamController.stream;
   Stream<bool> get backToTopStream => _backtoTopController.stream;
+  Stream<int> get bannerIndicatorStream => _bannerIndicatorController.stream;
   bool isCategoryCollapsed = false;
   bool _isShowedBackToTop = false;
   double? categoryHeight;
@@ -69,6 +70,10 @@ class HomeBloc extends BaseBLoC {
 
   void changePage(index) {
     _navBarController.sink.add(index);
+  }
+
+  void updateBannerIndicator(int index) {
+    _bannerIndicatorController.sink.add(index);
   }
 
   void _loadBanner() async {
@@ -115,5 +120,6 @@ class HomeBloc extends BaseBLoC {
     _navBarController.close();
     _scrollStreamController.close();
     _backtoTopController.close();
+    _bannerIndicatorController.close();
   }
 }

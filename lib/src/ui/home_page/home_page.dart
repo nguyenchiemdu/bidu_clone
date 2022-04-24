@@ -69,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     controller: _scrollController,
                     child: Column(
                       children: [
-                        const BannerWidget(),
+                        BannerWidget(),
                         Category(),
                         const MiniBanner(),
                         const BiduLive(),
