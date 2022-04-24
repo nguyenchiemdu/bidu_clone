@@ -1,4 +1,3 @@
-import 'package:bidu_clone/common/cached_network_image.dart';
 import 'package:bidu_clone/src/blocs/home_bloc.dart';
 import 'package:bidu_clone/src/models/banner.dart' as banner_model;
 import 'package:bidu_clone/src/screen_size.dart';
