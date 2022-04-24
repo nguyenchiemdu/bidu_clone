@@ -9,7 +9,7 @@ import '../models/product.dart';
 
 class HomeBloc extends BaseBLoC {
   late IHomeRepository homeRepository;
-  //TODO: remove UI loic ra khoi BLoC done
+  //TODO: remove UI loic ra khoi BLoC DONE
   final _bannerController =
       StreamController<List<banner_model.Banner>>.broadcast();
   final _categoryController = StreamController<List<Category>>();

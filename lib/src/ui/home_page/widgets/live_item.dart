@@ -96,7 +96,7 @@ class LiveItem extends StatelessWidget {
             width: 12,
             height: 12,
             child:
-                //TODO: set const for link DOING
+                //TODO: set const for link DONE
                 Image.asset(signalColumn),
           )
         ],

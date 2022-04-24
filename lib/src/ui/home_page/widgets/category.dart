@@ -6,13 +6,12 @@ import 'package:bidu_clone/src/ui/home_page/widgets/category_item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../common/asset_link.dart';
+
 class Category extends StatelessWidget {
   Category({Key? key}) : super(key: key);
   final category_model.Category seeMore = category_model.Category(
-      id: 'seemore',
-      name: 'Xem thêm',
-      avatar: 'assets/icons/see_more_category.svg',
-      priority: 8);
+      id: 'seemore', name: 'Xem thêm', avatar: seeMoreCategory, priority: 8);
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -69,7 +68,7 @@ class Category extends StatelessWidget {
                         crossAxisCount: 5,
                       ),
                       itemBuilder: (BuildContext context, int index) {
-                        //TODO: tach thanh 1 widget nho, dung InkWell done
+                        //TODO: tach thanh 1 widget nho, dung InkWell DONE
                         return CategoryItem(categories[index], seeMoreCallback);
                       }),
                 );

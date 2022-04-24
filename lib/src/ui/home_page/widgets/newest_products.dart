@@ -4,6 +4,7 @@ import 'package:bidu_clone/src/ui/home_page/widgets/item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../common/asset_link.dart';
 import '../../../../common/font.dart';
 
 class NewestProducts extends StatelessWidget {
@@ -43,7 +44,7 @@ class NewestProducts extends StatelessWidget {
                         Container(
                           margin: const EdgeInsets.only(left: 8),
                           child: Image.asset(
-                            'assets/icons/arrow.png',
+                            seeMoreArrow,
                             width: 20,
                           ),
                         )

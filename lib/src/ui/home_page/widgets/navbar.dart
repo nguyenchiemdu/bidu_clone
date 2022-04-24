@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../common/asset_link.dart';
+
 class HomeNavBar extends StatelessWidget {
   const HomeNavBar({Key? key}) : super(key: key);
 
@@ -42,16 +44,11 @@ class HomeNavBar extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    _button('assets/icons/nav_bidu.svg',
-                        index: 0, onPressed: () {}),
-                    _button('assets/icons/nav_shop.svg',
-                        index: 1, onPressed: () {}),
-                    _button('assets/icons/nav_heart.svg',
-                        index: 2, onPressed: () {}),
-                    _button('assets/icons/nav_compass.svg',
-                        index: 3, onPressed: () {}),
-                    _button('assets/icons/nav_account.svg',
-                        index: 4, onPressed: () {}),
+                    _button(navBidu, index: 0, onPressed: () {}),
+                    _button(navShop, index: 1, onPressed: () {}),
+                    _button(navHeart, index: 2, onPressed: () {}),
+                    _button(navCompass, index: 3, onPressed: () {}),
+                    _button(navAccount, index: 4, onPressed: () {}),
                   ],
                 ),
               ));

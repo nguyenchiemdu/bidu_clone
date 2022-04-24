@@ -4,6 +4,7 @@ import 'package:bidu_clone/src/models/top_seller.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import '../../../../common/asset_link.dart';
 import '../../../../common/font.dart';
 
 class TopSellers extends StatefulWidget {
@@ -17,9 +18,9 @@ class _TopSellersState extends State<TopSellers> {
   final NumberFormat rateFormat = NumberFormat('0.0');
 
   String getNoSeller(int index) {
-    if (index == 0) return 'assets/icons/no01.png';
-    if (index == 1) return 'assets/icons/no02.png';
-    return 'assets/icons/no03.png';
+    if (index == 0) return number1;
+    if (index == 1) return number2;
+    return number3;
   }
 
   bool isExpanded = false;
@@ -61,9 +62,8 @@ class _TopSellersState extends State<TopSellers> {
                         itemBuilder: ((context, index) {
                           TopSeller seller = topSellers[index];
                           // print(seller);
-                          String developStatus = seller.changeType == 'UP'
-                              ? 'assets/icons/up.png'
-                              : 'assets/icons/down.png';
+                          String developStatus =
+                              seller.changeType == 'UP' ? up : down;
                           TextStyle developStyle = TextStyle(
                               color: seller.changeType == 'UP'
                                   ? const Color(0xff12B74A)
@@ -139,13 +139,13 @@ class _TopSellersState extends State<TopSellers> {
                                                   )),
                                             ),
                                           ),
-                                          //TODO:
+                                          //TODO: them bong do
                                           Positioned.fill(
                                             child: Align(
                                               alignment:
                                                   const Alignment(0, 1.5),
                                               child: Image.asset(
-                                                'assets/icons/add.png',
+                                                addSeller,
                                                 width: 24,
                                               ),
                                             ),
@@ -184,7 +184,7 @@ class _TopSellersState extends State<TopSellers> {
                                                       const EdgeInsets.only(
                                                           right: 3.69),
                                                   child: Image.asset(
-                                                    'assets/icons/heart.png',
+                                                    sellerHeart,
                                                     width: 14.31,
                                                   ),
                                                 ),
@@ -230,7 +230,7 @@ class _TopSellersState extends State<TopSellers> {
                                                       const EdgeInsets.only(
                                                           left: 8),
                                                   child: Image.asset(
-                                                    'assets/icons/black_arrow.png',
+                                                    blackArrow,
                                                     width: 20,
                                                   ),
                                                 )
@@ -293,10 +293,8 @@ class _TopSellersState extends State<TopSellers> {
                             ),
                           ),
                           Image.asset(
-                            // toan tu 3 ngoi de o ngoai widget
-                            isExpanded
-                                ? 'assets/icons/collapse.png'
-                                : 'assets/icons/see_more.png',
+                            //TODO: toan tu 3 ngoi de o ngoai widget
+                            isExpanded ? collapse : seeMore,
                             width: 8.4,
                           )
                         ],

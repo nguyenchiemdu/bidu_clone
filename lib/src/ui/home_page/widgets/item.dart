@@ -2,6 +2,7 @@ import 'package:bidu_clone/src/models/product.dart';
 import 'package:bidu_clone/src/ui/product_detail/product_detail.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../common/asset_link.dart';
 import '../../../../common/cached_network_image.dart';
 import '../../../../common/font.dart';
 import '../../../../common/number_format.dart';
@@ -51,7 +52,7 @@ Widget productItem(BuildContext context, Product product,
                   top: 5.31,
                   right: 7.08,
                   child: Image.asset(
-                    'assets/icons/mark.png',
+                    productMark,
                     width: 13.27,
                   ),
                 ),
@@ -140,7 +141,7 @@ Widget productItem(BuildContext context, Product product,
               child: Row(
                 children: [
                   Image.asset(
-                    'assets/icons/location.png',
+                    location,
                     width: 7.08,
                   ),
                   const Text(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../common/asset_link.dart';
+
 AppBar appBarWidget() => AppBar(
       // systemOverlayStyle: const SystemUiOverlayStyle(
       //   statusBarIconBrightness: Brightness.dark, // For Android (dark icons)
@@ -20,7 +22,7 @@ AppBar appBarWidget() => AppBar(
         margin: const EdgeInsets.only(left: 16),
         child: GestureDetector(
           child: Image.asset(
-            'assets/icons/logo.png',
+            appBarLogo,
             // height: 32,
           ),
           onTap: () {
@@ -34,7 +36,7 @@ AppBar appBarWidget() => AppBar(
           margin: const EdgeInsets.only(right: 22, top: 6),
           child: GestureDetector(
             child: Image.asset(
-              'assets/icons/search_icon.png',
+              appBarSearch,
               width: 24,
               height: 24,
             ),
@@ -47,7 +49,7 @@ AppBar appBarWidget() => AppBar(
           padding: const EdgeInsets.only(right: 22, top: 6),
           child: GestureDetector(
             child: Image.asset(
-              'assets/icons/message_icon.png',
+              appBarMessage,
               width: 24,
               height: 24,
             ),
@@ -60,7 +62,7 @@ AppBar appBarWidget() => AppBar(
           padding: const EdgeInsets.only(right: 22, top: 6),
           child: GestureDetector(
             child: Image.asset(
-              'assets/icons/notification_icon.png',
+              appBarNotification,
               width: 24,
               height: 24,
             ),
@@ -73,7 +75,7 @@ AppBar appBarWidget() => AppBar(
           padding: const EdgeInsets.only(right: 17, top: 6),
           child: GestureDetector(
             child: Image.asset(
-              'assets/icons/cart_icon.png',
+              appBarCart,
               width: 24,
               height: 24,
             ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../../common/asset_link.dart';
+
 class HomeFloatingButton extends StatelessWidget {
   const HomeFloatingButton({
     Key? key,
@@ -29,7 +31,7 @@ class HomeFloatingButton extends StatelessWidget {
             )),
             Align(
                 child: SvgPicture.asset(
-                  'assets/icons/nav_plus.svg',
+                  navPlus,
                   color: Colors.white,
                   width: 20,
                 ),

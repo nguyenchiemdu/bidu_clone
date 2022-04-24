@@ -1,3 +1,4 @@
+import 'package:bidu_clone/common/asset_link.dart';
 import 'package:bidu_clone/src/blocs/home_bloc.dart';
 import 'package:bidu_clone/src/ui/home_page/widgets/item.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +52,7 @@ class Suggestion extends StatelessWidget {
                         Container(
                           margin: const EdgeInsets.only(left: 8),
                           child: Image.asset(
-                            'assets/icons/arrow.png',
+                            seeMoreArrow,
                             width: 20,
                           ),
                         )
