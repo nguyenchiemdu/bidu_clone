@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
+// TODO: (Trung) tên class nên match với tên file
 class BiduLive extends StatelessWidget {
   const BiduLive({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // TODO: (Trung) trang này chưa được refactor
     const Map streamChannel = {
       'image': 'assets/images/live_1.png',
       'avatar': 'assets/images/avatar_live.png',

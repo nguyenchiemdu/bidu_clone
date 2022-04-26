@@ -13,7 +13,7 @@ class BannerWidget extends StatelessWidget {
         builder: (context, snapshot) {
           final List<banner_model.Banner> banners;
           banners = snapshot.data ?? [];
-
+          //TODO: (Trung) thiếu xử lý UI khi banner đang được load từ api và trường hợp api lỗi
           return SizedBox(
             // size of the banner is 750x348
             height: Screen.width * 348 / 750,
@@ -21,6 +21,7 @@ class BannerWidget extends StatelessWidget {
                 itemCount: banners.length,
                 pageSnapping: true,
                 itemBuilder: (context, pagePosition) {
+                  //TODO:(Trung) nếu biến [context] không được sử dụng thì đặt tên nó thành _ để tránh nhầm lẫn với biến context của build function
                   return Container(
                       margin: const EdgeInsets.all(0),
                       child: Image.network(

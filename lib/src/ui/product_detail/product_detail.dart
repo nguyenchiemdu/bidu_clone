@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import '../../blocs/product_detail_bloc.dart';
 import 'widgets/appbar.dart';
 
+// TODO: (Trung) UI chưa hoàn chỉnh, còn lệch nhiều
 class ProductDetailScreen extends StatelessWidget {
   const ProductDetailScreen(this.productData, {Key? key}) : super(key: key);
   final Product productData;

@@ -44,6 +44,7 @@ class TopProducts extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     itemBuilder: ((context, index) {
                       // print(topProducts[index]);
+                      // TODO: (Trung) tách thành 1 stateless
                       return productItem(context, topProducts[index],
                           top: index + 1,
                           selled: 120,

@@ -12,8 +12,9 @@ class TopSellers extends StatefulWidget {
 }
 
 class _TopSellersState extends State<TopSellers> {
+  // TODO: (Trung) nên viết thành 1 extension của NumberFormat
   final NumberFormat rateFormat = NumberFormat('0.0');
-
+  // TODO: (Trung) không xử lý data logic ở tầng UI
   String getNoSeller(int index) {
     if (index == 0) return 'assets/icons/no01.png';
     if (index == 1) return 'assets/icons/no02.png';
@@ -56,6 +57,7 @@ class _TopSellersState extends State<TopSellers> {
                         itemBuilder: ((context, index) {
                           TopSeller seller = topSellers[index];
                           // print(seller);
+                          // TODO: (Trung) không xử lý data logic ở đây
                           String developStatus = seller.changeType == 'UP'
                               ? 'assets/icons/up.png'
                               : 'assets/icons/down.png';
@@ -66,7 +68,7 @@ class _TopSellersState extends State<TopSellers> {
                               fontFamily: 'Lexend',
                               fontWeight: FontWeight.w500,
                               fontSize: 12);
-
+                          // TODO:(Trung) nên tách thành 1 stateless
                           return Container(
                             padding: const EdgeInsets.only(bottom: 21, top: 24),
                             decoration: const BoxDecoration(

@@ -14,6 +14,7 @@ AppBar productDetailAppbar() => AppBar(
         elevation: 0,
         leadingWidth: 40,
         leading: Container(
+          //TODO: (Trung) thiếu action
           padding: const EdgeInsets.only(left: 8),
           child: SvgPicture.asset(
             'assets/icons/back_button.svg',
@@ -21,6 +22,7 @@ AppBar productDetailAppbar() => AppBar(
           ),
         ),
         actions: [
+          //TODO: (Trung) thiếu action
           Container(
               margin: const EdgeInsets.symmetric(horizontal: 8),
               child: SvgPicture.asset('assets/icons/share_button.svg')),

@@ -17,6 +17,7 @@ class NewestProducts extends StatelessWidget {
             color: Colors.white,
             padding: const EdgeInsets.only(top: 24),
             child: Column(children: [
+              // TODO: (Trung) nên tách ra thành 1 hàm
               Container(
                 margin: const EdgeInsets.only(left: 16, right: 16),
                 child: Row(
@@ -59,6 +60,7 @@ class NewestProducts extends StatelessWidget {
                     itemBuilder: ((context, index) {
                       // print(newestProducts[index]);
                       // print(newestProducts[index]['images'][0]);
+                      // TODO: (Trung) nên tách thành 1 statelesswidget thay vì widget func
                       return productItem(context, newestProducts[index],
                           selled: 300,
                           discountPercent:

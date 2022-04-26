@@ -35,6 +35,7 @@ class Suggestion extends StatelessWidget {
                           fontFamily: 'Lexend',
                           fontWeight: FontWeight.w800),
                     ),
+                    // TODO: (Trung) tách thành 1 func riêng
                     Row(
                       children: [
                         const Text(
@@ -87,6 +88,7 @@ class Suggestion extends StatelessWidget {
                     itemBuilder: ((context, index) {
                       // print(suggestions[index]);
                       // print(suggestions[index]['images'][0]);
+                      // TODO: (Trung) tách thành stateless
                       return productItem(context, suggestions[index],
                           selled: 123, isQuaranteed: true);
                     })),

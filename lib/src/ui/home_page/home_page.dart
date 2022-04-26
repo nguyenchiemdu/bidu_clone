@@ -28,20 +28,25 @@ class MyHomePage extends StatelessWidget {
       create: (context) => HomeRepository(),
       builder: (context, child) {
         //TODO : tao HomeBloc ben trong Scafold
+        // TODO: (Trung) sử dụng MultiProvider thay vì lồng các provider với nhau
         return Provider<HomeBloc>(
             // Injeciton, HomeBloc depend on interface instead of class
-            create: (_) => HomeBloc(context.read<IHomeRepository>()),
+            create: (_) => HomeBloc(context
+                .read<IHomeRepository>()), // TODO: (Trung) dùng proxyprovider
             child: Scaffold(
                 extendBodyBehindAppBar: false,
                 // this line to make a transpanrent curve for navbar
                 extendBody: true,
                 appBar: appBarWidget(),
                 body: Container(
-                  width: double.infinity,
+                  width: double
+                      .infinity, //TODO:(Trung) không sử dụng double.infinity để set size toàn màn hình
                   height: double.infinity,
-                  color: const Color(0xffF1F1F1),
+                  color: const Color(
+                      0xffF1F1F1), // TODO:(Trung) nên tạo 1 file const để lưu, sẽ dễ dàng tái sử dụng hơn
                   child: SingleChildScrollView(
                       child: Column(
+                    //TODO: (Trung) nếu muốn children của column trải dài bằng chiều rộng của parent thì set crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: const [
                       BannerWidget(),
                       Category(),

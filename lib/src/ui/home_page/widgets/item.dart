@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../common/number_format.dart';
 
+// TODO: (Trung) đang còn lỗi tràn UI
 Widget productItem(BuildContext context, product,
         {int? top,
         int? selled,
