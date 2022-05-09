@@ -12,23 +12,38 @@ class Category extends StatelessWidget {
   Category({Key? key}) : super(key: key);
   final category_model.Category seeMore = category_model.Category(
       id: 'seemore', name: 'Xem thêm', avatar: seeMoreCategory, priority: 8);
+  double getMinHeight(double width) {
+    int numberItems = 5;
+    int numberRows = 2;
+    int paddingTop = 21;
+    return width / numberItems * numberRows + paddingTop;
+  }
+
+  double getMaxHeight(double width, int numberCategories) {
+    int itemsInRow = 5;
+    int numberColumns = (numberCategories / itemsInRow).ceil();
+    double itemsHeight = width / itemsInRow;
+    double paddingTop = 21;
+    return numberColumns * itemsHeight + paddingTop;
+  }
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return StreamBuilder<List<category_model.Category>>(
       stream: Provider.of<HomeBloc>(context).categoryStream,
-      builder: (context, categorySnapshot) {
+      builder: (_, categorySnapshot) {
         late List<category_model.Category> categories;
         bool addedSeeMore = false;
         categories = categorySnapshot.data ?? [];
-        categories.sort((a, b) => a.priority.compareTo(b.priority));
-        final minHeight = width / 5 * 2 + 21;
-        final maxHeight = (((categories.length / 5).ceil() * width / 5) + 21);
+
+        final minHeight = getMinHeight(width);
+        final maxHeight = getMaxHeight(width, categories.length);
 
         if (categorySnapshot.hasData) {
           return StreamBuilder<double>(
               stream: context.read<HomeBloc>().scrollStream,
-              builder: (context, scrollSnapshot) {
+              builder: (_, scrollSnapshot) {
                 HomeBloc homeBloc = context.read<HomeBloc>();
                 VoidCallback seeMoreCallback;
                 seeMoreCallback =
@@ -57,7 +72,8 @@ class Category extends StatelessWidget {
                 }
                 return Container(
                   color: Colors.white,
-                  width: double.infinity,
+                  //TODO: (Trung) không dùng double.infinity để size DONE
+                  // width: double.infinity,
                   height: height,
                   child: GridView.builder(
                       physics: const NeverScrollableScrollPhysics(),
@@ -67,7 +83,8 @@ class Category extends StatelessWidget {
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 5,
                       ),
-                      itemBuilder: (BuildContext context, int index) {
+                      //TODO:(Trung) nếu biến [context] không được sử dụng thì đặt tên nó thành _ để tránh nhầm lẫn với biến context của build function DONE
+                      itemBuilder: (_, int index) {
                         //TODO: tach thanh 1 widget nho, dung InkWell DONE
                         return CategoryItem(categories[index], seeMoreCallback);
                       }),

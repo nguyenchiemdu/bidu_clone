@@ -9,50 +9,55 @@ import '../../../../common/font.dart';
 
 class NewestProducts extends StatelessWidget {
   const NewestProducts({Key? key}) : super(key: key);
+  Widget headLine() {
+    return Container(
+      margin: const EdgeInsets.only(left: 16, right: 16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Text(
+            'Sản Phẩm Mới Nhất',
+            style: TextStyle(
+                fontSize: 18,
+                fontFamily: defaultFont,
+                fontWeight: FontWeight.w800),
+          ),
+          Row(
+            children: [
+              const Text(
+                'Xem thêm',
+                style: TextStyle(
+                    fontSize: 12,
+                    fontFamily: defaultFont,
+                    fontWeight: FontWeight.w400),
+              ),
+              Container(
+                margin: const EdgeInsets.only(left: 8),
+                child: Image.asset(
+                  seeMoreArrow,
+                  width: 20,
+                ),
+              )
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<Product>>(
         stream: Provider.of<HomeBloc>(context).newestProductStream,
-        builder: ((context, snapshot) {
+        builder: ((_, snapshot) {
           final List<Product> newestProducts;
           newestProducts = snapshot.data ?? [];
           return Container(
             color: Colors.white,
             padding: const EdgeInsets.only(top: 24),
             child: Column(children: [
-              Container(
-                margin: const EdgeInsets.only(left: 16, right: 16),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      'Sản Phẩm Mới Nhất',
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontFamily: defaultFont,
-                          fontWeight: FontWeight.w800),
-                    ),
-                    Row(
-                      children: [
-                        const Text(
-                          'Xem thêm',
-                          style: TextStyle(
-                              fontSize: 12,
-                              fontFamily: defaultFont,
-                              fontWeight: FontWeight.w400),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.only(left: 8),
-                          child: Image.asset(
-                            seeMoreArrow,
-                            width: 20,
-                          ),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              ),
+              // TODO: (Trung) nên tách ra thành 1 hàm DONE
+              headLine(),
               //TODO: loading, api bi loi DONE, chua them UI
               !snapshot.hasData && !snapshot.hasError
                   ? const Text('Loading')
@@ -67,8 +72,8 @@ class NewestProducts extends StatelessWidget {
                               itemBuilder: ((context, index) {
                                 // print(newestProducts[index]);
                                 // print(newestProducts[index]['images'][0]);
-                                return productItem(
-                                    context, newestProducts[index],
+                                // TODO: (Trung) nên tách thành 1 statelesswidget thay vì widget func DONE
+                                return ProductItem(newestProducts[index],
                                     selled: 300,
                                     discountPercent:
                                         newestProducts[index].discountPercent,

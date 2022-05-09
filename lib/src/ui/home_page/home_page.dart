@@ -2,6 +2,7 @@ import 'package:bidu_clone/src/blocs/home_bloc.dart';
 import 'package:bidu_clone/src/screen_size.dart';
 import 'package:bidu_clone/src/ui/home_page/widgets/navbar.dart';
 import 'package:provider/provider.dart';
+import '../../../common/colors.dart';
 import 'widgets/appbar.dart';
 import 'widgets/floating_button.dart';
 import 'widgets/live.dart';
@@ -59,20 +60,23 @@ class _MyHomePageState extends State<MyHomePage> {
             extendBody: true,
             appBar: appBarWidget(),
             body: Container(
-              width: double.infinity,
-              height: double.infinity,
-              color: const Color(0xffF1F1F1),
+              //TODO:(Trung) không sử dụng double.infinity để set size toàn màn hình DONE
+              // width: double.infinity,
+              // height: double.infinity,
+              // TODO:(Trung) nên tạo 1 file const để lưu, sẽ dễ dàng tái sử dụng hơn DONE
+              color: backgroundColor,
               child: NotificationListener<ScrollUpdateNotification>(
                 onNotification: (ScrollUpdateNotification notification) =>
                     _onScrollNotification(context, notification),
                 child: SingleChildScrollView(
                     controller: _scrollController,
                     child: Column(
+                      //TODO: (Trung) nếu muốn children của column trải dài bằng chiều rộng của parent thì set crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         BannerWidget(),
                         Category(),
                         const MiniBanner(),
-                        const BiduLive(),
+                        const Live(),
                         const NewestProducts(),
                         const TopSellers(),
                         const TopProducts(),

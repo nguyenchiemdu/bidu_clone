@@ -45,7 +45,7 @@ class HomeCloudDataSource implements IHomeDataSource {
     'Accept-Language': 'vi'
   };
   @override
-  Future<List<Banner>> getListBanner() async {
+  Future getListBanner() async {
     try {
       var url = Uri.parse('$endPoint1$_bannerUrl');
       final respond = await http.get(url, headers: _bannerHeader);
@@ -62,7 +62,7 @@ class HomeCloudDataSource implements IHomeDataSource {
       print(e);
       // ignore: avoid_print
       print(s);
-      return [];
+      return e;
     }
   }
 
@@ -75,6 +75,8 @@ class HomeCloudDataSource implements IHomeDataSource {
       final dataDecode = json.decode(rawData);
       if (dataDecode['success'] == true) {
         final listCategory = listCategoryFromMap(dataDecode['data']);
+        // TODO: (Trung) nên xử lý bên trong bloC
+        listCategory.sort((a, b) => a.priority.compareTo(b.priority));
         return listCategory;
       }
       return [];

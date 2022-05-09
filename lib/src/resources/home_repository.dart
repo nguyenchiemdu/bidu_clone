@@ -18,7 +18,7 @@ class HomeRepository implements IHomeRepository {
   final IHomeDataSource homeCloudDataSource;
   HomeRepository(this.homeCloudDataSource);
   @override
-  Future<List<Banner>> loadBanner() async {
+  Future loadBanner() async {
     try {
       final listBanner = await homeCloudDataSource.getListBanner();
       return listBanner;
@@ -27,7 +27,7 @@ class HomeRepository implements IHomeRepository {
       print(e);
       // ignore: avoid_print
       print(s);
-      return [];
+      return e;
     }
   }
 

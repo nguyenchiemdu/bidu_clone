@@ -10,6 +10,49 @@ import '../../../models/product.dart';
 
 class Suggestion extends StatelessWidget {
   const Suggestion({Key? key}) : super(key: key);
+  Widget headLine() {
+    return SizedBox(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Text(
+            'Gợi ý cho bạn',
+            style: TextStyle(
+                fontSize: 18,
+                fontFamily: defaultFont,
+                fontWeight: FontWeight.w800),
+          ),
+          Row(
+            children: [
+              const Text(
+                'Xem thêm',
+                style: TextStyle(
+                    fontSize: 12,
+                    fontFamily: defaultFont,
+                    fontWeight: FontWeight.w400),
+              ),
+              Container(
+                margin: const EdgeInsets.only(left: 8),
+                child: Image.asset(
+                  seeMoreArrow,
+                  width: 20,
+                ),
+              )
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
+  int getNumberColumn(int numberSuggestions) {
+    int numberColumn = numberSuggestions ~/ 2;
+    if (numberSuggestions % 2 != 0) {
+      numberColumn++;
+    }
+    return numberColumn;
+  }
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<Product>>(
@@ -17,8 +60,7 @@ class Suggestion extends StatelessWidget {
         builder: (context, snapshot) {
           final List<Product> suggestions;
           suggestions = snapshot.data ?? [];
-          final int numberColumns =
-              suggestions.length ~/ 2 + (suggestions.length % 2 != 0 ? 1 : 0);
+          final int numberColumns = getNumberColumn(suggestions.length);
           List<TrackSize> rowSizes = [];
           for (int i = 0; i < numberColumns; i++) {
             rowSizes.add(auto);
@@ -29,38 +71,7 @@ class Suggestion extends StatelessWidget {
             padding:
                 const EdgeInsets.only(left: 16, top: 24, bottom: 24, right: 16),
             child: Column(children: [
-              SizedBox(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      'Gợi ý cho bạn',
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontFamily: defaultFont,
-                          fontWeight: FontWeight.w800),
-                    ),
-                    Row(
-                      children: [
-                        const Text(
-                          'Xem thêm',
-                          style: TextStyle(
-                              fontSize: 12,
-                              fontFamily: defaultFont,
-                              fontWeight: FontWeight.w400),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.only(left: 8),
-                          child: Image.asset(
-                            seeMoreArrow,
-                            width: 20,
-                          ),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              ),
+              headLine(),
               //TODO : moi hang co 1 height rieng done research thu vien LATER
               rowSizes.isNotEmpty
                   ? Container(
@@ -71,8 +82,7 @@ class Suggestion extends StatelessWidget {
                         rowGap: 20,
                         columnGap: 10,
                         children: suggestions
-                            .map((suggestion) => productItem(
-                                context, suggestion,
+                            .map((suggestion) => ProductItem(suggestion,
                                 selled: 123, isQuaranteed: true))
                             .toList(),
                       ),

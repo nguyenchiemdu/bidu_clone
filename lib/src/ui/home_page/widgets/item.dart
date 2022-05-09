@@ -8,15 +8,37 @@ import '../../../../common/font.dart';
 import '../../../../common/number_format.dart';
 import '../../common_widget/discount.dart';
 
-Widget productItem(BuildContext context, Product product,
-        {int? top,
-        int? selled,
-        num? discountPercent,
-        bool isQuaranteed = false,
-        double marginLeft = 0,
-        double marginRight = 0,
-        double? containerWidth}) =>
-    Material(
+// Widget productItem(BuildContext context, Product product,
+//         {int? top,
+//         int? selled,
+//         num? discountPercent,
+//         bool isQuaranteed = false,
+//         double marginLeft = 0,
+//         double marginRight = 0,
+//         double? containerWidth}) =>
+
+class ProductItem extends StatelessWidget {
+  ProductItem(this.product,
+      {this.top,
+      this.selled,
+      this.discountPercent,
+      this.isQuaranteed = false,
+      this.marginLeft = 0,
+      this.marginRight = 0,
+      this.containerWidth,
+      Key? key})
+      : super(key: key);
+  Product product;
+  int? top;
+  int? selled;
+  num? discountPercent;
+  bool isQuaranteed = false;
+  double marginLeft = 0;
+  double marginRight = 0;
+  double? containerWidth;
+  @override
+  Widget build(BuildContext context) {
+    return Material(
       color: Colors.white,
       child: Container(
         // decoration: const BoxDecoration(color: Colors.red),
@@ -131,7 +153,7 @@ Widget productItem(BuildContext context, Product product,
                         fontSize: 14),
                   ),
                   discountPercent != null
-                      ? dicount(discountPercent, fontSize: 8)
+                      ? dicount(discountPercent!, fontSize: 8)
                       : const SizedBox()
                 ],
               ),
@@ -171,5 +193,5 @@ Widget productItem(BuildContext context, Product product,
         ),
       ),
     );
-
-class Item {}
+  }
+}

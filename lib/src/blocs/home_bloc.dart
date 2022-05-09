@@ -78,10 +78,15 @@ class HomeBloc extends BaseBLoC {
 
   void _loadBanner() async {
     var listBanner = await homeRepository.loadBanner();
-    //remove two first banner
-    listBanner.removeAt(0);
-    listBanner.removeAt(0);
-    _bannerController.sink.add(listBanner);
+
+    if (listBanner.runtimeType == List<banner_model.Banner>) {
+      //remove two first banner
+      listBanner.removeAt(0);
+      listBanner.removeAt(0);
+      _bannerController.sink.add(listBanner);
+    } else {
+      _bannerController.addError(listBanner);
+    }
   }
 
   void _loadCategory() async {
