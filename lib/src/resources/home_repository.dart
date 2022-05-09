@@ -46,7 +46,7 @@ class HomeRepository implements IHomeRepository {
   }
 
   @override
-  Future<List<Product>> loadNewestProduct() async {
+  Future loadNewestProduct() async {
     try {
       final listNewestProduct =
           await homeCloudDataSource.getListNewestProduct();
@@ -56,7 +56,7 @@ class HomeRepository implements IHomeRepository {
       print(e);
       // ignore: avoid_print
       print(s);
-      return [];
+      return e;
     }
   }
 

@@ -41,7 +41,7 @@ class BiduLive extends StatelessWidget {
                   itemBuilder: (context, index) {
                     double marginLeft = index == 0 ? 16 : 0;
                     if (index < streamChannels.length) {
-                      //TODO: Tach widget
+                      //TODO: Tach widget DONE
                       return LiveItem(streamChannels[index], marginLeft);
                     } else {
                       return SizedBox(

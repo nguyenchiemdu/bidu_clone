@@ -91,7 +91,11 @@ class HomeBloc extends BaseBLoC {
 
   void _loadNewestProduct() async {
     final listNewestProduct = await homeRepository.loadNewestProduct();
-    _newestProductController.sink.add(listNewestProduct);
+    if (listNewestProduct.runtimeType == List<Product>) {
+      _newestProductController.sink.add(listNewestProduct);
+    } else {
+      _newestProductController.addError(listNewestProduct);
+    }
   }
 
   void _loadSuggestion() async {

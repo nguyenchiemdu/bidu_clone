@@ -1,8 +1,7 @@
-import 'package:bidu_clone/common/cached_network_image.dart';
 import 'package:bidu_clone/src/blocs/home_bloc.dart';
 import 'package:bidu_clone/src/models/top_seller.dart';
+import 'package:bidu_clone/src/ui/home_page/widgets/top_seller_item.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import '../../../../common/asset_link.dart';
 import '../../../../common/font.dart';
@@ -15,15 +14,17 @@ class TopSellers extends StatefulWidget {
 }
 
 class _TopSellersState extends State<TopSellers> {
-  final NumberFormat rateFormat = NumberFormat('0.0');
-
-  String getNoSeller(int index) {
-    if (index == 0) return number1;
-    if (index == 1) return number2;
-    return number3;
+  bool isExpanded = false;
+  String iconButton = seeMore;
+  String textButton = 'Xem thêm';
+  double getTopSellersHeight(List<TopSeller> topSellers) {
+    int avatarHeight = 68;
+    int paddingTop = 24;
+    int paddingBottom = 21;
+    int numberItems = (isExpanded ? topSellers.length : 3);
+    return (avatarHeight + paddingTop + paddingBottom) * numberItems.toDouble();
   }
 
-  bool isExpanded = false;
   @override
   Widget build(BuildContext context) {
     final widthUnit = (MediaQuery.of(context).size.width - 32) / 100;
@@ -49,12 +50,8 @@ class _TopSellersState extends State<TopSellers> {
                   ),
                   AnimatedContainer(
                     duration: const Duration(milliseconds: 300),
-                    //TODO: research thu vien ky
-                    //TODO: Tach wiget thanh cac ham return ve widget
-                    //TODO: animated size de tu dong thay doi chieu cao, dat const o tren, k su dung +
-                    height: ((21 + 24 + 68 + 1) *
-                            (isExpanded ? topSellers.length : 3))
-                        .toDouble(),
+                    //TODO: animated size de tu dong thay doi chieu cao, dat const o tren, k su dung + DONE 1/2
+                    height: getTopSellersHeight(topSellers),
                     child: ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),
                         padding: const EdgeInsets.all(0),
@@ -71,201 +68,9 @@ class _TopSellersState extends State<TopSellers> {
                               fontFamily: defaultFont,
                               fontWeight: FontWeight.w500,
                               fontSize: 12);
-                          //TODO: tach
-                          return Container(
-                            padding: const EdgeInsets.only(bottom: 21, top: 24),
-                            decoration: const BoxDecoration(
-                                border: Border(
-                                    bottom: BorderSide(
-                                        color: Color(0xffF1F1F1),
-                                        width: 1,
-                                        style: BorderStyle.solid))),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                SizedBox(
-                                  width: 90 * widthUnit,
-                                  child: Row(children: [
-                                    Container(
-                                      margin: const EdgeInsets.only(right: 20),
-                                      width: 20,
-                                      height: 20,
-                                      decoration: const BoxDecoration(
-                                          color: Color(0xff1A1A1A),
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5))),
-                                      child: Center(
-                                        child: Text(
-                                          seller.ranking.toString(),
-                                          style: const TextStyle(
-                                              color: Colors.white,
-                                              fontFamily: defaultFont,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 14),
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(right: 16),
-                                      child: Stack(
-                                        alignment: Alignment.topCenter,
-                                        children: [
-                                          Container(
-                                            padding:
-                                                const EdgeInsets.only(top: 4),
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(34),
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    color:
-                                                        const Color(0xffBBBBBB)
-                                                            .withOpacity(0.25),
-                                                    spreadRadius: 0,
-                                                    blurRadius: 5,
-                                                    offset: const Offset(2,
-                                                        2), // changes position of shadow
-                                                  ),
-                                                ]),
-                                            child: SizedBox(
-                                              width: 68,
-                                              height: 68,
-                                              child: ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(34),
-                                                  child: CachedImageCustom(
-                                                    seller.avatar,
-                                                    boxFit: BoxFit.fill,
-                                                  )),
-                                            ),
-                                          ),
-                                          //TODO: them bong do
-                                          Positioned.fill(
-                                            child: Align(
-                                              alignment:
-                                                  const Alignment(0, 1.5),
-                                              child: Image.asset(
-                                                addSeller,
-                                                width: 24,
-                                              ),
-                                            ),
-                                          ),
-                                          Positioned(
-                                            top: 0,
-                                            right: 10.29,
-                                            child: Image.asset(
-                                              getNoSeller(index),
-                                              width: 18.04,
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            seller.userName.toUpperCase(),
-                                            style: const TextStyle(
-                                                fontFamily: defaultFont,
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 14),
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 9),
-                                            child: Row(
-                                              children: [
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          right: 3.69),
-                                                  child: Image.asset(
-                                                    sellerHeart,
-                                                    width: 14.31,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  rateFormat.format(
-                                                      seller.avarageRating ??
-                                                          0),
-                                                  style: const TextStyle(
-                                                      fontFamily: defaultFont,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      fontSize: 12),
-                                                ),
-                                                const Text(' | '),
-                                                Text(
-                                                  seller.followCount
-                                                          .toString() +
-                                                      ' lượt theo dõi',
-                                                  style: const TextStyle(
-                                                      fontFamily: defaultFont,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      fontSize: 12),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 9.0),
-                                            child: Row(
-                                              children: [
-                                                const Text(
-                                                  'Xem shop',
-                                                  style: TextStyle(
-                                                      fontFamily: defaultFont,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      fontSize: 12),
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 8),
-                                                  child: Image.asset(
-                                                    blackArrow,
-                                                    width: 20,
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ]),
-                                ),
-                                Expanded(
-                                  // color: Colors.blue,
-                                  // width: 10 * widthUnit,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(right: 4),
-                                        child: Image.asset(
-                                          developStatus,
-                                          width: 8,
-                                        ),
-                                      ),
-                                      Text(
-                                        seller.changeValue.toString(),
-                                        style: developStyle,
-                                      )
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                          );
+                          //TODO: tach DONE
+                          return TopSellerItem(widthUnit, seller, index,
+                              developStatus, developStyle);
                         })),
                   ),
                   GestureDetector(
@@ -273,10 +78,13 @@ class _TopSellersState extends State<TopSellers> {
                       // print('tapped');
                       setState(() {
                         isExpanded = !isExpanded;
+                        iconButton = isExpanded ? collapse : seeMore;
+                        textButton = isExpanded ? 'Rút gọn' : 'Xem thêm';
                       });
                     },
-                    //TODO: bam o ben ngoai xem them
-                    child: SizedBox(
+                    //TODO: bam o ben ngoai xem them DONE
+                    child: Container(
+                      color: Colors.transparent,
                       height: 66,
                       child: Center(
                           child: Row(
@@ -285,7 +93,7 @@ class _TopSellersState extends State<TopSellers> {
                           Padding(
                             padding: const EdgeInsets.only(right: 13.8),
                             child: Text(
-                              isExpanded ? 'Rút gọn' : 'Xem thêm',
+                              textButton,
                               style: const TextStyle(
                                   fontFamily: defaultFont,
                                   fontWeight: FontWeight.w500,
@@ -293,8 +101,8 @@ class _TopSellersState extends State<TopSellers> {
                             ),
                           ),
                           Image.asset(
-                            //TODO: toan tu 3 ngoi de o ngoai widget
-                            isExpanded ? collapse : seeMore,
+                            //TODO: toan tu 3 ngoi de o ngoai widget DONE
+                            iconButton,
                             width: 8.4,
                           )
                         ],

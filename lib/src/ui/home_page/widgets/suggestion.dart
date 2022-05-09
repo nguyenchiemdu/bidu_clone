@@ -61,8 +61,7 @@ class Suggestion extends StatelessWidget {
                   ],
                 ),
               ),
-              //TODO : moi hang co 1 height rieng done research thu vien
-              //TODO : Seemore category , khi keo len k duoc tu dong dan ra, khi bam vao xem them k duoc back to top
+              //TODO : moi hang co 1 height rieng done research thu vien LATER
               rowSizes.isNotEmpty
                   ? Container(
                       margin: const EdgeInsets.only(top: 20),

@@ -53,25 +53,30 @@ class NewestProducts extends StatelessWidget {
                   ],
                 ),
               ),
-              //TODO: loading, api bi loi
-              Container(
-                margin: const EdgeInsets.only(top: 20),
-                height: 236,
-                child: ListView.builder(
-                    itemCount: newestProducts.length,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: ((context, index) {
-                      // print(newestProducts[index]);
-                      // print(newestProducts[index]['images'][0]);
-                      return productItem(context, newestProducts[index],
-                          selled: 300,
-                          discountPercent:
-                              newestProducts[index].discountPercent,
-                          marginLeft: index == 0 ? 16 : 0,
-                          marginRight: 8,
-                          containerWidth: 150);
-                    })),
-              )
+              //TODO: loading, api bi loi DONE, chua them UI
+              !snapshot.hasData && !snapshot.hasError
+                  ? const Text('Loading')
+                  : snapshot.hasError
+                      ? const Text('Loi roi ban oi')
+                      : Container(
+                          margin: const EdgeInsets.only(top: 20),
+                          height: 236,
+                          child: ListView.builder(
+                              itemCount: newestProducts.length,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: ((context, index) {
+                                // print(newestProducts[index]);
+                                // print(newestProducts[index]['images'][0]);
+                                return productItem(
+                                    context, newestProducts[index],
+                                    selled: 300,
+                                    discountPercent:
+                                        newestProducts[index].discountPercent,
+                                    marginLeft: index == 0 ? 16 : 0,
+                                    marginRight: 8,
+                                    containerWidth: 150);
+                              })),
+                        )
             ]),
           );
         }));

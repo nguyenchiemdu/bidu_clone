@@ -88,7 +88,7 @@ class HomeCloudDataSource implements IHomeDataSource {
   }
 
   @override
-  Future<List<Product>> getListNewestProduct() async {
+  Future getListNewestProduct() async {
     try {
       var url = Uri.parse('$endPoint1$_newestProductUrl');
       final respond = await http.get(url, headers: _newestProductHeader);
@@ -104,7 +104,7 @@ class HomeCloudDataSource implements IHomeDataSource {
       print(e);
       // ignore: avoid_print
       print(s);
-      return [];
+      return e;
     }
   }
 
