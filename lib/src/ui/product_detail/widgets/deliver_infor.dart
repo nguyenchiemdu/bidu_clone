@@ -1,6 +1,9 @@
 import 'package:bidu_clone/src/screen_size.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../common/asset_link.dart';
+import '../../../../common/colors.dart';
+
 class DeliverInfor extends StatelessWidget {
   const DeliverInfor({Key? key}) : super(key: key);
   Widget deliverOption(
@@ -25,43 +28,40 @@ class DeliverInfor extends StatelessWidget {
             ),
             Column(
               children: [
-                Text('Thời gian vận chuyển'),
+                const Text('Thời gian vận chuyển'),
                 Row(
-                  children: [Text('Trung bình'), Text('1-3 ngày')],
+                  children: const [Text('Trung bình'), Text('1-3 ngày')],
                 ),
                 Row(
-                  children: [
-                    Image.asset('assets/icons/location.png'),
-                    Text('Hàn Quốc')
-                  ],
+                  children: [Image.asset(location), const Text('Hàn Quốc')],
                 )
               ],
             ),
           ],
         ),
-        Container(
+        SizedBox(
           child: Column(children: [
-            Text('Thời gian chuẩn bị hàng'),
+            const Text('Thời gian chuẩn bị hàng'),
             Row(
               children: [
-                Container(
+                const SizedBox(
                   child: Text('1 ngày'),
                 ),
-                Container(
+                SizedBox(
                   width: Screen.width * 254 / 375,
                   child: Stack(children: [
                     Container(
                       height: 8,
-                      decoration: BoxDecoration(
-                          color: Color(0xffF1F1F1),
+                      decoration: const BoxDecoration(
+                          color: backgroundColor,
                           borderRadius: BorderRadius.all(Radius.circular(10))),
                     ),
                     Container(
                       width: 239,
                       height: 8,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           gradient: LinearGradient(
-                              colors: [Color(0xffFF7C79), Color(0xffE812A4)]),
+                              colors: [gradientPrimary2, gradientPrimary1]),
                           borderRadius: BorderRadius.all(Radius.circular(10))),
                     )
                   ]),

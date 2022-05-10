@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../../../common/asset_link.dart';
+import '../../../../common/colors.dart';
 import '../../../../common/font.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -20,8 +22,7 @@ class ShopInFor extends StatelessWidget {
               height: kAvatarSize,
               decoration: const BoxDecoration(
                   shape: BoxShape.circle,
-                  image: DecorationImage(
-                      image: AssetImage('assets/icons/shop_avatar.png'))),
+                  image: DecorationImage(image: AssetImage(shopAvatar))),
             ),
             Container(
               margin: const EdgeInsets.only(left: 10),
@@ -39,9 +40,7 @@ class ShopInFor extends StatelessWidget {
                     margin: const EdgeInsets.only(top: 9),
                     child: Row(
                       children: [
-                        SizedBox(
-                            width: 14,
-                            child: Image.asset('assets/icons/no01.png')),
+                        SizedBox(width: 14, child: Image.asset(number1)),
                         const Padding(
                           padding: EdgeInsets.symmetric(horizontal: 5),
                           child: Text(
@@ -55,7 +54,7 @@ class ShopInFor extends StatelessWidget {
                         Container(
                           width: 1,
                           height: 10,
-                          color: const Color(0xffC4C4C4),
+                          color: backgroundGray,
                         ),
                         const Padding(
                           padding: EdgeInsets.symmetric(horizontal: 5),
@@ -75,19 +74,19 @@ class ShopInFor extends StatelessWidget {
             ),
           ],
         ),
-        Container(
+        SizedBox(
           child: Column(children: [
             Container(
               height: 14,
               child: SvgPicture.asset(
-                'assets/icons/nav_heart.svg',
-                color: Color(0xffFD37AE),
+                navHeart,
+                color: primaryColor,
               ),
             ),
-            Text(
+            const Text(
               '2.3k',
               style: TextStyle(
-                  color: Color(0xffFD37AE),
+                  color: primaryColor,
                   fontFamily: defaultFont,
                   fontWeight: FontWeight.w400,
                   fontSize: 14),

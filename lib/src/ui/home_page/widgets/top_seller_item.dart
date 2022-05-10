@@ -8,8 +8,8 @@ import '../../../../common/cached_network_image.dart';
 import '../../../../common/font.dart';
 
 class TopSellerItem extends StatelessWidget {
-  TopSellerItem(this.widthUnit, this.seller, this.index, this.developStatus,
-      this.developStyle,
+  const TopSellerItem(this.widthUnit, this.seller, this.index,
+      this.developStatus, this.developStyle,
       {Key? key})
       : super(key: key);
   final double widthUnit;

@@ -1,3 +1,4 @@
+import 'package:bidu_clone/common/asset_link.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
@@ -16,15 +17,15 @@ AppBar productDetailAppbar() => AppBar(
         leading: Container(
           padding: const EdgeInsets.only(left: 8),
           child: SvgPicture.asset(
-            'assets/icons/back_button.svg',
+            appBarBackButton,
             width: 32,
           ),
         ),
         actions: [
           Container(
               margin: const EdgeInsets.symmetric(horizontal: 8),
-              child: SvgPicture.asset('assets/icons/share_button.svg')),
+              child: SvgPicture.asset(appBarShareButton)),
           Container(
               margin: const EdgeInsets.symmetric(horizontal: 8),
-              child: SvgPicture.asset('assets/icons/cart_button.svg')),
+              child: SvgPicture.asset(appBarCartButton)),
         ]);
