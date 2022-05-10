@@ -18,7 +18,7 @@ import '../../common_widget/discount.dart';
 //         double? containerWidth}) =>
 
 class ProductItem extends StatelessWidget {
-  ProductItem(this.product,
+  const ProductItem(this.product,
       {this.top,
       this.selled,
       this.discountPercent,
@@ -28,14 +28,14 @@ class ProductItem extends StatelessWidget {
       this.containerWidth,
       Key? key})
       : super(key: key);
-  Product product;
-  int? top;
-  int? selled;
-  num? discountPercent;
-  bool isQuaranteed = false;
-  double marginLeft = 0;
-  double marginRight = 0;
-  double? containerWidth;
+  final Product product;
+  final int? top;
+  final int? selled;
+  final num? discountPercent;
+  final bool isQuaranteed;
+  final double marginLeft;
+  final double marginRight;
+  final double? containerWidth;
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -139,7 +139,7 @@ class ProductItem extends StatelessWidget {
               child: Row(
                 children: [
                   Text(
-                    priceFormnat(product.salePrice),
+                    priceFormat(product.salePrice),
                     style: const TextStyle(
                         fontFamily: defaultFont,
                         fontWeight: FontWeight.w700,

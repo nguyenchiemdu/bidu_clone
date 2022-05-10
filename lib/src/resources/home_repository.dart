@@ -1,4 +1,3 @@
-import 'package:bidu_clone/src/models/banner.dart';
 import 'package:bidu_clone/src/models/category.dart';
 import 'package:bidu_clone/src/models/top_seller.dart';
 import 'package:bidu_clone/src/resources/home_cloud_datasource.dart';

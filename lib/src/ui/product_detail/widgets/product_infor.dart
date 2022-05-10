@@ -65,7 +65,7 @@ class ProductInfor extends StatelessWidget {
                               Row(
                                 children: [
                                   Text(
-                                    priceFormnat(product?.salePrice ?? 0),
+                                    priceFormat(product?.salePrice ?? 0),
                                     style: const TextStyle(
                                         fontFamily: defaultFont,
                                         fontSize: 18,
@@ -100,7 +100,7 @@ class ProductInfor extends StatelessWidget {
                                 ],
                               ),
                               Text(
-                                priceFormnat(product?.beforeSalePrice ?? 0) +
+                                priceFormat(product?.beforeSalePrice ?? 0) +
                                     '₫',
                                 style: const TextStyle(
                                     decoration: TextDecoration.lineThrough,

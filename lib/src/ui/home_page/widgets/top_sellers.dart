@@ -30,8 +30,9 @@ class _TopSellersState extends State<TopSellers> {
     final widthUnit = (MediaQuery.of(context).size.width - 32) / 100;
     return StreamBuilder<List<TopSeller>>(
         stream: Provider.of<HomeBloc>(context).topSellerStream,
-        builder: ((context, snapshot) {
+        builder: ((_, snapshot) {
           final List<TopSeller> topSellers;
+          final HomeBloc homeBloc = context.read<HomeBloc>();
           topSellers = snapshot.data ?? [];
           return Container(
             margin: const EdgeInsets.only(top: 2),
@@ -59,15 +60,11 @@ class _TopSellersState extends State<TopSellers> {
                         itemBuilder: ((context, index) {
                           TopSeller seller = topSellers[index];
                           // print(seller);
-                          String developStatus =
-                              seller.changeType == 'UP' ? up : down;
-                          TextStyle developStyle = TextStyle(
-                              color: seller.changeType == 'UP'
-                                  ? const Color(0xff12B74A)
-                                  : const Color(0xffFF3232),
-                              fontFamily: defaultFont,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 12);
+                          // TODO: (Trung) không xử lý data logic ở đây DONE
+                          String developStatus = homeBloc
+                              .getTopSellerDevelopStatus(seller.changeType);
+                          TextStyle developStyle = homeBloc
+                              .getTopSellerDevelopStyle(seller.changeType);
                           //TODO: tach DONE
                           return TopSellerItem(widthUnit, seller, index,
                               developStatus, developStyle);

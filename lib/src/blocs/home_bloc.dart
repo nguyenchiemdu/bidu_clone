@@ -5,6 +5,9 @@ import 'package:bidu_clone/src/models/banner.dart' as banner_model;
 import 'package:bidu_clone/src/models/category.dart';
 import 'package:bidu_clone/src/models/top_seller.dart';
 import 'package:bidu_clone/src/resources/home_repository.dart';
+import 'package:flutter/material.dart';
+import '../../common/asset_link.dart';
+import '../../common/font.dart';
 import '../models/product.dart';
 
 class HomeBloc extends BaseBLoC {
@@ -130,5 +133,27 @@ class HomeBloc extends BaseBLoC {
     _scrollStreamController.close();
     _backtoTopController.close();
     _bannerIndicatorController.close();
+  }
+
+  String getNoSeller(int index) {
+    if (index == 0) return number1;
+    if (index == 1) return number2;
+    return number3;
+  }
+
+  String getTopSellerDevelopStatus(String changeType) {
+    String developStatus = changeType == 'UP' ? up : down;
+    return developStatus;
+  }
+
+  TextStyle getTopSellerDevelopStyle(String changeType) {
+    final Color color =
+        changeType == 'UP' ? const Color(0xff12B74A) : const Color(0xffFF3232);
+    TextStyle developStyle = TextStyle(
+        color: color,
+        fontFamily: defaultFont,
+        fontWeight: FontWeight.w500,
+        fontSize: 12);
+    return developStyle;
   }
 }

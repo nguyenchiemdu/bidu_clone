@@ -1,6 +1,8 @@
+import 'package:bidu_clone/common/number_format.dart';
+import 'package:bidu_clone/src/blocs/home_bloc.dart';
 import 'package:bidu_clone/src/models/top_seller.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import '../../../../common/asset_link.dart';
 import '../../../../common/cached_network_image.dart';
 import '../../../../common/font.dart';
@@ -13,14 +15,8 @@ class TopSellerItem extends StatelessWidget {
   final double widthUnit;
   final TopSeller seller;
   final int index;
-  final NumberFormat rateFormat = NumberFormat('0.0');
   final String developStatus;
   final TextStyle developStyle;
-  String getNoSeller(int index) {
-    if (index == 0) return number1;
-    if (index == 1) return number2;
-    return number3;
-  }
 
   Widget rankingNumber() {
     return Container(
@@ -90,7 +86,7 @@ class TopSellerItem extends StatelessWidget {
     );
   }
 
-  Widget sellerAvatar() {
+  Widget sellerAvatar(HomeBloc homeBloc) {
     return Padding(
       padding: const EdgeInsets.only(right: 16),
       child: Stack(
@@ -103,7 +99,7 @@ class TopSellerItem extends StatelessWidget {
             top: 0,
             right: 10.29,
             child: Image.asset(
-              getNoSeller(index),
+              homeBloc.getNoSeller(index),
               width: 18.04,
             ),
           )
@@ -134,7 +130,8 @@ class TopSellerItem extends StatelessWidget {
             ),
           ),
           Text(
-            rateFormat.format(seller.avarageRating ?? 0),
+            // TODO: (Trung) nên viết thành 1 extension của NumberFormat DONE
+            rateFormat(seller.avarageRating ?? 0),
             style: const TextStyle(
                 fontFamily: defaultFont,
                 fontWeight: FontWeight.w400,
@@ -203,6 +200,7 @@ class TopSellerItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //TODO: Tach wiget thanh cac ham return ve widget DONE
+    final HomeBloc homeBloc = context.read<HomeBloc>();
     return Container(
       padding: const EdgeInsets.only(bottom: 21, top: 24),
       decoration: const BoxDecoration(
@@ -218,7 +216,7 @@ class TopSellerItem extends StatelessWidget {
             width: 90 * widthUnit,
             child: Row(children: [
               rankingNumber(),
-              sellerAvatar(),
+              sellerAvatar(homeBloc),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
