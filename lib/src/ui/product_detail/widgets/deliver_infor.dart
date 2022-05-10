@@ -1,4 +1,6 @@
-import 'package:bidu_clone/src/screen_size.dart';
+import 'package:bidu_clone/common/font.dart';
+import 'package:bidu_clone/common/number_format.dart';
+import 'package:bidu_clone/src/ui/product_detail/widgets/product_preparation_progress.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../common/asset_link.dart';
@@ -9,65 +11,108 @@ class DeliverInfor extends StatelessWidget {
   Widget deliverOption(
       {String branch = 'GHTK', int startPrice = 30, int endPrice = 60}) {
     return Row(
-      children: [Text(branch), Text('đ $startPrice ~ đ $endPrice')],
+      children: [
+        Container(
+          margin: const EdgeInsets.only(bottom: 4),
+          child: Text(branch,
+              style: const TextStyle(
+                  fontFamily: defaultFont,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                  color: textBlackColor)),
+        ),
+        Text('$currency $startPrice ~ $currency $endPrice')
+      ],
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      color: Colors.white,
+      margin: const EdgeInsets.only(top: 4),
+      padding: const EdgeInsets.only(top: 24, bottom: 14, left: 16, right: 15),
       child: Column(children: [
-        Row(
-          children: [
-            Column(
-              children: [
-                const Text('Thông tin giao hàng'),
-                deliverOption(),
-                deliverOption(),
-              ],
-            ),
-            Column(
-              children: [
-                const Text('Thời gian vận chuyển'),
-                Row(
-                  children: const [Text('Trung bình'), Text('1-3 ngày')],
-                ),
-                Row(
-                  children: [Image.asset(location), const Text('Hàn Quốc')],
-                )
-              ],
-            ),
-          ],
-        ),
-        SizedBox(
-          child: Column(children: [
-            const Text('Thời gian chuẩn bị hàng'),
-            Row(
-              children: [
-                const SizedBox(
-                  child: Text('1 ngày'),
-                ),
-                SizedBox(
-                  width: Screen.width * 254 / 375,
-                  child: Stack(children: [
-                    Container(
-                      height: 8,
-                      decoration: const BoxDecoration(
-                          color: backgroundColor,
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
+        Padding(
+          padding: const EdgeInsets.only(right: 16),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 4),
+                    child: const Text(
+                      'Thông tin giao hàng',
+                      style: TextStyle(
+                          fontFamily: defaultFont,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: textBlackColor),
                     ),
-                    Container(
-                      width: 239,
-                      height: 8,
-                      decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                              colors: [gradientPrimary2, gradientPrimary1]),
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
-                    )
-                  ]),
-                )
-              ],
-            )
+                  ),
+                  deliverOption(),
+                  deliverOption(),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 4),
+                    child: const Text(
+                      'Thời gian vận chuyển',
+                      style: TextStyle(
+                          fontFamily: defaultFont,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: textBlackColor),
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(bottom: 4),
+                        child: const Text('Trung bình',
+                            style: TextStyle(
+                                fontFamily: defaultFont,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                                color: textBlackColor)),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(bottom: 4),
+                        child: const Text('1-3 ngày',
+                            style: TextStyle(
+                                fontFamily: defaultFont,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w700,
+                                color: textBlackColor)),
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: [Image.asset(location), const Text('Hàn Quốc')],
+                  )
+                ],
+              ),
+            ],
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.only(top: 20),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Container(
+              child: const Text('Thời gian chuẩn bị hàng'),
+              margin: const EdgeInsets.only(bottom: 10),
+            ),
+            const ProductPreparationProgress('1 ngày', 80, true),
+            const ProductPreparationProgress('2 ngày', 80, false),
+            const ProductPreparationProgress('3 ngày', 0, false),
+            const ProductPreparationProgress('4 ngày', 0, false),
+            const ProductPreparationProgress('Sau 4 ngày', 0, false)
           ]),
         )
       ]),

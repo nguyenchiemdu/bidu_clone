@@ -57,7 +57,9 @@ class FeedBackItem extends StatelessWidget {
                     fontWeight: FontWeight.w500),
               ),
               Text(
-                'Chất lượng sản phẩm tuyệt vời,...',
+                'Chất lượng sản phẩm tuyệt vời',
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                     fontFamily: defaultFont,
                     fontSize: 12,

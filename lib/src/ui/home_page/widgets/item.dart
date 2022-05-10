@@ -146,7 +146,7 @@ class ProductItem extends StatelessWidget {
                         fontSize: 14),
                   ),
                   const Text(
-                    ' ₫',
+                    currency,
                     style: TextStyle(
                         fontFamily: defaultFont,
                         fontWeight: FontWeight.w400,

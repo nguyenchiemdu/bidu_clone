@@ -53,7 +53,7 @@ class ProductInfor extends StatelessWidget {
               fontWeight: FontWeight.w700),
         ),
         const Text(
-          ' ₫',
+          currency,
           style: TextStyle(
               fontFamily: defaultFont,
               fontSize: 18,
@@ -169,8 +169,8 @@ class ProductInfor extends StatelessWidget {
           ),
         ),
         Container(
-          padding: const EdgeInsets.symmetric(vertical: 5),
-          height: 90,
+          margin: const EdgeInsets.only(bottom: 24, top: 14),
+          height: 78,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: 2,
