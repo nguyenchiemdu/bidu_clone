@@ -1,3 +1,4 @@
+import 'package:bidu_clone/common/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../common/asset_link.dart';
@@ -23,12 +24,12 @@ class LiveItem extends StatelessWidget {
           Opacity(
             opacity: 0.5,
             child: Container(
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.bottomCenter,
                   end: Alignment.topCenter,
                   colors: [
-                    Color(0xff000000),
+                    DesignColor.gradientBlack,
                     Colors.transparent,
                   ],
                 ),
@@ -48,7 +49,7 @@ class LiveItem extends StatelessWidget {
                       padding: const EdgeInsets.all(1),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        border: Border.all(color: const Color(0xffE812A4)),
+                        border: Border.all(color: DesignColor.gradientPrimary1),
                       ),
                       child: Align(
                         alignment: Alignment.center,

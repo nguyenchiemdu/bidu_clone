@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:bidu_clone/common/colors.dart';
 import 'package:bidu_clone/src/blocs/base_bloc.dart';
 import 'package:bidu_clone/src/models/banner.dart' as banner_model;
 import 'package:bidu_clone/src/models/category.dart';
@@ -147,7 +148,7 @@ class HomeBloc extends BaseBLoC {
 
   TextStyle getTopSellerDevelopStyle(String changeType) {
     final Color color =
-        changeType == 'UP' ? const Color(0xff12B74A) : const Color(0xffFF3232);
+        changeType == 'UP' ? DesignColor.sellerUp : DesignColor.sellerDown;
     TextStyle developStyle = TextStyle(
         color: color,
         fontFamily: defaultFont,

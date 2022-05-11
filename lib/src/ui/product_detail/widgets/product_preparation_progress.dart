@@ -22,13 +22,15 @@ class ProductPreparationProgress extends StatelessWidget {
   Widget percentDone() {
     //TODO: han che dung 3 ngoi
     BoxDecoration boxDecoration = isColorful
-        ? const BoxDecoration(
-            gradient:
-                LinearGradient(colors: [gradientPrimary2, gradientPrimary1]),
-            borderRadius: BorderRadius.all(Radius.circular(10)))
-        : const BoxDecoration(
-            color: progressGray,
-            borderRadius: BorderRadius.all(Radius.circular(10)));
+        ? BoxDecoration(
+            gradient: LinearGradient(colors: [
+              DesignColor.gradientPrimary2,
+              DesignColor.gradientPrimary1
+            ]),
+            borderRadius: const BorderRadius.all(Radius.circular(10)))
+        : BoxDecoration(
+            color: DesignColor.progressGray,
+            borderRadius: const BorderRadius.all(Radius.circular(10)));
     return Container(
       width: progress / 100 * getProgressBarWidth(),
       height: 8,
@@ -38,7 +40,8 @@ class ProductPreparationProgress extends StatelessWidget {
 
   // TODO: dung final textstyle; dung 1 bien thay vi dung ham;
   TextStyle textStyle() {
-    Color color = isColorful ? primaryColor : textProgressGray;
+    Color color =
+        isColorful ? DesignColor.primaryColor : DesignColor.textProgressGray;
     return TextStyle(
         fontFamily: defaultFont,
         fontSize: 14,
@@ -66,9 +69,9 @@ class ProductPreparationProgress extends StatelessWidget {
             child: Stack(children: [
               Container(
                 height: 8,
-                decoration: const BoxDecoration(
-                    color: backgroundColor,
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
+                decoration: BoxDecoration(
+                    color: DesignColor.backgroundColor,
+                    borderRadius: const BorderRadius.all(Radius.circular(10))),
               ),
               percentDone(),
             ]),

@@ -14,7 +14,7 @@ class BottomBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         height: bottomBarHeight,
-        color: textBlackColor,
+        color: DesignColor.textBlackColor,
         child: Row(
           children: [
             Expanded(
@@ -30,13 +30,13 @@ class BottomBar extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SvgPicture.asset(AssetLink.addToCart),
-                        const Text(
+                        Text(
                           'Thêm vào giỏ',
                           style: TextStyle(
                               fontFamily: defaultFont,
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
-                              color: textWhite),
+                              color: DesignColor.textWhite),
                         )
                       ],
                     ),
@@ -45,7 +45,7 @@ class BottomBar extends StatelessWidget {
             Container(
               width: 1,
               height: 28,
-              color: progressGray,
+              color: DesignColor.progressGray,
             ),
             Expanded(
                 flex: 1,
@@ -56,14 +56,14 @@ class BottomBar extends StatelessWidget {
                   child: Container(
                     height: bottomBarHeight,
                     color: Colors.transparent,
-                    child: const Center(
+                    child: Center(
                       child: Text(
                         'Mua Ngay',
                         style: TextStyle(
                             fontFamily: defaultFont,
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
-                            color: primaryColor),
+                            color: DesignColor.primaryColor),
                       ),
                     ),
                   ),

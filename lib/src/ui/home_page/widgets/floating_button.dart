@@ -1,3 +1,4 @@
+import 'package:bidu_clone/common/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -19,14 +20,14 @@ class HomeFloatingButton extends StatelessWidget {
           elevation: 0,
           child: Stack(children: [
             Container(
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
               shape: BoxShape.circle,
               gradient: LinearGradient(
                   begin: Alignment.bottomLeft,
                   end: Alignment.topRight,
                   colors: [
-                    Color(0xffFF7C79),
-                    Color(0xffE812A4),
+                    DesignColor.gradientPrimary2,
+                    DesignColor.gradientPrimary1,
                   ]),
             )),
             Align(

@@ -36,7 +36,7 @@ class _DetailPage extends StatelessWidget {
         extendBodyBehindAppBar: true,
         appBar: productDetailAppbar(),
         body: Container(
-          color: progressGray,
+          color: DesignColor.progressGray,
           child: SingleChildScrollView(
             child: Column(children: const [
               BannerWidget(),

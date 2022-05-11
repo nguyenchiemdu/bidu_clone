@@ -15,16 +15,16 @@ class TabBarProduct extends StatefulWidget {
 
 class _TabBarProductState extends State<TabBarProduct> {
   // int _selectedIndex = 0;
-  final tabBarStyle = const TextStyle(
+  final tabBarStyle = TextStyle(
       fontFamily: defaultFont,
       fontSize: 14,
       fontWeight: FontWeight.w400,
-      color: textGrayColor);
+      color: DesignColor.textGrayColor);
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 2),
-      color: textWhite,
+      color: DesignColor.textWhite,
       child: DefaultTabController(
           length: 3,
           initialIndex: 0,
@@ -32,16 +32,16 @@ class _TabBarProductState extends State<TabBarProduct> {
             children: [
               TabBar(
                 isScrollable: true,
-                indicatorColor: textBlackColor,
+                indicatorColor: DesignColor.textBlackColor,
                 onTap: (index) {
                   context.read<ProductDetailBloc>().changeSelectedTabBar(index);
                 },
-                labelStyle: const TextStyle(
+                labelStyle: TextStyle(
                     fontFamily: defaultFont,
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
-                    color: textBlackColor),
-                labelColor: textBlackColor,
+                    color: DesignColor.textBlackColor),
+                labelColor: DesignColor.textBlackColor,
                 tabs: const [
                   Tab(
                     child: Text(

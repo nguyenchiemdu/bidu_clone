@@ -26,7 +26,7 @@ class FeedBackItem extends StatelessWidget {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: gradientBlack.withOpacity(0.08),
+            color: DesignColor.gradientBlack.withOpacity(0.08),
             spreadRadius: 0,
             blurRadius: 5,
             offset: const Offset(0, 1), // changes position of shadow
@@ -50,8 +50,8 @@ class FeedBackItem extends StatelessWidget {
           padding: const EdgeInsets.only(left: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              Text(
+            children: [
+              const Text(
                 'Hài lòng',
                 style: TextStyle(
                     fontFamily: defaultFont,
@@ -66,7 +66,7 @@ class FeedBackItem extends StatelessWidget {
                     fontFamily: defaultFont,
                     fontSize: 12,
                     fontWeight: FontWeight.w400,
-                    color: textGrayColor),
+                    color: DesignColor.textGrayColor),
               )
             ],
           ),

@@ -60,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
             extendBody: true,
             appBar: appBarWidget(),
             body: Container(
-              color: backgroundColor,
+              color: DesignColor.backgroundColor,
               child: NotificationListener<ScrollUpdateNotification>(
                 onNotification: (ScrollUpdateNotification notification) =>
                     _onScrollNotification(context, notification),
@@ -103,8 +103,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           primary: Colors.white,
                         ),
                         onPressed: _scrollToTop,
-                        child: const Text('Back to Top',
-                            style: TextStyle(color: Color(0xffE812A4))),
+                        child: Text('Back to Top',
+                            style:
+                                TextStyle(color: DesignColor.gradientPrimary1)),
                       )
                     : const SizedBox();
               }),

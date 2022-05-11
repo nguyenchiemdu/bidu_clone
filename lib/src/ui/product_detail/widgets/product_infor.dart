@@ -63,7 +63,8 @@ class ProductInfor extends StatelessWidget {
             margin: const EdgeInsets.only(right: 5.5),
             child: dicount(discount, fontSize: 12)),
         Container(
-          decoration: BoxDecoration(border: Border.all(color: textGrayColor)),
+          decoration: BoxDecoration(
+              border: Border.all(color: DesignColor.textGrayColor)),
           padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 4),
           child: const Text(
             'New',
@@ -81,9 +82,9 @@ class ProductInfor extends StatelessWidget {
     beforeSalePrice ??= 0;
     return Text(
       priceFormat(beforeSalePrice) + '₫',
-      style: const TextStyle(
+      style: TextStyle(
           decoration: TextDecoration.lineThrough,
-          color: textGrayColor,
+          color: DesignColor.textGrayColor,
           fontWeight: FontWeight.w400,
           fontSize: 14),
     );
@@ -100,14 +101,14 @@ class ProductInfor extends StatelessWidget {
               child: Image.asset(AssetLink.inforProductIcon)),
           Container(
               margin: const EdgeInsets.only(left: 7),
-              child: const Text(
+              child: Text(
                 'Đổi trả trong vòng 3 ngày',
                 style: TextStyle(
                     decoration: TextDecoration.underline,
                     fontFamily: defaultFont,
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
-                    color: primaryColor),
+                    color: DesignColor.primaryColor),
               ))
         ],
       ),
@@ -116,19 +117,20 @@ class ProductInfor extends StatelessWidget {
 
   Widget addCoupon() {
     return Container(
-      decoration: BoxDecoration(border: Border.all(color: primaryColor)),
+      decoration:
+          BoxDecoration(border: Border.all(color: DesignColor.primaryColor)),
       margin: const EdgeInsets.only(top: 24),
       padding: const EdgeInsets.only(left: 20, right: 17, top: 10, bottom: 12),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text(
+          Text(
             'Nhập mã khuyến mãi giảm giá tối đa 200k',
             style: TextStyle(
                 fontFamily: defaultFont,
                 fontWeight: FontWeight.w500,
                 fontSize: 14,
-                color: primaryColor),
+                color: DesignColor.primaryColor),
           ),
           SizedBox(width: 8, child: Image.asset(AssetLink.seeMore))
         ],
@@ -160,13 +162,13 @@ class ProductInfor extends StatelessWidget {
                   margin: const EdgeInsets.only(right: 4),
                   width: 10,
                   child: Image.asset(AssetLink.sellerHeart)),
-              const Text(
+              Text(
                 '4.8 / 5.0',
                 style: TextStyle(
                     fontFamily: defaultFont,
                     fontWeight: FontWeight.w400,
                     fontSize: 12,
-                    color: textGrayColor),
+                    color: DesignColor.textGrayColor),
               ),
             ],
           ),
@@ -220,7 +222,7 @@ class ProductInfor extends StatelessWidget {
                 ),
                 Container(
                   height: 1,
-                  color: backgroundColor,
+                  color: DesignColor.backgroundColor,
                 ),
                 feedBack()
               ],

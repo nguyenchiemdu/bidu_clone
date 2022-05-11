@@ -15,11 +15,11 @@ class DeliverInfor extends StatelessWidget {
         Container(
           margin: const EdgeInsets.only(bottom: 4),
           child: Text(branch,
-              style: const TextStyle(
+              style: TextStyle(
                   fontFamily: defaultFont,
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
-                  color: textBlackColor)),
+                  color: DesignColor.textBlackColor)),
         ),
         Text('$currency $startPrice ~ $currency $endPrice')
       ],
@@ -43,13 +43,13 @@ class DeliverInfor extends StatelessWidget {
                 children: [
                   Container(
                     margin: const EdgeInsets.only(bottom: 4),
-                    child: const Text(
+                    child: Text(
                       'Thông tin giao hàng',
                       style: TextStyle(
                           fontFamily: defaultFont,
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
-                          color: textBlackColor),
+                          color: DesignColor.textBlackColor),
                     ),
                   ),
                   deliverOption(),
@@ -61,34 +61,34 @@ class DeliverInfor extends StatelessWidget {
                 children: [
                   Container(
                     margin: const EdgeInsets.only(bottom: 4),
-                    child: const Text(
+                    child: Text(
                       'Thời gian vận chuyển',
                       style: TextStyle(
                           fontFamily: defaultFont,
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
-                          color: textBlackColor),
+                          color: DesignColor.textBlackColor),
                     ),
                   ),
                   Row(
                     children: [
                       Container(
                         margin: const EdgeInsets.only(bottom: 4),
-                        child: const Text('Trung bình',
+                        child: Text('Trung bình',
                             style: TextStyle(
                                 fontFamily: defaultFont,
                                 fontSize: 12,
                                 fontWeight: FontWeight.w400,
-                                color: textBlackColor)),
+                                color: DesignColor.textBlackColor)),
                       ),
                       Container(
                         margin: const EdgeInsets.only(bottom: 4),
-                        child: const Text('1-3 ngày',
+                        child: Text('1-3 ngày',
                             style: TextStyle(
                                 fontFamily: defaultFont,
                                 fontSize: 12,
                                 fontWeight: FontWeight.w700,
-                                color: textBlackColor)),
+                                color: DesignColor.textBlackColor)),
                       )
                     ],
                   ),

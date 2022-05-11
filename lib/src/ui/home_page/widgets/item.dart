@@ -1,3 +1,4 @@
+import 'package:bidu_clone/common/colors.dart';
 import 'package:bidu_clone/src/models/product.dart';
 import 'package:bidu_clone/src/ui/product_detail/product_detail.dart';
 import 'package:flutter/material.dart';
@@ -86,8 +87,8 @@ class ProductItem extends StatelessWidget {
                           margin: const EdgeInsets.only(right: 20),
                           width: 20,
                           height: 20,
-                          decoration: const BoxDecoration(
-                              color: Color(0xff1A1A1A),
+                          decoration: BoxDecoration(
+                              color: DesignColor.textBlackColor,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(5))),
                           child: Center(
@@ -108,14 +109,15 @@ class ProductItem extends StatelessWidget {
             isQuaranteed
                 ? Container(
                     decoration: BoxDecoration(
-                        border: Border.all(color: const Color(0xffFD374F))),
+                        border:
+                            Border.all(color: DesignColor.textHighlightRed)),
                     margin: const EdgeInsets.only(top: 7),
                     padding: const EdgeInsets.only(
                         left: 5, right: 5, top: 2, bottom: 2),
-                    child: const Text(
+                    child: Text(
                       'Đảm bảo',
                       style: TextStyle(
-                          color: Color(0xffFD374F),
+                          color: DesignColor.textHighlightRed,
                           fontFamily: defaultFont,
                           fontWeight: FontWeight.w500,
                           fontSize: 6),
@@ -181,8 +183,8 @@ class ProductItem extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 4),
                     child: Text(
                       'Đã bán ' + (selled).toString(),
-                      style: const TextStyle(
-                          color: Color(0xff9A9A9A),
+                      style: TextStyle(
+                          color: DesignColor.textProgressGray,
                           fontFamily: defaultFont,
                           fontWeight: FontWeight.w400,
                           fontSize: 10),

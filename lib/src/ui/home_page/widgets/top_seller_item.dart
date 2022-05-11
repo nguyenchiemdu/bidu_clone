@@ -1,3 +1,4 @@
+import 'package:bidu_clone/common/colors.dart';
 import 'package:bidu_clone/common/number_format.dart';
 import 'package:bidu_clone/src/blocs/home_bloc.dart';
 import 'package:bidu_clone/src/models/top_seller.dart';
@@ -23,8 +24,8 @@ class TopSellerItem extends StatelessWidget {
       margin: const EdgeInsets.only(right: 20),
       width: 20,
       height: 20,
-      decoration: const BoxDecoration(
-          color: Color(0xff1A1A1A),
+      decoration: BoxDecoration(
+          color: DesignColor.textBlackColor,
           borderRadius: BorderRadius.all(Radius.circular(5))),
       child: Center(
         child: Text(
@@ -45,7 +46,7 @@ class TopSellerItem extends StatelessWidget {
       decoration:
           BoxDecoration(borderRadius: BorderRadius.circular(34), boxShadow: [
         BoxShadow(
-          color: const Color(0xffBBBBBB).withOpacity(0.25),
+          color: DesignColor.shadowBlack.withOpacity(0.25),
           spreadRadius: 0,
           blurRadius: 5,
           offset: const Offset(2, 2), // changes position of shadow
@@ -71,7 +72,7 @@ class TopSellerItem extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(shape: BoxShape.circle, boxShadow: [
             BoxShadow(
-              color: const Color(0xffBBBBBB).withOpacity(0.25),
+              color: DesignColor.shadowBlack.withOpacity(0.25),
               spreadRadius: 0,
               blurRadius: 5,
               offset: const Offset(2, 2), // changes position of shadow
@@ -201,10 +202,10 @@ class TopSellerItem extends StatelessWidget {
     final HomeBloc homeBloc = context.read<HomeBloc>();
     return Container(
       padding: const EdgeInsets.only(bottom: 21, top: 24),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
           border: Border(
               bottom: BorderSide(
-                  color: Color(0xffF1F1F1),
+                  color: DesignColor.backgroundColor,
                   width: 1,
                   style: BorderStyle.solid))),
       child: Row(

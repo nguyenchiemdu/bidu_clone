@@ -20,7 +20,8 @@ class CachedImageCustom extends StatelessWidget {
           width: circleSize,
           height: circleSize,
           child: CircularProgressIndicator(
-              color: gradientPrimary1, value: downloadProgress.progress),
+              color: DesignColor.gradientPrimary1,
+              value: downloadProgress.progress),
         ),
       ),
       errorWidget: (context, url, error) => const Icon(Icons.error),

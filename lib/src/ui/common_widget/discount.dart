@@ -1,3 +1,4 @@
+import 'package:bidu_clone/common/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../common/font.dart';
@@ -8,13 +9,13 @@ Widget dicount(num discountPercent, {double? fontSize}) {
     // height: 10,
     margin: const EdgeInsets.only(left: 8),
     padding: const EdgeInsets.only(left: 4, top: 2, bottom: 2, right: 4),
-    decoration: const BoxDecoration(
+    decoration: BoxDecoration(
       gradient: LinearGradient(
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
           colors: [
-            Color(0xffFF7C79),
-            Color(0xffE812A4),
+            DesignColor.gradientPrimary2,
+            DesignColor.gradientPrimary1,
           ]),
     ),
     child: Text(

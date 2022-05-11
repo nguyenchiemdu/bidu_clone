@@ -1,3 +1,4 @@
+import 'package:bidu_clone/common/colors.dart';
 import 'package:bidu_clone/src/blocs/home_bloc.dart';
 import 'package:bidu_clone/src/screen_size.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class HomeNavBar extends StatelessWidget {
 
           Widget _button(String assets,
               {required int index, required VoidCallback onPressed}) {
-            const _selectedColor = Color(0xffE812A4);
+            final _selectedColor = DesignColor.gradientPrimary1;
             return IconButton(
               splashColor: Colors.transparent,
               highlightColor: Colors.transparent,

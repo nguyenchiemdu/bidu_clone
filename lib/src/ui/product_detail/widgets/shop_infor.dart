@@ -56,7 +56,7 @@ class ShopInFor extends StatelessWidget {
                         Container(
                           width: 1,
                           height: 10,
-                          color: backgroundGray,
+                          color: DesignColor.backgroundGray,
                         ),
                         const Padding(
                           padding: EdgeInsets.symmetric(horizontal: 5),
@@ -82,13 +82,13 @@ class ShopInFor extends StatelessWidget {
               height: 14,
               child: SvgPicture.asset(
                 AssetLink.navHeart,
-                color: primaryColor,
+                color: DesignColor.primaryColor,
               ),
             ),
-            const Text(
+            Text(
               '2.3k',
               style: TextStyle(
-                  color: primaryColor,
+                  color: DesignColor.primaryColor,
                   fontFamily: defaultFont,
                   fontWeight: FontWeight.w400,
                   fontSize: 14),

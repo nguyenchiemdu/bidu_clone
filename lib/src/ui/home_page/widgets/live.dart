@@ -1,4 +1,5 @@
 import 'package:bidu_clone/common/asset_link.dart';
+import 'package:bidu_clone/common/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../common/font.dart';
@@ -20,7 +21,7 @@ class Live extends StatelessWidget {
                   color: Colors.transparent,
                   border: Border.all(
                       //TODO : color
-                      color: const Color(0xffFD374F),
+                      color: DesignColor.textHighlightRed,
                       width: 2,
                       style: BorderStyle.solid),
                   borderRadius: BorderRadius.circular(27)),
@@ -76,7 +77,7 @@ class Live extends StatelessWidget {
       streamChannel,
     ];
     return Container(
-      color: const Color(0xffF5F5F5),
+      color: DesignColor.biduLiveBackground,
       child: SizedBox(
         child: Column(children: [
           biduLiveLogo(),
