@@ -60,12 +60,10 @@ class _TopSellersState extends State<TopSellers> {
                         itemBuilder: ((context, index) {
                           TopSeller seller = topSellers[index];
                           // print(seller);
-                          // TODO: (Trung) không xử lý data logic ở đây DONE
                           String developStatus = homeBloc
                               .getTopSellerDevelopStatus(seller.changeType);
                           TextStyle developStyle = homeBloc
                               .getTopSellerDevelopStyle(seller.changeType);
-                          //TODO: tach DONE
                           return TopSellerItem(widthUnit, seller, index,
                               developStatus, developStyle);
                         })),
@@ -79,7 +77,6 @@ class _TopSellersState extends State<TopSellers> {
                         textButton = isExpanded ? 'Rút gọn' : 'Xem thêm';
                       });
                     },
-                    //TODO: bam o ben ngoai xem them DONE
                     child: Container(
                       color: Colors.transparent,
                       height: 66,
@@ -98,7 +95,6 @@ class _TopSellersState extends State<TopSellers> {
                             ),
                           ),
                           Image.asset(
-                            //TODO: toan tu 3 ngoi de o ngoai widget DONE
                             iconButton,
                             width: 8.4,
                           )

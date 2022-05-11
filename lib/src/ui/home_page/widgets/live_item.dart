@@ -23,7 +23,6 @@ class LiveItem extends StatelessWidget {
           Opacity(
             opacity: 0.5,
             child: Container(
-              //TODO: gradient DONE
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.bottomCenter,
@@ -65,7 +64,6 @@ class LiveItem extends StatelessWidget {
                         margin: const EdgeInsets.only(left: 6),
                         child: Text(
                           streamChannel['name'],
-                          //TODO: Overflow text DONE
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
@@ -95,9 +93,7 @@ class LiveItem extends StatelessWidget {
             margin: const EdgeInsets.only(left: 9, top: 8),
             width: 12,
             height: 12,
-            child:
-                //TODO: set const for link DONE
-                Image.asset(signalColumn),
+            child: Image.asset(signalColumn),
           )
         ],
       ),

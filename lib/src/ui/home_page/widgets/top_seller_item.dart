@@ -93,7 +93,6 @@ class TopSellerItem extends StatelessWidget {
         alignment: Alignment.topCenter,
         children: [
           sellerImage(),
-          //TODO: them bong do DONE
           addSellerButton(),
           Positioned(
             top: 0,
@@ -130,8 +129,7 @@ class TopSellerItem extends StatelessWidget {
             ),
           ),
           Text(
-            // TODO: (Trung) nên viết thành 1 extension của NumberFormat DONE
-            // TODO: Extension research
+            // TODO: (Trung) nên viết thành 1 extension của NumberFormat
             rateFormat(seller.avarageRating ?? 0),
             style: const TextStyle(
                 fontFamily: defaultFont,
@@ -200,7 +198,6 @@ class TopSellerItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //TODO: Tach wiget thanh cac ham return ve widget DONE
     final HomeBloc homeBloc = context.read<HomeBloc>();
     return Container(
       padding: const EdgeInsets.only(bottom: 21, top: 24),

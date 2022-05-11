@@ -25,7 +25,6 @@ class BannerWidget extends StatelessWidget {
         builder: (context, snapshot) {
           final List<banner_model.Banner> banners;
           banners = snapshot.data ?? [];
-          //TODO: (Trung) thiếu xử lý UI khi banner đang được load từ api và trường hợp api lỗi DONE
           //TODO: Dung if else
           // snapshot.connectionState
           return !snapshot.hasData && !snapshot.hasError
@@ -35,7 +34,6 @@ class BannerWidget extends StatelessWidget {
                   ? const Text('API error')
                   : SizedBox(
                       // size of the banner is 750x348
-                      //TODO : them indicator DONE
                       height: Screen.width * 348 / 750,
                       child: Stack(
                         children: [
@@ -43,7 +41,6 @@ class BannerWidget extends StatelessWidget {
                               controller: _pageController,
                               itemCount: banners.length,
                               pageSnapping: true,
-                              //TODO:(Trung) nếu biến [context] không được sử dụng thì đặt tên nó thành _ để tránh nhầm lẫn với biến context của build function DONE
                               itemBuilder: (_, pagePosition) {
                                 String imageUrl =
                                     banners[pagePosition].images?[0].top ?? '';

@@ -72,8 +72,6 @@ class Category extends StatelessWidget {
                 }
                 return Container(
                   color: Colors.white,
-                  //TODO: (Trung) không dùng double.infinity để size DONE
-                  // width: double.infinity,
                   height: height,
                   child: GridView.builder(
                       physics: const NeverScrollableScrollPhysics(),
@@ -83,9 +81,7 @@ class Category extends StatelessWidget {
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 5,
                       ),
-                      //TODO:(Trung) nếu biến [context] không được sử dụng thì đặt tên nó thành _ để tránh nhầm lẫn với biến context của build function DONE
                       itemBuilder: (_, int index) {
-                        //TODO: tach thanh 1 widget nho, dung InkWell DONE
                         return CategoryItem(categories[index], seeMoreCallback);
                       }),
                 );

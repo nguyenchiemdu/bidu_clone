@@ -77,8 +77,6 @@ class HomeCloudDataSource implements IHomeDataSource {
       final dataDecode = json.decode(rawData);
       if (dataDecode['success'] == true) {
         final listCategory = listCategoryFromMap(dataDecode['data']);
-        // TODO: (Trung) nên xử lý bên trong bloC DONE
-        // listCategory.sort((a, b) => a.priority.compareTo(b.priority));
         return listCategory;
       }
       return [];

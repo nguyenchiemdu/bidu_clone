@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import '../../../../common/font.dart';
 import 'live_item.dart';
 
-// TODO: (Trung) tên class nên match với tên file DONE
 // TODO : dat ten
 class Live extends StatelessWidget {
   const Live({Key? key}) : super(key: key);
@@ -65,7 +64,6 @@ class Live extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: (Trung) trang này chưa được refactor DONE
     const Map streamChannel = {
       'image': streamImage,
       'avatar': streamAvatar,
@@ -91,7 +89,6 @@ class Live extends StatelessWidget {
                   itemBuilder: (context, index) {
                     double marginLeft = index == 0 ? 16 : 0;
                     if (index < streamChannels.length) {
-                      //TODO: Tach widget DONE
                       return LiveItem(streamChannels[index], marginLeft);
                     } else {
                       return seeMoreLive();

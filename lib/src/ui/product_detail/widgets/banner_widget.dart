@@ -13,7 +13,6 @@ class BannerWidget extends StatelessWidget {
         stream: Provider.of<ProductDetailBloc>(context).productStream,
         builder: ((context, snapshot) {
           final List listImage = snapshot.data?.images ?? [];
-          //TODO: aspecratio DONE
           return AspectRatio(
             aspectRatio: 1,
             child: SizedBox(
