@@ -14,24 +14,25 @@ class MiniBanner extends StatelessWidget {
         builder: (context, snapshot) {
           final List<banner_model.Banner> banners;
           banners = snapshot.data ?? [];
-          return !snapshot.hasData && !snapshot.hasError
-              ? const Text('loading')
-              : snapshot.hasError
-                  ? const Text('API error')
-                  : SizedBox(
-                      // size of the banner is 750x348
-                      height: Screen.width * 348 / 750,
-                      child: PageView.builder(
-                          itemCount: banners.length,
-                          pageSnapping: true,
-                          itemBuilder: (context, pagePosition) {
-                            return Container(
-                                margin: const EdgeInsets.all(0),
-                                child: CachedImageCustom(
-                                    banners[pagePosition].images?[0].top ??
-                                        ''));
-                          }),
-                    );
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Text('loading');
+          } else if (snapshot.hasError) {
+            return const Text('API error');
+          } else {
+            return SizedBox(
+              // size of the banner is 750x348
+              height: Screen.width * 348 / 750,
+              child: PageView.builder(
+                  itemCount: banners.length,
+                  pageSnapping: true,
+                  itemBuilder: (context, pagePosition) {
+                    return Container(
+                        margin: const EdgeInsets.all(0),
+                        child: CachedImageCustom(
+                            banners[pagePosition].images?[0].top ?? ''));
+                  }),
+            );
+          }
         });
   }
 }

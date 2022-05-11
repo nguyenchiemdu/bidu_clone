@@ -41,6 +41,7 @@ class TopProducts extends StatelessWidget {
                 margin: const EdgeInsets.only(top: 20),
                 height: 240,
                 child: ListView.builder(
+                    padding: const EdgeInsets.only(left: 16),
                     itemCount: min(topProducts.length, 5),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: ((context, index) {
@@ -48,7 +49,6 @@ class TopProducts extends StatelessWidget {
                       return ProductItem(topProducts[index],
                           top: index + 1,
                           selled: 120,
-                          marginLeft: index == 0 ? 16 : 0,
                           marginRight: 8,
                           containerWidth: 150);
                     })),

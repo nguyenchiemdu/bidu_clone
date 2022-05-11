@@ -90,7 +90,7 @@ class ProductItem extends StatelessWidget {
                           decoration: BoxDecoration(
                               color: DesignColor.textBlackColor,
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(5))),
+                                  const BorderRadius.all(Radius.circular(5))),
                           child: Center(
                             child: Text(
                               (top).toString(),

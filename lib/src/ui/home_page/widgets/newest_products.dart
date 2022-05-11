@@ -57,29 +57,33 @@ class NewestProducts extends StatelessWidget {
             padding: const EdgeInsets.only(top: 24),
             child: Column(children: [
               headLine(),
-              //TODO: han che dung toan tu ba ngoi
-              !snapshot.hasData && !snapshot.hasError
-                  ? const Text('Loading')
-                  : snapshot.hasError
-                      ? const Text('Loi roi ban oi')
-                      : Container(
-                          margin: const EdgeInsets.only(top: 20),
-                          height: 236,
-                          child: ListView.builder(
-                              itemCount: newestProducts.length,
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: ((context, index) {
-                                // print(newestProducts[index]);
-                                // print(newestProducts[index]['images'][0]);
-                                return ProductItem(newestProducts[index],
-                                    selled: 300,
-                                    discountPercent:
-                                        newestProducts[index].discountPercent,
-                                    marginLeft: index == 0 ? 16 : 0,
-                                    marginRight: 8,
-                                    containerWidth: 150);
-                              })),
-                        )
+              //TODO: han che dung toan tu ba ngoi DONE
+              Builder(builder: (_) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Text('Loading');
+                } else if (snapshot.hasError) {
+                  return const Text('API error');
+                } else {
+                  return Container(
+                    margin: const EdgeInsets.only(top: 20),
+                    height: 236,
+                    child: ListView.builder(
+                        padding: const EdgeInsets.only(left: 16),
+                        itemCount: newestProducts.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: ((context, index) {
+                          // print(newestProducts[index]);
+                          // print(newestProducts[index]['images'][0]);
+                          return ProductItem(newestProducts[index],
+                              selled: 300,
+                              discountPercent:
+                                  newestProducts[index].discountPercent,
+                              marginRight: 8,
+                              containerWidth: 150);
+                        })),
+                  );
+                }
+              })
             ]),
           );
         }));

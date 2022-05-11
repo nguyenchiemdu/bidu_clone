@@ -85,12 +85,12 @@ class Live extends StatelessWidget {
               height: 200.0,
               margin: const EdgeInsets.only(bottom: 30),
               child: ListView.builder(
+                  padding: const EdgeInsets.only(left: 16),
                   itemCount: streamChannels.length + 1,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
-                    double marginLeft = index == 0 ? 16 : 0;
                     if (index < streamChannels.length) {
-                      return LiveItem(streamChannels[index], marginLeft);
+                      return LiveItem(streamChannels[index]);
                     } else {
                       return seeMoreLive();
                     }

@@ -5,15 +5,13 @@ import '../../../../common/asset_link.dart';
 import '../../../../common/font.dart';
 
 class LiveItem extends StatelessWidget {
-  const LiveItem(this.streamChannel, this.marginLeft, {Key? key})
-      : super(key: key);
+  const LiveItem(this.streamChannel, {Key? key}) : super(key: key);
   final Map streamChannel;
-  final double marginLeft;
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 140,
-      margin: EdgeInsets.only(right: 10, left: marginLeft),
+      margin: const EdgeInsets.only(right: 10),
       child: Stack(
         children: [
           SizedBox(

@@ -26,7 +26,7 @@ class TopSellerItem extends StatelessWidget {
       height: 20,
       decoration: BoxDecoration(
           color: DesignColor.textBlackColor,
-          borderRadius: BorderRadius.all(Radius.circular(5))),
+          borderRadius: const BorderRadius.all(Radius.circular(5))),
       child: Center(
         child: Text(
           seller.ranking.toString(),
