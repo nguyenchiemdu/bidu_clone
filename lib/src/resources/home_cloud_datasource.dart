@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+
 import '../../common/server.dart';
 import '../models/banner.dart';
 import 'package:bidu_clone/common/server.dart';
@@ -76,13 +78,14 @@ class HomeCloudDataSource implements IHomeDataSource {
       if (dataDecode['success'] == true) {
         final listCategory = listCategoryFromMap(dataDecode['data']);
         // TODO: (Trung) nên xử lý bên trong bloC DONE
-        listCategory.sort((a, b) => a.priority.compareTo(b.priority));
+        // listCategory.sort((a, b) => a.priority.compareTo(b.priority));
         return listCategory;
       }
       return [];
     } catch (e, s) {
       // ignore: avoid_print
-      print(e);
+      //TODO:
+      debugPrint(e.toString());
       // ignore: avoid_print
       print(s);
       return [];

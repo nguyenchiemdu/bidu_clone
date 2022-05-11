@@ -76,7 +76,7 @@ class ShopInFor extends StatelessWidget {
         ),
         SizedBox(
           child: Column(children: [
-            Container(
+            SizedBox(
               height: 14,
               child: SvgPicture.asset(
                 navHeart,

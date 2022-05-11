@@ -10,11 +10,13 @@ class FeedBackItem extends StatelessWidget {
   final int index;
   @override
   Widget build(BuildContext context) {
+    //TODO:
     double itemWidth() {
       double screenWidth = Screen.width;
       return screenWidth * 202 / 375;
     }
 
+    //TODO: dung padding
     double getMarginLeft(int index) {
       return index == 0 ? 16 : 0;
     }

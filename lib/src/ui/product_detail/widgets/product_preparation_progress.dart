@@ -12,6 +12,7 @@ class ProductPreparationProgress extends StatelessWidget {
   final double progress;
   final String duration;
   final bool isColorful;
+  // dung bien thay vi 1 ham;
   double getProgressBarWidth() {
     double designWitdh = 254;
     double designScreenWidth = 375;
@@ -19,7 +20,8 @@ class ProductPreparationProgress extends StatelessWidget {
   }
 
   Widget percentDone() {
-    BoxDecoration? boxDecoration = isColorful
+    //TODO: han che dung 3 ngoi
+    BoxDecoration boxDecoration = isColorful
         ? const BoxDecoration(
             gradient:
                 LinearGradient(colors: [gradientPrimary2, gradientPrimary1]),
@@ -34,6 +36,7 @@ class ProductPreparationProgress extends StatelessWidget {
     );
   }
 
+  // TODO: dung final textstyle; dung 1 bien thay vi dung ham;
   TextStyle textStyle() {
     Color color = isColorful ? primaryColor : textProgressGray;
     return TextStyle(

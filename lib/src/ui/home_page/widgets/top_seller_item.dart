@@ -131,6 +131,7 @@ class TopSellerItem extends StatelessWidget {
           ),
           Text(
             // TODO: (Trung) nên viết thành 1 extension của NumberFormat DONE
+            // TODO: Extension research
             rateFormat(seller.avarageRating ?? 0),
             style: const TextStyle(
                 fontFamily: defaultFont,

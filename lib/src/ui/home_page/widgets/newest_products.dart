@@ -73,6 +73,7 @@ class NewestProducts extends StatelessWidget {
                                 // print(newestProducts[index]);
                                 // print(newestProducts[index]['images'][0]);
                                 // TODO: (Trung) nên tách thành 1 statelesswidget thay vì widget func DONE
+                                // TODO: app performance
                                 return ProductItem(newestProducts[index],
                                     selled: 300,
                                     discountPercent:

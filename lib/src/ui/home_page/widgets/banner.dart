@@ -26,7 +26,10 @@ class BannerWidget extends StatelessWidget {
           final List<banner_model.Banner> banners;
           banners = snapshot.data ?? [];
           //TODO: (Trung) thiếu xử lý UI khi banner đang được load từ api và trường hợp api lỗi DONE
+          //TODO: Dung if else
+          // snapshot.connectionState
           return !snapshot.hasData && !snapshot.hasError
+              //TODO:
               ? const Text('loading')
               : snapshot.hasError
                   ? const Text('API error')

@@ -5,6 +5,7 @@ import '../../../../common/font.dart';
 import 'live_item.dart';
 
 // TODO: (Trung) tên class nên match với tên file DONE
+// TODO : dat ten
 class Live extends StatelessWidget {
   const Live({Key? key}) : super(key: key);
   Widget seeMoreLive() {
@@ -19,6 +20,7 @@ class Live extends StatelessWidget {
               decoration: BoxDecoration(
                   color: Colors.transparent,
                   border: Border.all(
+                      //TODO : color
                       color: const Color(0xffFD374F),
                       width: 2,
                       style: BorderStyle.solid),

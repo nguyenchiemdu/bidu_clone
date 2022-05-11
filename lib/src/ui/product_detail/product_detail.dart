@@ -1,8 +1,11 @@
+import 'package:bidu_clone/common/colors.dart';
 import 'package:bidu_clone/src/models/product.dart';
 import 'package:bidu_clone/src/ui/product_detail/widgets/banner_widget.dart';
+import 'package:bidu_clone/src/ui/product_detail/widgets/bottom_bar.dart';
 import 'package:bidu_clone/src/ui/product_detail/widgets/deliver_infor.dart';
 import 'package:bidu_clone/src/ui/product_detail/widgets/product_infor.dart';
 import 'package:bidu_clone/src/ui/product_detail/widgets/shop_infor.dart';
+import 'package:bidu_clone/src/ui/product_detail/widgets/tab_bar_product.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -30,21 +33,20 @@ class _DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: productDetailAppbar(),
-      body: Container(
-        color: const Color(0xffC9C9C9),
-        width: double.infinity,
-        height: double.infinity,
-        child: SingleChildScrollView(
-          child: Column(children: const [
-            BannerWidget(),
-            ShopInFor(),
-            ProductInfor(),
-            DeliverInfor(),
-          ]),
+        extendBodyBehindAppBar: true,
+        appBar: productDetailAppbar(),
+        body: Container(
+          color: progressGray,
+          child: SingleChildScrollView(
+            child: Column(children: const [
+              BannerWidget(),
+              ShopInFor(),
+              ProductInfor(),
+              DeliverInfor(),
+              TabBarProduct(),
+            ]),
+          ),
         ),
-      ),
-    );
+        bottomNavigationBar: const BottomBar());
   }
 }

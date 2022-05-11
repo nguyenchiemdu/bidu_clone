@@ -103,6 +103,8 @@ flutter:
     - assets/images/live_1.png
     - assets/images/live_2.png
     - assets/images/live_3.png
+    - assets/icons/add_to_cart.svg
+    - assets/images/freeship_banner.png
 
     
 

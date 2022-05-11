@@ -1,3 +1,4 @@
+//TODO: viet thanh class static
 const String signalColumn = 'assets/icons/signal_column.png';
 const String arrow = 'assets/icons/arrow.png';
 const String biduLive = 'assets/icons/bidu_live.png';
@@ -35,3 +36,5 @@ const String appBarBackButton = 'assets/icons/back_button.svg';
 const String appBarShareButton = 'assets/icons/share_button.svg';
 const String appBarCartButton = 'assets/icons/cart_button.svg';
 const String shopAvatar = 'assets/icons/shop_avatar.png';
+const String addToCart = 'assets/icons/add_to_cart.svg';
+const String freeshipBanner = 'assets/images/freeship_banner.png';
