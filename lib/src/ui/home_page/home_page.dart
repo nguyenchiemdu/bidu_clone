@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import '../../../common/colors.dart';
 import 'widgets/appbar.dart';
 import 'widgets/floating_button.dart';
-import 'widgets/live.dart';
+import 'widgets/live_bidu.dart';
 import 'widgets/mini_banner.dart';
 import 'widgets/suggestion.dart';
 import 'widgets/top_products.dart';
@@ -72,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         BannerWidget(),
                         Category(),
                         const MiniBanner(),
-                        const Live(),
+                        const LiveBidu(),
                         const NewestProducts(),
                         const TopSellers(),
                         const TopProducts(),

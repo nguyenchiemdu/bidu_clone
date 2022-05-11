@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import '../../../../common/font.dart';
 import 'live_item.dart';
 
-// TODO : dat ten
-class Live extends StatelessWidget {
-  const Live({Key? key}) : super(key: key);
+// TODO : dat ten DONE
+class LiveBidu extends StatelessWidget {
+  const LiveBidu({Key? key}) : super(key: key);
   Widget seeMoreLive() {
     return SizedBox(
       width: 140,
@@ -20,7 +20,6 @@ class Live extends StatelessWidget {
               decoration: BoxDecoration(
                   color: Colors.transparent,
                   border: Border.all(
-                      //TODO : color
                       color: DesignColor.textHighlightRed,
                       width: 2,
                       style: BorderStyle.solid),

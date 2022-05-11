@@ -46,7 +46,7 @@ class ProductInfor extends StatelessWidget {
     return Row(
       children: [
         Text(
-          priceFormat(salePrice),
+          salePrice.priceFormat(),
           style: const TextStyle(
               fontFamily: defaultFont,
               fontSize: 18,
@@ -81,7 +81,7 @@ class ProductInfor extends StatelessWidget {
   Widget beforeSalePrice(num? beforeSalePrice) {
     beforeSalePrice ??= 0;
     return Text(
-      priceFormat(beforeSalePrice) + '₫',
+      beforeSalePrice.priceFormat() + '₫',
       style: TextStyle(
           decoration: TextDecoration.lineThrough,
           color: DesignColor.textGrayColor,

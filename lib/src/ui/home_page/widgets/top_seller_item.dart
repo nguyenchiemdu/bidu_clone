@@ -130,8 +130,8 @@ class TopSellerItem extends StatelessWidget {
             ),
           ),
           Text(
-            // TODO: (Trung) nên viết thành 1 extension của NumberFormat
-            rateFormat(seller.avarageRating ?? 0),
+            // TODO: (Trung) nên viết thành 1 extension của NumberFormat DONE
+            (seller.avarageRating ?? 0).rateFormat(),
             style: const TextStyle(
                 fontFamily: defaultFont,
                 fontWeight: FontWeight.w400,

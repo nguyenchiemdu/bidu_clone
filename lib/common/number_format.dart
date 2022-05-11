@@ -1,13 +1,15 @@
 import 'package:intl/intl.dart';
 
-String priceFormat(num number) {
-  NumberFormat formater = NumberFormat('###,###,##0.##');
-  return formater.format(number).replaceAll(',', '.');
-}
+extension Formater on num {
+  String priceFormat() {
+    NumberFormat formater = NumberFormat('###,###,##0.##');
+    return formater.format(this).replaceAll(',', '.');
+  }
 
-String rateFormat(num number) {
-  final NumberFormat formater = NumberFormat('0.0');
-  return formater.format(number);
+  String rateFormat() {
+    final NumberFormat formater = NumberFormat('0.0');
+    return formater.format(this);
+  }
 }
 
 const currency = ' ₫';

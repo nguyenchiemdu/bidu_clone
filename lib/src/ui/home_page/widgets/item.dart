@@ -141,7 +141,7 @@ class ProductItem extends StatelessWidget {
               child: Row(
                 children: [
                   Text(
-                    priceFormat(product.salePrice),
+                    product.salePrice.priceFormat(),
                     style: const TextStyle(
                         fontFamily: defaultFont,
                         fontWeight: FontWeight.w700,
