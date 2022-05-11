@@ -34,7 +34,7 @@ class ProductInfor extends StatelessWidget {
           Container(
               margin: const EdgeInsets.only(left: 16),
               width: 13.27,
-              child: SvgPicture.asset(productMarkDetail))
+              child: SvgPicture.asset(AssetLink.productMarkDetail))
         ],
       ),
     );
@@ -94,7 +94,10 @@ class ProductInfor extends StatelessWidget {
       margin: const EdgeInsets.only(top: 16),
       child: Row(
         children: [
-          SizedBox(width: 16, height: 16, child: Image.asset(inforProductIcon)),
+          SizedBox(
+              width: 16,
+              height: 16,
+              child: Image.asset(AssetLink.inforProductIcon)),
           Container(
               margin: const EdgeInsets.only(left: 7),
               child: const Text(
@@ -127,7 +130,7 @@ class ProductInfor extends StatelessWidget {
                 fontSize: 14,
                 color: primaryColor),
           ),
-          SizedBox(width: 8, child: Image.asset(seeMore))
+          SizedBox(width: 8, child: Image.asset(AssetLink.seeMore))
         ],
       ),
     );
@@ -156,7 +159,7 @@ class ProductInfor extends StatelessWidget {
               Container(
                   margin: const EdgeInsets.only(right: 4),
                   width: 10,
-                  child: Image.asset(sellerHeart)),
+                  child: Image.asset(AssetLink.sellerHeart)),
               const Text(
                 '4.8 / 5.0',
                 style: TextStyle(

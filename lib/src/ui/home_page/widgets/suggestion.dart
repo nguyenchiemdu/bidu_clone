@@ -34,7 +34,7 @@ class Suggestion extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.only(left: 8),
                 child: Image.asset(
-                  seeMoreArrow,
+                  AssetLink.seeMoreArrow,
                   width: 20,
                 ),
               )

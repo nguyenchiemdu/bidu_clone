@@ -74,7 +74,7 @@ class ProductItem extends StatelessWidget {
                   top: 5.31,
                   right: 7.08,
                   child: Image.asset(
-                    productMark,
+                    AssetLink.productMark,
                     width: 13.27,
                   ),
                 ),
@@ -163,7 +163,7 @@ class ProductItem extends StatelessWidget {
               child: Row(
                 children: [
                   Image.asset(
-                    location,
+                    AssetLink.location,
                     width: 7.08,
                   ),
                   const Text(

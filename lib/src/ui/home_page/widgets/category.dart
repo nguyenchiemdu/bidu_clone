@@ -11,7 +11,10 @@ import '../../../../common/asset_link.dart';
 class Category extends StatelessWidget {
   Category({Key? key}) : super(key: key);
   final category_model.Category seeMore = category_model.Category(
-      id: 'seemore', name: 'Xem thêm', avatar: seeMoreCategory, priority: 8);
+      id: 'seemore',
+      name: 'Xem thêm',
+      avatar: AssetLink.seeMoreCategory,
+      priority: 8);
   double getMinHeight(double width) {
     int numberItems = 5;
     int numberRows = 2;

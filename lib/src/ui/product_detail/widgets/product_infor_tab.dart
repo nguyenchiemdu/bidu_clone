@@ -39,7 +39,7 @@ class ProductInforTab extends StatelessWidget {
       children: [
         Container(
             margin: const EdgeInsets.only(top: 20.05),
-            child: Image.asset(freeshipBanner)),
+            child: Image.asset(AssetLink.freeshipBanner)),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(

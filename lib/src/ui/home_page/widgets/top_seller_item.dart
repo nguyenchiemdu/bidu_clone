@@ -78,7 +78,7 @@ class TopSellerItem extends StatelessWidget {
             ),
           ]),
           child: Image.asset(
-            addSeller,
+            AssetLink.addSeller,
             width: 24,
           ),
         ),
@@ -124,7 +124,7 @@ class TopSellerItem extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 3.69),
             child: Image.asset(
-              sellerHeart,
+              AssetLink.sellerHeart,
               width: 14.31,
             ),
           ),
@@ -164,7 +164,7 @@ class TopSellerItem extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 8),
             child: Image.asset(
-              blackArrow,
+              AssetLink.blackArrow,
               width: 20,
             ),
           )

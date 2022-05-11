@@ -135,13 +135,13 @@ class HomeBloc extends BaseBLoC {
   }
 
   String getNoSeller(int index) {
-    if (index == 0) return number1;
-    if (index == 1) return number2;
-    return number3;
+    if (index == 0) return AssetLink.number1;
+    if (index == 1) return AssetLink.number2;
+    return AssetLink.number3;
   }
 
   String getTopSellerDevelopStatus(String changeType) {
-    String developStatus = changeType == 'UP' ? up : down;
+    String developStatus = changeType == 'UP' ? AssetLink.up : AssetLink.down;
     return developStatus;
   }
 

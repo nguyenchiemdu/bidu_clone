@@ -15,7 +15,7 @@ class TopSellers extends StatefulWidget {
 
 class _TopSellersState extends State<TopSellers> {
   bool isExpanded = false;
-  String iconButton = seeMore;
+  String iconButton = AssetLink.seeMore;
   String textButton = 'Xem thêm';
   double getTopSellersHeight(List<TopSeller> topSellers) {
     int avatarHeight = 68;
@@ -73,7 +73,8 @@ class _TopSellersState extends State<TopSellers> {
                       // print('tapped');
                       setState(() {
                         isExpanded = !isExpanded;
-                        iconButton = isExpanded ? collapse : seeMore;
+                        iconButton =
+                            isExpanded ? AssetLink.collapse : AssetLink.seeMore;
                         textButton = isExpanded ? 'Rút gọn' : 'Xem thêm';
                       });
                     },

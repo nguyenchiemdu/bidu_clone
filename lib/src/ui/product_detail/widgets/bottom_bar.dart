@@ -29,7 +29,7 @@ class BottomBar extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SvgPicture.asset(addToCart),
+                        SvgPicture.asset(AssetLink.addToCart),
                         const Text(
                           'Thêm vào giỏ',
                           style: TextStyle(

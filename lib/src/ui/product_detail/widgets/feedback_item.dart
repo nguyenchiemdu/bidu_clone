@@ -41,7 +41,7 @@ class FeedBackItem extends StatelessWidget {
         AspectRatio(
           aspectRatio: 1,
           child: Image.asset(
-            feedback,
+            AssetLink.feedback,
             fit: BoxFit.cover,
           ),
         ),

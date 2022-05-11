@@ -29,7 +29,7 @@ class Live extends StatelessWidget {
               child: Align(
                 alignment: Alignment.center,
                 child: Image.asset(
-                  arrow,
+                  AssetLink.arrow,
                   width: 21.14,
                 ),
               ),
@@ -56,7 +56,7 @@ class Live extends StatelessWidget {
       alignment: Alignment.centerLeft,
       margin: const EdgeInsets.only(left: 16, top: 30, bottom: 20),
       child: Image.asset(
-        biduLive,
+        AssetLink.biduLive,
         height: 23,
       ),
     );
@@ -64,9 +64,9 @@ class Live extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const Map streamChannel = {
-      'image': streamImage,
-      'avatar': streamAvatar,
+    Map streamChannel = {
+      'image': AssetLink.streamImage,
+      'avatar': AssetLink.streamAvatar,
       'name': 'Phương Lê',
       'title': 'Sale off 30% to 50% for 21/04 - Fo...'
     };

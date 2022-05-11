@@ -44,11 +44,11 @@ class HomeNavBar extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    _button(navBidu, index: 0, onPressed: () {}),
-                    _button(navShop, index: 1, onPressed: () {}),
-                    _button(navHeart, index: 2, onPressed: () {}),
-                    _button(navCompass, index: 3, onPressed: () {}),
-                    _button(navAccount, index: 4, onPressed: () {}),
+                    _button(AssetLink.navBidu, index: 0, onPressed: () {}),
+                    _button(AssetLink.navShop, index: 1, onPressed: () {}),
+                    _button(AssetLink.navHeart, index: 2, onPressed: () {}),
+                    _button(AssetLink.navCompass, index: 3, onPressed: () {}),
+                    _button(AssetLink.navAccount, index: 4, onPressed: () {}),
                   ],
                 ),
               ));

@@ -22,7 +22,7 @@ AppBar appBarWidget() => AppBar(
         margin: const EdgeInsets.only(left: 16),
         child: GestureDetector(
           child: Image.asset(
-            appBarLogo,
+            AssetLink.appBarLogo,
             // height: 32,
           ),
           onTap: () {
@@ -36,7 +36,7 @@ AppBar appBarWidget() => AppBar(
           margin: const EdgeInsets.only(right: 22, top: 6),
           child: GestureDetector(
             child: Image.asset(
-              appBarSearch,
+              AssetLink.appBarSearch,
               width: 24,
               height: 24,
             ),
@@ -49,7 +49,7 @@ AppBar appBarWidget() => AppBar(
           padding: const EdgeInsets.only(right: 22, top: 6),
           child: GestureDetector(
             child: Image.asset(
-              appBarMessage,
+              AssetLink.appBarMessage,
               width: 24,
               height: 24,
             ),
@@ -62,7 +62,7 @@ AppBar appBarWidget() => AppBar(
           padding: const EdgeInsets.only(right: 22, top: 6),
           child: GestureDetector(
             child: Image.asset(
-              appBarNotification,
+              AssetLink.appBarNotification,
               width: 24,
               height: 24,
             ),
@@ -75,7 +75,7 @@ AppBar appBarWidget() => AppBar(
           padding: const EdgeInsets.only(right: 17, top: 6),
           child: GestureDetector(
             child: Image.asset(
-              appBarCart,
+              AssetLink.appBarCart,
               width: 24,
               height: 24,
             ),

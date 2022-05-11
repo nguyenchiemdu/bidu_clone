@@ -93,7 +93,7 @@ class LiveItem extends StatelessWidget {
             margin: const EdgeInsets.only(left: 9, top: 8),
             width: 12,
             height: 12,
-            child: Image.asset(signalColumn),
+            child: Image.asset(AssetLink.signalColumn),
           )
         ],
       ),

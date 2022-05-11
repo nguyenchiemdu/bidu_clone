@@ -20,9 +20,10 @@ class ShopInFor extends StatelessWidget {
             Container(
               width: kAvatarSize,
               height: kAvatarSize,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  image: DecorationImage(image: AssetImage(shopAvatar))),
+                  image:
+                      DecorationImage(image: AssetImage(AssetLink.shopAvatar))),
             ),
             Container(
               margin: const EdgeInsets.only(left: 10),
@@ -40,7 +41,8 @@ class ShopInFor extends StatelessWidget {
                     margin: const EdgeInsets.only(top: 9),
                     child: Row(
                       children: [
-                        SizedBox(width: 14, child: Image.asset(number1)),
+                        SizedBox(
+                            width: 14, child: Image.asset(AssetLink.number1)),
                         const Padding(
                           padding: EdgeInsets.symmetric(horizontal: 5),
                           child: Text(
@@ -79,7 +81,7 @@ class ShopInFor extends StatelessWidget {
             SizedBox(
               height: 14,
               child: SvgPicture.asset(
-                navHeart,
+                AssetLink.navHeart,
                 color: primaryColor,
               ),
             ),

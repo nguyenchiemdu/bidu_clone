@@ -17,15 +17,15 @@ AppBar productDetailAppbar() => AppBar(
         leading: Container(
           padding: const EdgeInsets.only(left: 8),
           child: SvgPicture.asset(
-            appBarBackButton,
+            AssetLink.appBarBackButton,
             width: 32,
           ),
         ),
         actions: [
           Container(
               margin: const EdgeInsets.symmetric(horizontal: 8),
-              child: SvgPicture.asset(appBarShareButton)),
+              child: SvgPicture.asset(AssetLink.appBarShareButton)),
           Container(
               margin: const EdgeInsets.symmetric(horizontal: 8),
-              child: SvgPicture.asset(appBarCartButton)),
+              child: SvgPicture.asset(AssetLink.appBarCartButton)),
         ]);

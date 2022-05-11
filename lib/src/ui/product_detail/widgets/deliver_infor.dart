@@ -93,7 +93,10 @@ class DeliverInfor extends StatelessWidget {
                     ],
                   ),
                   Row(
-                    children: [Image.asset(location), const Text('Hàn Quốc')],
+                    children: [
+                      Image.asset(AssetLink.location),
+                      const Text('Hàn Quốc')
+                    ],
                   )
                 ],
               ),
