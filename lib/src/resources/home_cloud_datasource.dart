@@ -60,10 +60,8 @@ class HomeCloudDataSource implements IHomeDataSource {
       }
       return [];
     } catch (e, s) {
-      // ignore: avoid_print
-      print(e);
-      // ignore: avoid_print
-      print(s);
+      debugPrint(e.toString());
+      debugPrint(s.toString());
       return e;
     }
   }
@@ -81,11 +79,8 @@ class HomeCloudDataSource implements IHomeDataSource {
       }
       return [];
     } catch (e, s) {
-      // ignore: avoid_print
-      //TODO:
       debugPrint(e.toString());
-      // ignore: avoid_print
-      print(s);
+      debugPrint(s.toString());
       return [];
     }
   }
@@ -103,10 +98,8 @@ class HomeCloudDataSource implements IHomeDataSource {
       }
       return [];
     } catch (e, s) {
-      // ignore: avoid_print
-      print(e);
-      // ignore: avoid_print
-      print(s);
+      debugPrint(e.toString());
+      debugPrint(s.toString());
       return e;
     }
   }
@@ -124,10 +117,8 @@ class HomeCloudDataSource implements IHomeDataSource {
       }
       return [];
     } catch (e, s) {
-      // ignore: avoid_print
-      print(e);
-      // ignore: avoid_print
-      print(s);
+      debugPrint(e.toString());
+      debugPrint(s.toString());
       return [];
     }
   }
@@ -145,10 +136,8 @@ class HomeCloudDataSource implements IHomeDataSource {
       }
       return [];
     } catch (e, s) {
-      // ignore: avoid_print
-      print(e);
-      // ignore: avoid_print
-      print(s);
+      debugPrint(e.toString());
+      debugPrint(s.toString());
       return [];
     }
   }
@@ -166,10 +155,8 @@ class HomeCloudDataSource implements IHomeDataSource {
       }
       return [];
     } catch (e, s) {
-      // ignore: avoid_print
-      print(e);
-      // ignore: avoid_print
-      print(s);
+      debugPrint(e.toString());
+      debugPrint(s.toString());
       return [];
     }
   }

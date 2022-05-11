@@ -1,6 +1,7 @@
 import 'package:bidu_clone/src/models/category.dart';
 import 'package:bidu_clone/src/models/top_seller.dart';
 import 'package:bidu_clone/src/resources/home_cloud_datasource.dart';
+import 'package:flutter/material.dart';
 
 import '../models/product.dart';
 
@@ -22,10 +23,8 @@ class HomeRepository implements IHomeRepository {
       final listBanner = await homeCloudDataSource.getListBanner();
       return listBanner;
     } catch (e, s) {
-      // ignore: avoid_print
-      print(e);
-      // ignore: avoid_print
-      print(s);
+      debugPrint(e.toString());
+      debugPrint(s.toString());
       return e;
     }
   }
@@ -36,10 +35,8 @@ class HomeRepository implements IHomeRepository {
       final listCategory = await homeCloudDataSource.getListCategory();
       return listCategory;
     } catch (e, s) {
-      // ignore: avoid_print
-      print(e);
-      // ignore: avoid_print
-      print(s);
+      debugPrint(e.toString());
+      debugPrint(s.toString());
       return [];
     }
   }
@@ -51,10 +48,8 @@ class HomeRepository implements IHomeRepository {
           await homeCloudDataSource.getListNewestProduct();
       return listNewestProduct;
     } catch (e, s) {
-      // ignore: avoid_print
-      print(e);
-      // ignore: avoid_print
-      print(s);
+      debugPrint(e.toString());
+      debugPrint(s.toString());
       return e;
     }
   }
@@ -65,10 +60,8 @@ class HomeRepository implements IHomeRepository {
       final listSuggestion = await homeCloudDataSource.getListSuggestion();
       return listSuggestion;
     } catch (e, s) {
-      // ignore: avoid_print
-      print(e);
-      // ignore: avoid_print
-      print(s);
+      debugPrint(e.toString());
+      debugPrint(s.toString());
       return [];
     }
   }
@@ -79,10 +72,8 @@ class HomeRepository implements IHomeRepository {
       final listTopProduct = await homeCloudDataSource.getListTopProduct();
       return listTopProduct;
     } catch (e, s) {
-      // ignore: avoid_print
-      print(e);
-      // ignore: avoid_print
-      print(s);
+      debugPrint(e.toString());
+      debugPrint(s.toString());
       return [];
     }
   }
@@ -93,10 +84,8 @@ class HomeRepository implements IHomeRepository {
       final listTopSeller = await homeCloudDataSource.getListTopSeller();
       return listTopSeller;
     } catch (e, s) {
-      // ignore: avoid_print
-      print(e);
-      // ignore: avoid_print
-      print(s);
+      debugPrint(e.toString());
+      debugPrint(s.toString());
       return [];
     }
   }
