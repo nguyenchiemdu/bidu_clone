@@ -6,21 +6,14 @@ import '../../../../common/colors.dart';
 import '../../../screen_size.dart';
 
 class FeedBackItem extends StatelessWidget {
-  const FeedBackItem(this.index, {Key? key}) : super(key: key);
-  final int index;
+  FeedBackItem({Key? key}) : super(key: key);
+
+  static const designWidth = 202;
+  static const designScreenWidth = 375;
+  final itemWidth = Screen.width * designWidth / designScreenWidth;
   @override
   Widget build(BuildContext context) {
-    //TODO:
-    double itemWidth() {
-      double screenWidth = Screen.width;
-      return screenWidth * 202 / 375;
-    }
-
-    //TODO: dung padding
-    double getMarginLeft(int index) {
-      return index == 0 ? 16 : 0;
-    }
-
+    //TODO: han che dung funtion DOING
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -33,10 +26,9 @@ class FeedBackItem extends StatelessWidget {
           )
         ],
       ),
-      margin: EdgeInsets.only(
-          left: getMarginLeft(index), top: 5, bottom: 5, right: 10),
+      margin: const EdgeInsets.only(top: 5, bottom: 5, right: 10),
       padding: const EdgeInsets.all(10),
-      width: itemWidth(),
+      width: itemWidth,
       child: Row(children: [
         AspectRatio(
           aspectRatio: 1,

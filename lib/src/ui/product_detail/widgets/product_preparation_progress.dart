@@ -5,48 +5,44 @@ import '../../../../common/colors.dart';
 import '../../../../common/font.dart';
 
 class ProductPreparationProgress extends StatelessWidget {
-  const ProductPreparationProgress(
-      this.duration, this.progress, this.isColorful,
+  ProductPreparationProgress(this.duration, this.progress, this.isColorful,
       {Key? key})
-      : super(key: key);
-  final double progress;
-  final String duration;
-  final bool isColorful;
-  // dung bien thay vi 1 ham;
-  double getProgressBarWidth() {
-    double designWitdh = 254;
-    double designScreenWidth = 375;
-    return Screen.width * designWitdh / designScreenWidth;
-  }
-
-  Widget percentDone() {
-    //TODO: han che dung 3 ngoi
-    BoxDecoration boxDecoration = isColorful
-        ? BoxDecoration(
-            gradient: LinearGradient(colors: [
-              DesignColor.gradientPrimary2,
-              DesignColor.gradientPrimary1
-            ]),
-            borderRadius: const BorderRadius.all(Radius.circular(10)))
-        : BoxDecoration(
-            color: DesignColor.progressGray,
-            borderRadius: const BorderRadius.all(Radius.circular(10)));
-    return Container(
-      width: progress / 100 * getProgressBarWidth(),
-      height: 8,
-      decoration: boxDecoration,
-    );
-  }
-
-  // TODO: dung final textstyle; dung 1 bien thay vi dung ham;
-  TextStyle textStyle() {
-    Color color =
-        isColorful ? DesignColor.primaryColor : DesignColor.textProgressGray;
-    return TextStyle(
+      : super(key: key) {
+    if (isColorful) {
+      color = DesignColor.primaryColor;
+      boxDecoration = BoxDecoration(
+          gradient: LinearGradient(colors: [
+            DesignColor.gradientPrimary2,
+            DesignColor.gradientPrimary1
+          ]),
+          borderRadius: const BorderRadius.all(Radius.circular(10)));
+    } else {
+      color = DesignColor.textProgressGray;
+      boxDecoration = BoxDecoration(
+          color: DesignColor.progressGray,
+          borderRadius: const BorderRadius.all(Radius.circular(10)));
+    }
+    textStyle = TextStyle(
         fontFamily: defaultFont,
         fontSize: 14,
         fontWeight: FontWeight.w600,
         color: color);
+  }
+  final double progress;
+  final String duration;
+  final bool isColorful;
+  static const designWidth = 254;
+  static const designScreenWidth = 375;
+  final progressBarWidth = Screen.width * designWidth / designScreenWidth;
+  late final Color color;
+  late final BoxDecoration boxDecoration;
+  late final TextStyle textStyle;
+  Widget percentDone() {
+    return Container(
+      width: progress / 100 * progressBarWidth,
+      height: 8,
+      decoration: boxDecoration,
+    );
   }
 
   @override
@@ -59,13 +55,13 @@ class ProductPreparationProgress extends StatelessWidget {
           Expanded(
             child: Text(
               duration,
-              style: textStyle(),
+              style: textStyle,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
           ),
           SizedBox(
-            width: getProgressBarWidth(),
+            width: progressBarWidth,
             child: Stack(children: [
               Container(
                 height: 8,

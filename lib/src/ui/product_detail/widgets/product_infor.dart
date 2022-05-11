@@ -177,10 +177,11 @@ class ProductInfor extends StatelessWidget {
           margin: const EdgeInsets.only(bottom: 24, top: 14),
           height: 78,
           child: ListView.builder(
+              padding: const EdgeInsets.only(left: 16),
               scrollDirection: Axis.horizontal,
               itemCount: 2,
               itemBuilder: ((_, index) {
-                return FeedBackItem(index);
+                return FeedBackItem();
               })),
         )
       ]),

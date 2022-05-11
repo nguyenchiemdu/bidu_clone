@@ -17,12 +17,14 @@ class _TopSellersState extends State<TopSellers> {
   bool isExpanded = false;
   String iconButton = AssetLink.seeMore;
   String textButton = 'Xem thêm';
-  double getTopSellersHeight(List<TopSeller> topSellers) {
+  late double _topSellerHeight;
+  void getTopSellersHeight(List<TopSeller> topSellers) {
     int avatarHeight = 68;
     int paddingTop = 24;
     int paddingBottom = 21;
     int numberItems = (isExpanded ? topSellers.length : 3);
-    return (avatarHeight + paddingTop + paddingBottom) * numberItems.toDouble();
+    _topSellerHeight =
+        (avatarHeight + paddingTop + paddingBottom) * numberItems.toDouble();
   }
 
   @override
@@ -34,6 +36,7 @@ class _TopSellersState extends State<TopSellers> {
           final List<TopSeller> topSellers;
           final HomeBloc homeBloc = context.read<HomeBloc>();
           topSellers = snapshot.data ?? [];
+          getTopSellersHeight(topSellers);
           return Container(
             margin: const EdgeInsets.only(top: 2),
             color: Colors.white,
@@ -52,7 +55,7 @@ class _TopSellersState extends State<TopSellers> {
                   AnimatedContainer(
                     duration: const Duration(milliseconds: 300),
                     //TODO: animated size de tu dong thay doi chieu cao, dat const o tren, k su dung + DONE 1/2
-                    height: getTopSellersHeight(topSellers),
+                    height: _topSellerHeight,
                     child: ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),
                         padding: const EdgeInsets.all(0),

@@ -111,11 +111,11 @@ class DeliverInfor extends StatelessWidget {
               child: const Text('Thời gian chuẩn bị hàng'),
               margin: const EdgeInsets.only(bottom: 10),
             ),
-            const ProductPreparationProgress('1 ngày', 80, true),
-            const ProductPreparationProgress('2 ngày', 80, false),
-            const ProductPreparationProgress('3 ngày', 0, false),
-            const ProductPreparationProgress('4 ngày', 0, false),
-            const ProductPreparationProgress('Sau 4 ngày', 0, false)
+            ProductPreparationProgress('1 ngày', 80, true),
+            ProductPreparationProgress('2 ngày', 80, false),
+            ProductPreparationProgress('3 ngày', 0, false),
+            ProductPreparationProgress('4 ngày', 0, false),
+            ProductPreparationProgress('Sau 4 ngày', 0, false)
           ]),
         )
       ]),
