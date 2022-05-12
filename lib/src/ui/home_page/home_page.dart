@@ -31,13 +31,15 @@ class _MyHomePageState extends State<MyHomePage> {
   bool _onScrollNotification(
       BuildContext context, ScrollUpdateNotification notification) {
     // print(notification.scrollDelta);
-    double? delta = notification.scrollDelta;
-    double pixels = notification.metrics.pixels;
-    final HomeBloc homeBloc = context.read<HomeBloc>();
-    if (delta != null && !homeBloc.isCategoryCollapsed) {
-      context.read<HomeBloc>().updateCategory(delta);
+    if (notification.metrics.axisDirection == AxisDirection.down) {
+      double? delta = notification.scrollDelta;
+      double pixels = notification.metrics.pixels;
+      final HomeBloc homeBloc = context.read<HomeBloc>();
+      if (delta != null && !homeBloc.isCategoryCollapsed) {
+        context.read<HomeBloc>().updateCategory(delta);
+      }
+      homeBloc.updateBackToTopButton(pixels);
     }
-    homeBloc.updateBackToTopButton(pixels);
     return true;
   }
 
