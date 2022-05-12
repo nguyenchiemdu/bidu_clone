@@ -1,4 +1,6 @@
 import 'package:bidu_clone/src/models/product.dart';
+import 'package:bidu_clone/src/resources/product_detail_cloud_datasource.dart';
+import 'package:bidu_clone/src/resources/product_detail_repository.dart';
 import 'package:bidu_clone/src/ui/product_detail/widgets/banner_widget.dart';
 import 'package:bidu_clone/src/ui/product_detail/widgets/bottom_bar.dart';
 import 'package:bidu_clone/src/ui/product_detail/widgets/deliver_infor.dart';
@@ -16,13 +18,26 @@ class ProductDetailScreen extends StatelessWidget {
   final Product productData;
   @override
   Widget build(BuildContext context) {
-    return Provider<ProductDetailBloc>(
-        dispose: (context, productDetailBloc) => productDetailBloc.dispose(),
-        create: (context) => ProductDetailBloc(),
-        builder: (context, child) {
-          context.read<ProductDetailBloc>().product = productData;
-          return const _DetailPage();
-        });
+    return MultiProvider(
+      providers: [
+        Provider<ProductDetailCloudDataSource>(
+            create: (_) => ProductDetailCloudDataSource()),
+        ProxyProvider<ProductDetailCloudDataSource, ProductDetailRepository>(
+            update: ((context, productDetailCloudDataSource, previous) =>
+                previous ??
+                ProductDetailRepository(productDetailCloudDataSource))),
+        ProxyProvider<ProductDetailRepository, ProductDetailBloc>(
+            update: ((context, productDetailRepository, previous) =>
+                previous ?? ProductDetailBloc(productDetailRepository)))
+      ],
+      builder: (context, child) {
+        final ProductDetailBloc productDetailBloc =
+            context.read<ProductDetailBloc>();
+        productDetailBloc.product = productData;
+        productDetailBloc.loadProductDetailById();
+        return const _DetailPage();
+      },
+    );
   }
 }
 

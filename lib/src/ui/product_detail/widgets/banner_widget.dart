@@ -8,9 +8,10 @@ class BannerWidget extends StatelessWidget {
   const BannerWidget({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    ProductDetailBloc productDetailBloc = context.read<ProductDetailBloc>();
     return StreamBuilder<Product>(
-        initialData: context.read<ProductDetailBloc>().product,
-        stream: Provider.of<ProductDetailBloc>(context).productStream,
+        initialData: productDetailBloc.product,
+        stream: productDetailBloc.productStream,
         builder: ((context, snapshot) {
           final List listImage = snapshot.data?.images ?? [];
           return AspectRatio(
