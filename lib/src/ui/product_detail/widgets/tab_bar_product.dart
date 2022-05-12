@@ -1,85 +1,51 @@
-import 'package:bidu_clone/common/colors.dart';
-import 'package:bidu_clone/common/font.dart';
-import 'package:bidu_clone/src/blocs/product_detail_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'product_infor_tab.dart';
+import '../../../../common/colors.dart';
+import '../../../../common/font.dart';
+import '../../../blocs/product_detail_bloc.dart';
 
-class TabBarProduct extends StatefulWidget {
+const _kProductInfor = 'Thông tin sản phẩm';
+const _kEvaluate = 'Đánh giá (40)';
+const _kChat = 'Trò Chuyện';
+
+class TabBarProduct extends StatelessWidget {
   const TabBarProduct({Key? key}) : super(key: key);
 
   @override
-  State<TabBarProduct> createState() => _TabBarProductState();
-}
-
-class _TabBarProductState extends State<TabBarProduct> {
-  // int _selectedIndex = 0;
-  final tabBarStyle = TextStyle(
-      fontFamily: defaultFont,
-      fontSize: 14,
-      fontWeight: FontWeight.w400,
-      color: DesignColor.textGrayColor);
-  @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(top: 2),
-      color: DesignColor.textWhite,
-      child: DefaultTabController(
-          length: 3,
-          initialIndex: 0,
-          child: Column(
-            children: [
-              TabBar(
-                isScrollable: true,
-                indicatorColor: DesignColor.textBlackColor,
-                onTap: (index) {
-                  context.read<ProductDetailBloc>().changeSelectedTabBar(index);
-                },
-                labelStyle: TextStyle(
-                    fontFamily: defaultFont,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: DesignColor.textBlackColor),
-                labelColor: DesignColor.textBlackColor,
-                tabs: const [
-                  Tab(
-                    child: Text(
-                      'Thông tin sản phẩm',
-                      // style: tabBarStyle,
-                    ),
-                  ),
-                  Tab(
-                    child: Text(
-                      'Đánh giá (40)',
-                      // style: tabBarStyle,
-                    ),
-                  ),
-                  Tab(
-                    child: Text(
-                      'Trò Chuyện',
-                      // style: tabBarStyle,
-                    ),
-                  ),
-                ],
-              ),
-              // Use builder to  make dynamic container height
-              StreamBuilder<int>(
-                  initialData: 0,
-                  stream: Provider.of<ProductDetailBloc>(context)
-                      .selectedTabBarStream,
-                  builder: (_, selectedTabBarSnap) {
-                    int _selectedIndex = selectedTabBarSnap.data ?? 0;
-                    if (_selectedIndex == 0) {
-                      return const ProductInforTab();
-                    } else if (_selectedIndex == 1) {
-                      return const Text('2');
-                    } else {
-                      return const Text('3');
-                    }
-                  })
-            ],
-          )),
+    return SliverAppBar(
+      backgroundColor: Colors.white,
+      automaticallyImplyLeading: false,
+      collapsedHeight: 0,
+      toolbarHeight: 0,
+      expandedHeight: 0,
+      elevation: 0,
+      bottom: TabBar(
+        isScrollable: true,
+        indicatorColor: DesignColor.textBlackColor,
+        onTap: (index) {
+          context.read<ProductDetailBloc>().changeSelectedTabBar(index);
+        },
+        labelStyle: TextStyle(
+            fontFamily: defaultFont,
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+            color: DesignColor.textBlackColor),
+        labelColor: DesignColor.textBlackColor,
+        tabs: const [
+          Tab(
+            child: Text(_kProductInfor),
+          ),
+          Tab(
+            child: Text(_kEvaluate),
+          ),
+          Tab(
+            child: Text(_kChat),
+          ),
+        ],
+      ),
+      pinned: true,
     );
   }
 }

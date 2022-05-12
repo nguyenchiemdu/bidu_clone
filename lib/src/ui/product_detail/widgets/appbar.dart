@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 
-AppBar productDetailAppbar() => AppBar(
+AppBar productDetailAppbar(AsyncSnapshot<Color> appBarColorSnap) => AppBar(
+        // pinned: true,
         systemOverlayStyle: const SystemUiOverlayStyle(
           statusBarIconBrightness: Brightness.dark, // For Android (dark icons)
           statusBarBrightness: Brightness.light, // For iOS (dark icons)
         ),
-        backgroundColor: Colors.transparent,
+        backgroundColor: appBarColorSnap.data,
         foregroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
         // remove bottom shadow
