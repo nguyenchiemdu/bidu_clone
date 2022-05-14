@@ -1,3 +1,5 @@
+import 'package:bidu_clone/src/blocs/product_detail_bloc.dart';
+import 'package:bidu_clone/src/models/product_detail.dart';
 import 'package:bidu_clone/src/screen_size.dart';
 import 'package:flutter/material.dart';
 
@@ -5,9 +7,12 @@ import '../../../../common/colors.dart';
 import '../../../../common/font.dart';
 
 class ProductPreparationProgress extends StatelessWidget {
-  ProductPreparationProgress(this.duration, this.progress, this.isColorful,
-      {Key? key})
-      : super(key: key) {
+  ProductPreparationProgress(this.prepareOrder, {Key? key}) : super(key: key) {
+    List responds = ProductDetailBloc.processPrepareOrder(prepareOrder);
+    duration = responds[0];
+    isColorful = responds[1];
+    // temporary because data is always 0
+    progress = prepareOrder.value == 0 ? 30 : prepareOrder.value;
     if (isColorful) {
       color = DesignColor.primaryColor;
       boxDecoration = BoxDecoration(
@@ -28,9 +33,10 @@ class ProductPreparationProgress extends StatelessWidget {
         fontWeight: FontWeight.w600,
         color: color);
   }
-  final double progress;
-  final String duration;
-  final bool isColorful;
+  final PrepareOrder prepareOrder;
+  late final double progress;
+  late final String duration;
+  late final bool isColorful;
   static const designWidth = 254;
   static const designScreenWidth = 375;
   final progressBarWidth = Screen.width * designWidth / designScreenWidth;

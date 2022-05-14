@@ -33,7 +33,6 @@ class ShopInFor extends StatelessWidget {
                     DecorationImage(image: AssetImage(AssetLink.shopAvatar))),
           );
           if (product is ProductDetail) {
-            debugPrint('done');
             shopName = product.shop.name;
             shopRating = product.shop.shopRating;
             chatResponseByPercent = product.shop.chatResponseByPercent;

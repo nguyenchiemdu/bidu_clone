@@ -13,7 +13,9 @@ class ProductDetail extends Product {
       required List<dynamic> images,
       required num discountPercent,
       required num beforeSalePrice,
-      required this.shop})
+      required this.shop,
+      required this.timePrepareOrders,
+      required this.productBasicInfors})
       : super(
             id: id,
             name: name,
@@ -22,23 +24,42 @@ class ProductDetail extends Product {
             discountPercent: discountPercent,
             beforeSalePrice: beforeSalePrice);
 
-  // String id;
-  // String name;
   String description;
-  // num salePrice;
-  // num discountPercent;
-  // num beforeSalePrice;
-  // List<dynamic> images;
   Shop shop;
-  factory ProductDetail.fromMap(Map<String, dynamic> json) => ProductDetail(
-      id: json['_id'],
-      name: json['name'],
-      description: json['description'],
-      salePrice: json['sale_price'] ?? 0,
-      beforeSalePrice: json['before_sale_price'] ?? 0,
-      images: json['images'],
-      discountPercent: json['discount_percent'],
-      shop: Shop.fromMap(json['shop']));
+  List<PrepareOrder> timePrepareOrders;
+  List<ProductBasicInfor> productBasicInfors;
+  factory ProductDetail.fromMap(Map<String, dynamic> json) {
+    // debugPrint(json['product_detail_infos'].toString());
+    return ProductDetail(
+        id: json['_id'],
+        name: json['name'],
+        description: json['description'],
+        salePrice: json['sale_price'] ?? 0,
+        beforeSalePrice: json['before_sale_price'] ?? 0,
+        images: json['images'],
+        discountPercent: json['discount_percent'],
+        shop: Shop.fromMap(json['shop']),
+        timePrepareOrders: List<PrepareOrder>.from(json['time_prepare_orders']
+            .map((prepareOrder) => PrepareOrder.fromMap(prepareOrder))),
+        productBasicInfors: List<ProductBasicInfor>.from(
+            json['product_detail_infos'].map((productBasicInfor) =>
+                ProductBasicInfor.fromMap(productBasicInfor))));
+  }
+}
+
+class PrepareOrder {
+  PrepareOrder({
+    required this.day,
+    required this.value,
+    required this.unit,
+  });
+  String unit;
+  String day;
+  double value;
+  factory PrepareOrder.fromMap(Map<String, dynamic> json) {
+    return PrepareOrder(
+        day: json['day'], value: json['value'].toDouble(), unit: json['unit']);
+  }
 }
 
 class Shop {
@@ -101,4 +122,18 @@ class AvgShippingTime {
   int max;
   factory AvgShippingTime.fromMap(Map<String, dynamic> json) =>
       AvgShippingTime(min: json['min'] ?? 0, max: json['max'] ?? 0);
+}
+
+class ProductBasicInfor {
+  ProductBasicInfor({
+    required this.value,
+    required this.values,
+    required this.name,
+  });
+  List values;
+  String value;
+  String name;
+  factory ProductBasicInfor.fromMap(Map<String, dynamic> json) =>
+      ProductBasicInfor(
+          name: json['name'], value: json['value'], values: json['values']);
 }

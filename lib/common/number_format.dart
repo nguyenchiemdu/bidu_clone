@@ -12,4 +12,17 @@ extension Formater on num {
   }
 }
 
+extension Parser on String {
+  bool isInteger() {
+    if (int.tryParse(this) == null) {
+      return false;
+    }
+    return true;
+  }
+
+  int? toInt() {
+    return int.tryParse(this);
+  }
+}
+
 const currency = ' ₫';
