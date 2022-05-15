@@ -45,7 +45,10 @@ class ProductInforTab extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Column(children: [
-                  ProductDescription(description, imagesLink),
+                  ProductDescription(
+                    description,
+                    imagesLink,
+                  ),
                   Container(
                     height: 1,
                     color: DesignColor.progressGray,

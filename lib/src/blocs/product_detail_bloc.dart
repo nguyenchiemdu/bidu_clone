@@ -16,8 +16,9 @@ class ProductDetailBloc extends BaseBLoC {
   final _productController = StreamController<Product>.broadcast();
   final _selectedTabBarController = StreamController<int>();
   final _appbarColorController = StreamController<Color>();
-  final _productBasicInforController = StreamController<bool>();
-  final _productDescriptionSeemoreController = StreamController<bool>();
+  final _productBasicInforController = StreamController<bool>.broadcast();
+  final _productDescriptionSeemoreController =
+      StreamController<bool>.broadcast();
   static Map<String, String> countryHashMap = {
     'VN': 'Việt Nam',
     'KO': 'Hàn Quốc',

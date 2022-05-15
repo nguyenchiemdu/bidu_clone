@@ -38,5 +38,10 @@ class AssetLink {
   static String appBarCartButton = 'assets/icons/cart_button.svg';
   static String shopAvatar = 'assets/icons/shop_avatar.png';
   static String addToCart = 'assets/icons/add_to_cart.svg';
+  static String heartFilled = 'assets/icons/heart_filled.png';
+  static String heartNofill = 'assets/icons/heart_nofill.png';
+  static String arrowRight = 'assets/icons/arrow_right.png';
+  static String like = 'assets/icons/like.png';
+  static String likeActive = 'assets/icons/like_active.png';
   static String freeshipBanner = 'assets/images/freeship_banner.png';
 }

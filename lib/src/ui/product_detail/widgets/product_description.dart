@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:bidu_clone/src/blocs/product_detail_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -7,13 +8,21 @@ import '../../../../common/font.dart';
 import '../../../screen_size.dart';
 import 'product_images.dart';
 
-class ProductDescription extends StatelessWidget {
-  ProductDescription(this.description, this.imagesLink, {Key? key})
+class ProductDescription extends StatefulWidget {
+  const ProductDescription(this.description, this.imagesLink, {Key? key})
       : super(key: key);
   final String description;
   final List<String> imagesLink;
-  final GlobalKey _widgetKey = GlobalKey();
 
+  @override
+  State<ProductDescription> createState() => _ProductDescriptionState();
+}
+
+class _ProductDescriptionState extends State<ProductDescription>
+    with AutomaticKeepAliveClientMixin {
+  final GlobalKey _widgetKey = GlobalKey();
+  @override
+  bool get wantKeepAlive => true;
   Widget title(String title, {double marginTop = 24, double marginBottom = 0}) {
     return Container(
       alignment: Alignment.center,
@@ -54,14 +63,14 @@ class ProductDescription extends StatelessWidget {
       productDetailBloc.cropHeighProductDescription(size.height);
     } catch (e, s) {
       debugPrint(e.toString());
-      // debugPrint(s.toString());
+      debugPrint(s.toString());
     }
   }
 
   @override
   Widget build(BuildContext context) {
     // debugPrint('build');
-
+    super.build(context);
     final ProductDetailBloc productDetailBloc =
         context.read<ProductDetailBloc>();
     Future.delayed(Duration.zero,
@@ -72,7 +81,6 @@ class ProductDescription extends StatelessWidget {
         builder: (_, seemoreSnap) {
           double? containerHeight;
           bool shrinkWrap;
-
           if (seemoreSnap.data == true) {
             containerHeight = null;
             shrinkWrap = true;
@@ -94,7 +102,7 @@ class ProductDescription extends StatelessWidget {
                     shrinkWrap: shrinkWrap,
                     children: [
                       // title('Mô tả sản phẩm'),
-                      content(description),
+                      content(widget.description),
                       NotificationListener<SizeChangedLayoutNotification>(
                           onNotification:
                               (SizeChangedLayoutNotification notification) {
@@ -102,7 +110,7 @@ class ProductDescription extends StatelessWidget {
                             return true;
                           },
                           child: SizeChangedLayoutNotifier(
-                              child: ProductImages(imagesLink)))
+                              child: ProductImages(widget.imagesLink)))
                       // title('Màu sắc'),
                       // content('có 3 màu: cam, xanh và trắng'),
                     ],

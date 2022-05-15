@@ -97,40 +97,6 @@ class _DetailPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                // // const MyStatelessWidget(),
-                // StreamBuilder<bool>(
-                //     initialData: true,
-                //     stream: productDetailBloc.scrollableStream,
-                //     builder: (context, scrollableSnapshot) {
-                //       // can bo ra ngoai
-                //       productDetailBloc.appBarMaxHeight =
-                //           Scaffold.of(context).appBarMaxHeight;
-
-                //       ScrollPhysics? scrollPhysics;
-                //       if (scrollableSnapshot.data == false) {
-                //         scrollPhysics = const NeverScrollableScrollPhysics();
-                //       }
-                //       return Container(
-                //         color: DesignColor.progressGray,
-                //         child: NotificationListener<ScrollUpdateNotification>(
-                //           onNotification: (ScrollUpdateNotification
-                //                   notification) =>
-                //               _onScrollNotification(context, notification),
-                //           child: SingleChildScrollView(
-                //             controller: _scrollController,
-                //             physics: scrollPhysics,
-                //             // controller: scrollController,
-                //             child: Column(children: [
-                //               BannerWidget(),
-                //               ShopInFor(),
-                //               ProductInfor(),
-                //               DeliverInfor(),
-                //               TabBarProduct(_widgetKey),
-                //             ]),
-                //           ),
-                //         ),
-                //       );
-                //     }),
                 bottomNavigationBar: const BottomBar()),
           );
         });

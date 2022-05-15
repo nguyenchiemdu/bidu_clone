@@ -1,6 +1,7 @@
 import 'package:bidu_clone/common/colors.dart';
 import 'package:bidu_clone/common/font.dart';
 import 'package:bidu_clone/src/blocs/product_detail_bloc.dart';
+import 'package:bidu_clone/src/ui/product_detail/widgets/evaluate_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -8,24 +9,8 @@ import 'product_infor_tab.dart';
 
 class TabBarViewProduct extends StatelessWidget {
   TabBarViewProduct({Key? key}) : super(key: key);
-  // final GlobalKey widgetKey;
-
-  // void didWidgetRendered(_) {
-  //   ProductDetailBloc productDetailBloc = context.read<ProductDetailBloc>();
-  //   final GlobalKey widgetKey = widget.widgetKey;
-  //   final RenderBox renderBox =
-  //       widgetKey.currentContext?.findRenderObject() as RenderBox;
-  //   final Offset offset = renderBox.localToGlobal(Offset.zero);
-  //   productDetailBloc.updateTabbarPosition(offset.dy);
-  // }
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   WidgetsBinding.instance!.addPostFrameCallback(didWidgetRendered);
-  // }
-
-  // int _selectedIndex = 0;
+  final ProductInforTab productInforTab = const ProductInforTab();
+  final EvaluateTab evaluateTab = const EvaluateTab();
   final tabBarStyle = TextStyle(
       fontFamily: defaultFont,
       fontSize: 14,
@@ -35,7 +20,6 @@ class TabBarViewProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        // key: widgetKey,
         margin: const EdgeInsets.only(top: 2),
         color: DesignColor.textWhite,
         child: StreamBuilder<int>(
@@ -46,13 +30,14 @@ class TabBarViewProduct extends StatelessWidget {
               int _selectedIndex = selectedTabBarSnap.data ?? 0;
               Widget selectedTab;
               if (_selectedIndex == 0) {
-                selectedTab = const ProductInforTab();
+                selectedTab = productInforTab;
               } else if (_selectedIndex == 1) {
-                selectedTab = const ProductInforTab();
+                selectedTab = evaluateTab;
               } else {
-                selectedTab = const ProductInforTab();
+                selectedTab = Container(
+                  height: 1000,
+                );
               }
-
               return SingleChildScrollView(
                 child: selectedTab,
               );
