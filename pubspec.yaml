@@ -109,6 +109,9 @@ flutter:
     - assets/icons/like.png
     - assets/icons/like_active.png
     - assets/images/freeship_banner.png
+    - assets/icons/add_to_cart.svg
+    - assets/icons/evaluate.png
+
     
 
     

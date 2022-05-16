@@ -44,4 +44,5 @@ class AssetLink {
   static String like = 'assets/icons/like.png';
   static String likeActive = 'assets/icons/like_active.png';
   static String freeshipBanner = 'assets/images/freeship_banner.png';
+  static String evaluate = 'assets/icons/evaluate.png';
 }

@@ -4,21 +4,25 @@ import '../../../../common/cached_network_image.dart';
 import '../../../../common/colors.dart';
 import '../../../../common/font.dart';
 
-const kImageSize = 82.0;
-
 class ImagesView extends StatelessWidget {
-  const ImagesView(this.images, {Key? key}) : super(key: key);
+  const ImagesView(
+      this.images, this.imageSize, this.maximumItem, this.mainAxisSpacing,
+      {Key? key})
+      : super(key: key);
   final List<String> images;
+  final int maximumItem;
+  final double imageSize;
+  final double mainAxisSpacing;
   int getItemCount(int length) {
-    if (length > 4) {
-      return 4;
+    if (length > maximumItem) {
+      return maximumItem;
     }
     return length;
   }
 
   int getNumberImagesLeft(int length) {
-    if (length > 4) {
-      return length - 4;
+    if (length > maximumItem) {
+      return length - maximumItem;
     }
     return 0;
   }
@@ -27,8 +31,9 @@ class ImagesView extends StatelessWidget {
   Widget build(BuildContext context) {
     int imagesLeft = getNumberImagesLeft(images.length);
 
-    return SizedBox(
-      height: kImageSize,
+    return Container(
+      alignment: Alignment.centerLeft,
+      height: imageSize,
       child: ListView.builder(
           padding: const EdgeInsets.all(0),
           scrollDirection: Axis.horizontal,
@@ -36,33 +41,39 @@ class ImagesView extends StatelessWidget {
           // physics: const NeverScrollableScrollPhysics(),
           itemCount: getItemCount(images.length),
           itemBuilder: (_, index) {
-            if (index < 3) {
+            if (index < maximumItem - 1) {
               return Container(
-                margin: const EdgeInsets.only(right: 5),
+                margin: EdgeInsets.only(right: mainAxisSpacing),
                 child: SizedBox(
-                    width: kImageSize,
-                    height: kImageSize,
-                    child: CachedImageCustom(images[index])),
+                    width: imageSize,
+                    height: imageSize,
+                    child: CachedImageCustom(
+                      images[index],
+                      boxFit: BoxFit.cover,
+                    )),
               );
             } else {
               return Stack(
                 alignment: AlignmentDirectional.center,
                 children: [
                   SizedBox(
-                      width: kImageSize,
-                      height: kImageSize,
-                      child: CachedImageCustom(images[index])),
+                      width: imageSize,
+                      height: imageSize,
+                      child: CachedImageCustom(
+                        images[index],
+                        boxFit: BoxFit.cover,
+                      )),
                   imagesLeft > 0
                       ? Container(
-                          width: kImageSize,
-                          height: kImageSize,
+                          width: imageSize,
+                          height: imageSize,
                           color: DesignColor.textBlackColor.withOpacity(0.5),
                         )
                       : const SizedBox(),
                   imagesLeft > 0
-                      ? const Text(
-                          '+30',
-                          style: TextStyle(
+                      ? Text(
+                          '+$imagesLeft',
+                          style: const TextStyle(
                               fontFamily: defaultFont,
                               fontWeight: FontWeight.w400,
                               fontSize: 12,

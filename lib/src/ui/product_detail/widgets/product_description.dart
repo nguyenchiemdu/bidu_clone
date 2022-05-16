@@ -61,9 +61,9 @@ class _ProductDescriptionState extends State<ProductDescription>
       final Size size = renderBox.size;
       // debugPrint(size.height.toString());
       productDetailBloc.cropHeighProductDescription(size.height);
-    } catch (e, s) {
-      debugPrint(e.toString());
-      debugPrint(s.toString());
+    } catch (e) {
+      // debugPrint(e.toString());
+      // debugPrint(s.toString());
     }
   }
 

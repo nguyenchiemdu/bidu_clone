@@ -34,6 +34,26 @@ class EvaluateTab extends StatelessWidget {
         builder: (_, productSnap) {
           List<String> images =
               productSnap.data!.images.map((item) => item.toString()).toList();
+          // return SizedBox(
+          //   height: 700,
+          //   child: Padding(
+          //     padding: const EdgeInsets.only(top: 100),
+          //     child: Column(children: [
+          //       Image.asset(
+          //         AssetLink.evaluate,
+          //         width: 60,
+          //       ),
+          //       Text(
+          //         'Chưa có đánh giá',
+          //         style: TextStyle(
+          //             fontFamily: defaultFont,
+          //             fontWeight: FontWeight.w400,
+          //             fontSize: 14,
+          //             color: DesignColor.textGrayColor),
+          //       )
+          //     ]),
+          //   ),
+          // );
           return Container(
             color: DesignColor.backgroundColor,
             child: Column(
@@ -74,7 +94,9 @@ class EvaluateTab extends StatelessWidget {
                         ),
                       ],
                     ),
-                    ImagesView(images),
+                    Container(
+                        margin: const EdgeInsets.only(top: 20),
+                        child: ImagesView(images, 82, 4, 5)),
                     GridView.count(
                         physics: const NeverScrollableScrollPhysics(),
                         padding: const EdgeInsets.only(top: 20),
@@ -89,11 +111,9 @@ class EvaluateTab extends StatelessWidget {
                             .toList())
                   ]),
                 ),
-                CommentItem(),
-                Container(
-                  color: Colors.blue,
-                  height: 1000,
-                )
+                CommentItem(images),
+                CommentItem(images),
+                CommentItem(images),
               ],
             ),
           );

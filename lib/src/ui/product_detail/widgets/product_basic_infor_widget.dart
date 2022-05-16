@@ -21,7 +21,7 @@ class ProductBasicInforWidget extends StatelessWidget {
     ProductDetailBloc productDetailBloc = context.read<ProductDetailBloc>();
     // debugPrint('build 2');
     return StreamBuilder<bool>(
-        initialData: true,
+        initialData: productDetailBloc.isProductBasicInforSeemore,
         stream: productDetailBloc.productBasicInforStream,
         builder: (_, isShowedMoreSnap) {
           bool? isShowedMore = isShowedMoreSnap.data!;

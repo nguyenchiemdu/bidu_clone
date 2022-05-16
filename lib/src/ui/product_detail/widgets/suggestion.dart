@@ -57,8 +57,11 @@ class SuggestionProductDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ProductDetailBloc productDetailBloc =
+        context.read<ProductDetailBloc>();
     return StreamBuilder<Product>(
-        stream: context.read<ProductDetailBloc>().productStream,
+        initialData: productDetailBloc.product,
+        stream: productDetailBloc.productStream,
         builder: (context, snapshot) {
           late List<Product> suggestions;
           if (snapshot.hasData) {

@@ -13,6 +13,7 @@ class ProductDetailBloc extends BaseBLoC {
   ProductDetailBloc(this.productDetailRepository);
   int _selectedTabBar = 0;
   bool _isSeemore = false;
+  bool _isProductBasicInforSeemore = true;
   final _productController = StreamController<Product>.broadcast();
   final _selectedTabBarController = StreamController<int>();
   final _appbarColorController = StreamController<Color>();
@@ -30,7 +31,7 @@ class ProductDetailBloc extends BaseBLoC {
       _productBasicInforController.stream;
   Stream<bool> get productDescriptionSeemoreStream =>
       _productDescriptionSeemoreController.stream;
-  // int get selectedTabBar => _selectedTabBar;
+  bool get isProductBasicInforSeemore => _isProductBasicInforSeemore;
   // set appBarMaxHeight(double? height) {
   //   _appBarMaxHeight = height ?? 0;
   // }
@@ -70,6 +71,7 @@ class ProductDetailBloc extends BaseBLoC {
     var productDetail = await productDetailRepository.loadProductDetailById(id);
     // debugPrint(productDetail.toString());
     if (productDetail.runtimeType == ProductDetail) {
+      product = productDetail;
       _productController.sink.add(productDetail);
     } else {
       _productController.addError(productDetail);
@@ -100,6 +102,7 @@ class ProductDetailBloc extends BaseBLoC {
   }
 
   void changeProductBasicInforDisplayingStatus(bool newStatus) {
+    _isProductBasicInforSeemore = newStatus;
     _productBasicInforController.sink.add(newStatus);
   }
 
