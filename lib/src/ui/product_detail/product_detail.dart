@@ -68,10 +68,13 @@ class _DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ProductDetailBloc productDetailBloc =
+        context.read<ProductDetailBloc>();
     return StreamBuilder<Color>(
-        initialData: Colors.transparent,
-        stream: context.read<ProductDetailBloc>().appbarColorStream,
+        initialData: productDetailBloc.appBarColor,
+        stream: productDetailBloc.appbarColorStream,
         builder: (_, appBarColorSnap) {
+          // debugPrint('build');
           return DefaultTabController(
             length: 3,
             child: Scaffold(
@@ -83,11 +86,11 @@ class _DetailPage extends StatelessWidget {
                   child: CustomScrollView(
                     slivers: [
                       SliverList(
-                          delegate: SliverChildListDelegate(const [
+                          delegate: SliverChildListDelegate([
                         BannerWidget(),
-                        ShopInFor(),
-                        ProductInfor(),
-                        DeliverInfor(),
+                        const ShopInFor(),
+                        const ProductInfor(),
+                        const DeliverInfor(),
                       ])),
                       const TabBarProduct(),
                       SliverList(

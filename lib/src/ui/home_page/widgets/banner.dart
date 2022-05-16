@@ -5,6 +5,8 @@ import 'package:bidu_clone/src/ui/home_page/widgets/banner_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../common_widget/banner_indicator.dart';
+
 class BannerWidget extends StatelessWidget {
   BannerWidget({Key? key}) : super(key: key);
   final PageController _pageController = PageController();
@@ -25,6 +27,8 @@ class BannerWidget extends StatelessWidget {
         builder: (context, snapshot) {
           final List<banner_model.Banner> banners;
           banners = snapshot.data ?? [];
+          final Stream<int> indicatorStream =
+              context.read<HomeBloc>().bannerIndicatorStream;
           //TODO: Dung if else DONE
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Text('loading');
@@ -45,40 +49,7 @@ class BannerWidget extends StatelessWidget {
                             banners[pagePosition].images?[0].top ?? '';
                         return BannerImage(imageUrl);
                       }),
-                  StreamBuilder<int>(
-                      stream: context.read<HomeBloc>().bannerIndicatorStream,
-                      builder: (context, bannerIndicator) {
-                        // debugPrint(bannerIndicator.hasData.toString());
-                        if (banners.isNotEmpty) {
-                          int indicator = bannerIndicator.data ?? 0;
-                          double totalWidth = Screen.width * 165 / 375;
-                          double indicatorWidth = totalWidth / banners.length;
-                          double marginLeft = indicator * indicatorWidth;
-                          return Align(
-                            alignment: Alignment.bottomCenter,
-                            child: Padding(
-                              padding: const EdgeInsets.only(bottom: 7),
-                              child: Container(
-                                width: totalWidth,
-                                height: 2,
-                                color: Colors.white.withOpacity(0.3),
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: AnimatedContainer(
-                                    duration: const Duration(milliseconds: 300),
-                                    margin: EdgeInsets.only(left: marginLeft),
-                                    width: indicatorWidth,
-                                    height: 2,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
-                        } else {
-                          return const SizedBox();
-                        }
-                      })
+                  BannerIndicator(indicatorStream, banners)
                 ],
               ),
             );

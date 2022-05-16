@@ -14,12 +14,15 @@ class ProductDetailBloc extends BaseBLoC {
   int _selectedTabBar = 0;
   bool _isSeemore = false;
   bool _isProductBasicInforSeemore = true;
+  Color _appBarColor = Colors.transparent;
   final _productController = StreamController<Product>.broadcast();
   final _selectedTabBarController = StreamController<int>();
   final _appbarColorController = StreamController<Color>();
   final _productBasicInforController = StreamController<bool>.broadcast();
   final _productDescriptionSeemoreController =
       StreamController<bool>.broadcast();
+  final _bannerIndicatorController = StreamController<int>.broadcast();
+
   static Map<String, String> countryHashMap = {
     'VN': 'Việt Nam',
     'KO': 'Hàn Quốc',
@@ -31,7 +34,10 @@ class ProductDetailBloc extends BaseBLoC {
       _productBasicInforController.stream;
   Stream<bool> get productDescriptionSeemoreStream =>
       _productDescriptionSeemoreController.stream;
+  Stream<int> get bannerIndicatorStream => _bannerIndicatorController.stream;
+
   bool get isProductBasicInforSeemore => _isProductBasicInforSeemore;
+  Color get appBarColor => _appBarColor;
   // set appBarMaxHeight(double? height) {
   //   _appBarMaxHeight = height ?? 0;
   // }
@@ -57,13 +63,18 @@ class ProductDetailBloc extends BaseBLoC {
     //   _isTabBarPinned = false;
     //   // _scrollableController.sink.add(true);
     // }
-    Color appbarColor = Colors.transparent;
-    if (screenPosition > 0 && screenPosition < 200) {
-      appbarColor = (Colors.white.withOpacity(0.5));
-    } else if (screenPosition >= 200) {
-      appbarColor = (Colors.white);
+    if (screenPosition <= 0 && _appBarColor != Colors.transparent) {
+      _appBarColor = Colors.transparent;
+      _appbarColorController.sink.add(_appBarColor);
+    } else if (screenPosition > 0 &&
+        screenPosition < 200 &&
+        _appBarColor != Colors.white.withOpacity(0.5)) {
+      _appBarColor = (Colors.white.withOpacity(0.5));
+      _appbarColorController.sink.add(_appBarColor);
+    } else if (screenPosition >= 200 && _appBarColor != Colors.white) {
+      _appBarColor = (Colors.white);
+      _appbarColorController.sink.add(_appBarColor);
     }
-    _appbarColorController.sink.add(appbarColor);
   }
 
   void loadProductDetailById() async {
@@ -117,6 +128,10 @@ class ProductDetailBloc extends BaseBLoC {
     }
   }
 
+  void updateBannerIndicator(int index) {
+    _bannerIndicatorController.sink.add(index);
+  }
+
   @override
   void dispose() {
     _productController.close();
@@ -124,5 +139,6 @@ class ProductDetailBloc extends BaseBLoC {
     _appbarColorController.close();
     _productBasicInforController.close();
     _productDescriptionSeemoreController.close();
+    _bannerIndicatorController.close();
   }
 }
