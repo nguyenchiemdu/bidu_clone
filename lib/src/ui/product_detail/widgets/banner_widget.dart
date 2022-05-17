@@ -5,7 +5,6 @@ import 'package:bidu_clone/src/models/product.dart';
 import 'package:bidu_clone/src/ui/common_widget/banner_indicator.dart';
 import 'package:bidu_clone/src/ui/product_detail/list_image_fullscreen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 class BannerWidget extends StatelessWidget {

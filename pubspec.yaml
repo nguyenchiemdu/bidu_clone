@@ -112,6 +112,7 @@ flutter:
     - assets/icons/add_to_cart.svg
     - assets/icons/evaluate.png
     - assets/icons/fullscreen_icon.png
+    - assets/icons/back_icon.png
 
     
 

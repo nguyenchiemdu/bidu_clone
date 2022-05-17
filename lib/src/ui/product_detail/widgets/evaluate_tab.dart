@@ -4,16 +4,27 @@ import 'package:bidu_clone/common/asset_link.dart';
 import 'package:bidu_clone/common/colors.dart';
 import 'package:bidu_clone/common/font.dart';
 import 'package:bidu_clone/src/blocs/product_detail_bloc.dart';
-import 'package:bidu_clone/src/ui/product_detail/widgets/rating_item.dart';
+import 'package:bidu_clone/src/ui/product_detail/comment_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../models/product.dart';
 import 'comment_item.dart';
 import 'images_view.dart';
+import 'rating_list.dart';
 
 class EvaluateTab extends StatelessWidget {
   const EvaluateTab({Key? key}) : super(key: key);
+  void pushCommentDetailScreen(
+      BuildContext context, List<String> images, List<Map> ratings) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (
+          context,
+        ) =>
+                CommentDetailScreen(images, ratings)));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,41 +85,38 @@ class EvaluateTab extends StatelessWidget {
                               fontSize: 14,
                               color: Colors.black),
                         ),
-                        Row(
-                          children: [
-                            Container(
-                              margin: const EdgeInsets.only(right: 7.01),
-                              child: Text(
-                                'Xem tất cả đánh giá',
-                                style: TextStyle(
-                                    fontFamily: defaultFont,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 10,
-                                    color: DesignColor.gradientPrimary1),
-                              ),
+                        GestureDetector(
+                          onTap: () =>
+                              pushCommentDetailScreen(context, images, ratings),
+                          child: Container(
+                            padding: const EdgeInsets.only(
+                                top: 4, bottom: 4, left: 5),
+                            child: Row(
+                              children: [
+                                Container(
+                                  margin: const EdgeInsets.only(right: 7.01),
+                                  child: Text(
+                                    'Xem tất cả đánh giá',
+                                    style: TextStyle(
+                                        fontFamily: defaultFont,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 10,
+                                        color: DesignColor.gradientPrimary1),
+                                  ),
+                                ),
+                                SizedBox(
+                                    width: 3.13,
+                                    child: Image.asset(AssetLink.arrowRight))
+                              ],
                             ),
-                            SizedBox(
-                                width: 3.13,
-                                child: Image.asset(AssetLink.arrowRight))
-                          ],
+                          ),
                         ),
                       ],
                     ),
                     Container(
                         margin: const EdgeInsets.only(top: 20),
                         child: ImagesView(images, 82, 4, 5)),
-                    GridView.count(
-                        physics: const NeverScrollableScrollPhysics(),
-                        padding: const EdgeInsets.only(top: 20),
-                        childAspectRatio: 110 / 27,
-                        shrinkWrap: true,
-                        crossAxisCount: 3,
-                        mainAxisSpacing: 5,
-                        crossAxisSpacing: 5,
-                        children: ratings
-                            .map((rate) =>
-                                RatingItem(rate['rate'], rate['number']))
-                            .toList())
+                    RatingList(ratings),
                   ]),
                 ),
                 CommentItem(images),

@@ -1,10 +1,8 @@
-import 'package:bidu_clone/common/colors.dart';
 import 'package:bidu_clone/src/blocs/product_detail_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../common/cached_network_image.dart';
-import 'widgets/banner_widget.dart';
 
 class ListImageFullScreen extends StatelessWidget {
   const ListImageFullScreen(this.productDetailBloc, {Key? key})
