@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import '../../../../common/font.dart';
 import 'live_item.dart';
 
-// TODO : dat ten DONE
 class LiveBidu extends StatelessWidget {
   const LiveBidu({Key? key}) : super(key: key);
   Widget seeMoreLive() {

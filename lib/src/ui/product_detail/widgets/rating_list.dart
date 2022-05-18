@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../../models/product_detail.dart';
 import 'rating_item.dart';
 
 class RatingList extends StatelessWidget {
   const RatingList(this.ratings, {Key? key}) : super(key: key);
-  final List<Map> ratings;
+  final List<FeedBackByStar> ratings;
   @override
   Widget build(BuildContext context) {
     return GridView.count(
@@ -16,7 +17,7 @@ class RatingList extends StatelessWidget {
         mainAxisSpacing: 5,
         crossAxisSpacing: 5,
         children: ratings
-            .map((rate) => RatingItem(rate['rate'], rate['number']))
+            .map((rate) => RatingItem(rate.voteStar, rate.total))
             .toList());
   }
 }

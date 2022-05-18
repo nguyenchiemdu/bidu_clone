@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 
+//TODO: dung sliver appbar or implement prefered sized
 AppBar productDetailAppbar(AsyncSnapshot<Color> appBarColorSnap) => AppBar(
         // pinned: true,
         systemOverlayStyle: const SystemUiOverlayStyle(

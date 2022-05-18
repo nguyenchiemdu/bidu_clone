@@ -13,7 +13,6 @@ class FeedBackItem extends StatelessWidget {
   final itemWidth = Screen.width * designWidth / designScreenWidth;
   @override
   Widget build(BuildContext context) {
-    //TODO: han che dung funtion DOING
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,

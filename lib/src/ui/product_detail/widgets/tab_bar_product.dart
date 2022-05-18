@@ -5,6 +5,7 @@ import '../../../../common/colors.dart';
 import '../../../../common/font.dart';
 import '../../../blocs/product_detail_bloc.dart';
 
+//TODO : gom lai thanh 1 file String
 const _kProductInfor = 'Thông tin sản phẩm';
 const _kEvaluate = 'Đánh giá (40)';
 const _kChat = 'Trò Chuyện';
@@ -22,6 +23,8 @@ class TabBarProduct extends StatelessWidget {
       expandedHeight: 0,
       elevation: 0,
       bottom: TabBar(
+        //TODO: dung Tab controller  thay cho default tab controller
+        // controller: ,
         isScrollable: true,
         indicatorColor: DesignColor.textBlackColor,
         onTap: (index) {

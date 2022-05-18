@@ -1,4 +1,3 @@
-//TODO: viet thanh class static DONE
 class AssetLink {
   static String signalColumn = 'assets/icons/signal_column.png';
   static String arrow = 'assets/icons/arrow.png';

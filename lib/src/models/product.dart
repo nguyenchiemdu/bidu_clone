@@ -25,4 +25,5 @@ class Product {
       beforeSalePrice: json['before_sale_price'] ?? 0,
       images: json['images'],
       discountPercent: json['discount_percent']);
+  //TODO:
 }

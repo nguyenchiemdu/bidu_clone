@@ -79,9 +79,11 @@ class ProductDetailBloc extends BaseBLoC {
 
   void loadProductDetailById() async {
     String id = product.id;
+    //TODO: catch error
     var productDetail = await productDetailRepository.loadProductDetailById(id);
     // debugPrint(productDetail.toString());
-    if (productDetail.runtimeType == ProductDetail) {
+    //TODO :
+    if (productDetail is ProductDetail) {
       product = productDetail;
       _productController.sink.add(productDetail);
     } else {

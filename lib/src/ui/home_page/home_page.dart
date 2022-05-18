@@ -30,7 +30,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   bool _onScrollNotification(
       BuildContext context, ScrollUpdateNotification notification) {
-    // print(notification.scrollDelta);
     if (notification.metrics.axisDirection == AxisDirection.down) {
       double? delta = notification.scrollDelta;
       double pixels = notification.metrics.pixels;

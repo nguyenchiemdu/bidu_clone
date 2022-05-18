@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../common/asset_link.dart';
 import '../../../common/colors.dart';
 import '../../../common/font.dart';
+import '../../models/product_detail.dart';
 import 'widgets/comment_item.dart';
 import 'widgets/images_view.dart';
 
@@ -12,7 +13,7 @@ class CommentDetailScreen extends StatelessWidget {
   const CommentDetailScreen(this.images, this.ratings, {Key? key})
       : super(key: key);
   final List<String> images;
-  final List<Map> ratings;
+  final List<FeedBackByStar> ratings;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

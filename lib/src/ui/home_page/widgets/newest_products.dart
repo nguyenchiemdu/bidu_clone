@@ -57,7 +57,6 @@ class NewestProducts extends StatelessWidget {
             padding: const EdgeInsets.only(top: 24),
             child: Column(children: [
               headLine(),
-              //TODO: han che dung toan tu ba ngoi DONE
               Builder(builder: (_) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Text('Loading');

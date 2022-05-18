@@ -34,6 +34,7 @@ class ProductDetailScreen extends StatelessWidget {
         final ProductDetailBloc productDetailBloc =
             context.read<ProductDetailBloc>();
         productDetailBloc.product = productData;
+        //TODO: dat trong init state
         productDetailBloc.loadProductDetailById();
         return const _DetailPage();
       },
@@ -41,28 +42,16 @@ class ProductDetailScreen extends StatelessWidget {
   }
 }
 
+//TODO: navigator route  , pop until
+//TODO : dung sliver persisten header, nested
+//TODO : dung stateful widget , init state ,
 class _DetailPage extends StatelessWidget {
   const _DetailPage({Key? key}) : super(key: key);
-  // final ScrollController scrollController = ScrollController();
-  // final GlobalKey _widgetKey = GlobalKey();
-  // final ScrollController _scrollController = ScrollController();
   bool _onScrollNotification(
       BuildContext context, ScrollUpdateNotification notification) {
-    // final RenderBox renderBox =
-    //     _widgetKey.currentContext?.findRenderObject() as RenderBox;
-
-    // final Size size = renderBox.size; // or _widgetKey.currentContext?.size
-    // debugPrint('Size: ${size.width}, ${size.height}');
-
-    // final Offset offset = renderBox.localToGlobal(Offset.zero);
     if (notification.metrics.axisDirection == AxisDirection.down) {
       context.read<ProductDetailBloc>().onScroll(notification.metrics.pixels);
-      // debugPrint('Offset:${offset.dx} , ${offset.dy}');
-      // debugPrint(notification.metrics.pixels.toString());
     }
-
-    // debugPrint(
-    // 'Position: ${(offset.dx + size.width) / 2}, ${(offset.dy + size.height) / 2}');
     return true;
   }
 
@@ -78,7 +67,8 @@ class _DetailPage extends StatelessWidget {
           return DefaultTabController(
             length: 3,
             child: Scaffold(
-                extendBodyBehindAppBar: true,
+                //TODO: dung chuc nang cua sliver appbar or custom
+                // extendBodyBehindAppBar: true,
                 appBar: productDetailAppbar(appBarColorSnap),
                 body: NotificationListener<ScrollUpdateNotification>(
                   onNotification: (ScrollUpdateNotification notification) =>

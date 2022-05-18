@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:bidu_clone/src/models/product.dart';
 
 ProductDetail productDetaiFromMap(Map<String, dynamic> json) {
@@ -15,7 +17,8 @@ class ProductDetail extends Product {
       required num beforeSalePrice,
       required this.shop,
       required this.timePrepareOrders,
-      required this.productBasicInfors})
+      required this.productBasicInfors,
+      required this.feedbacks})
       : super(
             id: id,
             name: name,
@@ -28,8 +31,9 @@ class ProductDetail extends Product {
   Shop shop;
   List<PrepareOrder> timePrepareOrders;
   List<ProductBasicInfor> productBasicInfors;
+  Feedbacks feedbacks;
   factory ProductDetail.fromMap(Map<String, dynamic> json) {
-    // debugPrint(json['product_detail_infos'].toString());
+    // debugPrint(json['feedbacks'].toString());
     return ProductDetail(
         id: json['_id'],
         name: json['name'],
@@ -43,7 +47,8 @@ class ProductDetail extends Product {
             .map((prepareOrder) => PrepareOrder.fromMap(prepareOrder))),
         productBasicInfors: List<ProductBasicInfor>.from(
             json['product_detail_infos'].map((productBasicInfor) =>
-                ProductBasicInfor.fromMap(productBasicInfor))));
+                ProductBasicInfor.fromMap(productBasicInfor))),
+        feedbacks: Feedbacks.fromMap(json['feedbacks']));
   }
 }
 
@@ -137,3 +142,37 @@ class ProductBasicInfor {
       ProductBasicInfor(
           name: json['name'], value: json['value'], values: json['values']);
 }
+
+class Feedbacks {
+  Feedbacks(
+      {required this.averageFeedbackRate,
+      required this.totalFeedback,
+      required this.satisfactionRate,
+      required this.feedbacks,
+      required this.totalByStar});
+  num averageFeedbackRate;
+  int totalFeedback;
+  // int totalByMedia;
+  // int totalByComment;
+  int satisfactionRate;
+  List feedbacks;
+  List<FeedBackByStar> totalByStar;
+
+  factory Feedbacks.fromMap(Map<String, dynamic> json) => Feedbacks(
+      averageFeedbackRate: json['averageFeedbackRate'] ?? 0,
+      totalFeedback: json['totalFeedback'] ?? 0,
+      satisfactionRate: json['satisfactionRate'] ?? 0,
+      feedbacks: json['feedbacks'],
+      totalByStar: List<FeedBackByStar>.from(
+          json['totalByStar'].map((item) => FeedBackByStar.fromMap(item))));
+}
+
+class FeedBackByStar {
+  FeedBackByStar({required this.voteStar, required this.total});
+  int voteStar;
+  int total;
+  factory FeedBackByStar.fromMap(Map<String, dynamic> json) =>
+      FeedBackByStar(voteStar: json['vote_star'], total: random.nextInt(255));
+}
+
+Random random = Random();

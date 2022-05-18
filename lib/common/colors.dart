@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-//TODO: gop thanh 1 class static DONE
 class DesignColor {
   static Color backgroundColor = const Color(0xffF1F1F1);
   static Color primaryColor = const Color(0xffFD37AE);

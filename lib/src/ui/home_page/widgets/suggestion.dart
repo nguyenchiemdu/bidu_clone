@@ -72,7 +72,6 @@ class Suggestion extends StatelessWidget {
                 const EdgeInsets.only(left: 16, top: 24, bottom: 24, right: 16),
             child: Column(children: [
               headLine(),
-              //TODO : moi hang co 1 height rieng done research thu vien LATER
               rowSizes.isNotEmpty
                   ? Container(
                       margin: const EdgeInsets.only(top: 20),

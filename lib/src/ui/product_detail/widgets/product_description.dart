@@ -73,6 +73,7 @@ class _ProductDescriptionState extends State<ProductDescription>
     super.build(context);
     final ProductDetailBloc productDetailBloc =
         context.read<ProductDetailBloc>();
+    //TODO : dung stateful widget
     Future.delayed(Duration.zero,
         () => onProductDescriptionHeightChange(productDetailBloc));
     return StreamBuilder<bool>(
