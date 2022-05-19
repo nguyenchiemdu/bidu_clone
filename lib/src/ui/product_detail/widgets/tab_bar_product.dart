@@ -1,25 +1,26 @@
 import 'package:bidu_clone/common/app_strings.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../../../common/colors.dart';
 import '../../../../common/font.dart';
-import '../../../blocs/product_detail_bloc.dart';
 
 //TODO : gom lai thanh 1 file String  DONE
 const double _kAppbarHeight = 40;
 
 class TabBarProduct extends StatelessWidget {
-  const TabBarProduct({Key? key}) : super(key: key);
+  const TabBarProduct(this.controller, {Key? key}) : super(key: key);
+  final TabController controller;
 
   @override
   Widget build(BuildContext context) {
     return SliverPersistentHeader(
-        pinned: true, delegate: _MySliverPersistentHeaderDelegate());
+        pinned: true, delegate: _MySliverPersistentHeaderDelegate(controller));
   }
 }
 
 class _MySliverPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
+  final TabController controller;
+  _MySliverPersistentHeaderDelegate(this.controller);
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
@@ -29,12 +30,10 @@ class _MySliverPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
         color: Colors.white,
         child: TabBar(
           //TODO: dung Tab controller  thay cho default tab controller
-          // controller: ,
+          controller: controller,
           isScrollable: true,
           indicatorColor: DesignColor.textBlackColor,
-          onTap: (index) {
-            context.read<ProductDetailBloc>().changeSelectedTabBar(index);
-          },
+          onTap: (index) {},
           labelStyle: TextStyle(
               fontFamily: defaultFont,
               fontSize: 14,

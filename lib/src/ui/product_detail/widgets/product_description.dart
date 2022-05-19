@@ -56,7 +56,6 @@ class _ProductDescriptionState extends State<ProductDescription>
   void onProductDescriptionHeightChange(ProductDetailBloc productDetailBloc) {
     final RenderBox renderBox =
         _widgetKey.currentContext?.findRenderObject() as RenderBox;
-
     try {
       final Size size = renderBox.size;
       // debugPrint(size.height.toString());

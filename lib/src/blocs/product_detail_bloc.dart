@@ -16,13 +16,11 @@ class ProductDetailBloc extends BaseBLoC {
     'VN': 'Việt Nam',
     'KO': 'Hàn Quốc',
   };
-  int _selectedTabBar = 0;
   bool _isSeemore = false;
   bool _isProductBasicInforSeemore = true;
   Color _appBarColor = Colors.transparent;
 
   final _productController = StreamController<Product>.broadcast();
-  final _selectedTabBarController = StreamController<int>();
   final _appbarColorController = StreamController<Color>();
   final _productBasicInforController = StreamController<bool>.broadcast();
   final _productDescriptionSeemoreController =
@@ -30,7 +28,6 @@ class ProductDetailBloc extends BaseBLoC {
   final _bannerIndicatorController = StreamController<int>.broadcast();
 
   Stream<Product> get productStream => _productController.stream;
-  Stream<int> get selectedTabBarStream => _selectedTabBarController.stream;
   Stream<Color> get appbarColorStream => _appbarColorController.stream;
   Stream<bool> get productBasicInforStream =>
       _productBasicInforController.stream;
@@ -43,11 +40,6 @@ class ProductDetailBloc extends BaseBLoC {
   void initLoad(Product productOld) {
     product = productOld;
     loadProductDetailById();
-  }
-
-  void changeSelectedTabBar(int index) {
-    _selectedTabBar = index;
-    _selectedTabBarController.sink.add(_selectedTabBar);
   }
 
   void onScroll(double screenPosition) {
@@ -70,8 +62,8 @@ class ProductDetailBloc extends BaseBLoC {
     //TODO: catch error DONE, can lam them o cac ham load khac
     final Product? productDetail = await productDetailRepository
         .loadProductDetailById(id)
-        .onError((error, stackTrace) {
-      _productController.addError(error!);
+        .catchError((error) {
+      _productController.addError(error);
     });
 
     if (productDetail != null) {
@@ -126,7 +118,6 @@ class ProductDetailBloc extends BaseBLoC {
   @override
   void dispose() {
     _productController.close();
-    _selectedTabBarController.close();
     _appbarColorController.close();
     _productBasicInforController.close();
     _productDescriptionSeemoreController.close();

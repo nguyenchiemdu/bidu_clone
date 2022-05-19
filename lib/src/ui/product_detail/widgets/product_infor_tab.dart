@@ -32,44 +32,46 @@ class ProductInforTab extends StatelessWidget {
           String description = product.description ?? AppString.loading;
           List<String> imagesLink =
               product.images.map((item) => item.toString()).toList();
-          return Column(
-            children: [
-              Container(
-                  margin: const EdgeInsets.only(top: 20.05),
-                  child: Image.asset(AssetLink.freeshipBanner)),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Column(children: [
-                  ProductDescription(
-                    description,
-                    imagesLink,
-                  ),
-                  Container(
-                    height: 1,
-                    color: DesignColor.progressGray,
-                    margin: const EdgeInsets.only(top: 30),
-                  ),
-                  ProductBasicInforWidget(productBasicInfors),
-                  Container(
-                    height: 1,
-                    color: DesignColor.progressGray,
-                  ),
-                  LaundryInstruction(),
-                  Container(
-                    height: 1,
-                    color: DesignColor.progressGray,
-                  ),
-                  Container(
-                      alignment: Alignment.centerLeft,
-                      margin: const EdgeInsets.only(top: 24),
-                      child: const SuggestionProductDetail()),
-                ]),
-              ),
-              // Container(
-              //   color: Colors.blue,
-              //   height: 1000,
-              // )
-            ],
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                    margin: const EdgeInsets.only(top: 20.05),
+                    child: Image.asset(AssetLink.freeshipBanner)),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Column(children: [
+                    ProductDescription(
+                      description,
+                      imagesLink,
+                    ),
+                    Container(
+                      height: 1,
+                      color: DesignColor.progressGray,
+                      margin: const EdgeInsets.only(top: 30),
+                    ),
+                    ProductBasicInforWidget(productBasicInfors),
+                    Container(
+                      height: 1,
+                      color: DesignColor.progressGray,
+                    ),
+                    LaundryInstruction(),
+                    Container(
+                      height: 1,
+                      color: DesignColor.progressGray,
+                    ),
+                    Container(
+                        alignment: Alignment.centerLeft,
+                        margin: const EdgeInsets.only(top: 24),
+                        child: const SuggestionProductDetail()),
+                  ]),
+                ),
+                // Container(
+                //   color: Colors.blue,
+                //   height: 1000,
+                // )
+              ],
+            ),
           );
         });
   }

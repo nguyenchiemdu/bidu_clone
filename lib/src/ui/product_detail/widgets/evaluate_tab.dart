@@ -58,64 +58,66 @@ class EvaluateTab extends StatelessWidget {
           //     ]),
           //   ),
           // );
-          return Container(
-            color: DesignColor.backgroundColor,
-            child: Column(
-              children: [
-                Container(
-                  color: Colors.white,
-                  padding: const EdgeInsets.only(
-                      top: 20, left: 16, right: 16, bottom: 22),
-                  child: Column(children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          '92% ${AppString.satisfiedWithProduct}',
-                          style: TextStyle(
-                              fontFamily: defaultFont,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14,
-                              color: Colors.black),
-                        ),
-                        GestureDetector(
-                          onTap: () =>
-                              pushCommentDetailScreen(context, images, ratings),
-                          child: Container(
-                            padding: const EdgeInsets.only(
-                                top: 4, bottom: 4, left: 5),
-                            child: Row(
-                              children: [
-                                Container(
-                                  margin: const EdgeInsets.only(right: 7.01),
-                                  child: Text(
-                                    AppString.seeAllReviews,
-                                    style: TextStyle(
-                                        fontFamily: defaultFont,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 10,
-                                        color: DesignColor.gradientPrimary1),
+          return SingleChildScrollView(
+            child: Container(
+              color: DesignColor.backgroundColor,
+              child: Column(
+                children: [
+                  Container(
+                    color: Colors.white,
+                    padding: const EdgeInsets.only(
+                        top: 20, left: 16, right: 16, bottom: 22),
+                    child: Column(children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            '92% ${AppString.satisfiedWithProduct}',
+                            style: TextStyle(
+                                fontFamily: defaultFont,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 14,
+                                color: Colors.black),
+                          ),
+                          GestureDetector(
+                            onTap: () => pushCommentDetailScreen(
+                                context, images, ratings),
+                            child: Container(
+                              padding: const EdgeInsets.only(
+                                  top: 4, bottom: 4, left: 5),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.only(right: 7.01),
+                                    child: Text(
+                                      AppString.seeAllReviews,
+                                      style: TextStyle(
+                                          fontFamily: defaultFont,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 10,
+                                          color: DesignColor.gradientPrimary1),
+                                    ),
                                   ),
-                                ),
-                                SizedBox(
-                                    width: 3.13,
-                                    child: Image.asset(AssetLink.arrowRight))
-                              ],
+                                  SizedBox(
+                                      width: 3.13,
+                                      child: Image.asset(AssetLink.arrowRight))
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    Container(
-                        margin: const EdgeInsets.only(top: 20),
-                        child: ImagesView(images, 82, 4, 5)),
-                    RatingList(ratings),
-                  ]),
-                ),
-                CommentItem(images),
-                CommentItem(images),
-                CommentItem(images),
-              ],
+                        ],
+                      ),
+                      Container(
+                          margin: const EdgeInsets.only(top: 20),
+                          child: ImagesView(images, 82, 4, 5)),
+                      RatingList(ratings),
+                    ]),
+                  ),
+                  CommentItem(images),
+                  CommentItem(images),
+                  CommentItem(images),
+                ],
+              ),
             ),
           );
         });
