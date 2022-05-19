@@ -1,3 +1,4 @@
+import 'package:bidu_clone/common/app_strings.dart';
 import 'package:bidu_clone/src/blocs/home_bloc.dart';
 import 'package:bidu_clone/src/screen_size.dart';
 import 'package:bidu_clone/src/ui/home_page/widgets/navbar.dart';
@@ -104,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           primary: Colors.white,
                         ),
                         onPressed: _scrollToTop,
-                        child: Text('Back to Top',
+                        child: Text(AppString.backToTop,
                             style:
                                 TextStyle(color: DesignColor.gradientPrimary1)),
                       )

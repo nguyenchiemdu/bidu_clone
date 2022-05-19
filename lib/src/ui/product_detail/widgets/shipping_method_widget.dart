@@ -1,9 +1,9 @@
-import 'package:bidu_clone/src/models/product_detail.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../common/colors.dart';
 import '../../../../common/font.dart';
 import '../../../../common/number_format.dart';
+import '../../../models/product.dart';
 
 const startPrice = 30;
 const endPrice = 60;

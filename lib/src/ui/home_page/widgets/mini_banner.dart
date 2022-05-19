@@ -2,6 +2,7 @@ import 'package:bidu_clone/src/screen_size.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:bidu_clone/src/models/banner.dart' as banner_model;
+import '../../../../common/app_strings.dart';
 import '../../../../common/cached_network_image.dart';
 import '../../../blocs/home_bloc.dart';
 
@@ -15,9 +16,9 @@ class MiniBanner extends StatelessWidget {
           final List<banner_model.Banner> banners;
           banners = snapshot.data ?? [];
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Text('loading');
+            return const Text(AppString.loading);
           } else if (snapshot.hasError) {
-            return const Text('API error');
+            return const Text(AppString.apiError);
           } else {
             return SizedBox(
               // size of the banner is 750x348

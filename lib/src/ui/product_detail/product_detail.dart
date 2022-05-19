@@ -31,11 +31,8 @@ class ProductDetailScreen extends StatelessWidget {
                 previous ?? ProductDetailBloc(productDetailRepository)))
       ],
       builder: (context, child) {
-        final ProductDetailBloc productDetailBloc =
-            context.read<ProductDetailBloc>();
-        productDetailBloc.product = productData;
-        //TODO: dat trong init state
-        productDetailBloc.loadProductDetailById();
+        //TODO: dat trong init state DONE
+        context.read<ProductDetailBloc>().initLoad(productData);
         return const _DetailPage();
       },
     );

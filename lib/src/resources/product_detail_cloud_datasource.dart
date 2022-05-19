@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:bidu_clone/src/models/product_detail.dart';
+import 'package:bidu_clone/src/models/product.dart';
 
 import 'package:flutter/material.dart';
 
@@ -22,13 +22,13 @@ class ProductDetailCloudDataSource implements IProductDetailDataSource {
       final rawData = respond.body;
       final dataDecode = json.decode(rawData);
       if (dataDecode['success'] == true) {
-        final productDetail = productDetaiFromMap(dataDecode['data']);
+        final productDetail = Product.productDetailFromMap(dataDecode['data']);
         return productDetail;
       }
-    } catch (e, s) {
+    } catch (e) {
       debugPrint(e.toString());
-      debugPrint(s.toString());
-      return e;
+      // debugPrint(s.toString());
+      rethrow;
     }
   }
 }

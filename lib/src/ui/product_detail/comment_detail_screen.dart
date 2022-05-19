@@ -1,3 +1,4 @@
+import 'package:bidu_clone/common/app_strings.dart';
 import 'package:bidu_clone/src/ui/product_detail/widgets/appbar_comment_detail.dart';
 import 'package:bidu_clone/src/ui/product_detail/widgets/rating_list.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +6,7 @@ import 'package:flutter/material.dart';
 import '../../../common/asset_link.dart';
 import '../../../common/colors.dart';
 import '../../../common/font.dart';
-import '../../models/product_detail.dart';
+import '../../models/product.dart';
 import 'widgets/comment_item.dart';
 import 'widgets/images_view.dart';
 
@@ -31,7 +32,7 @@ class CommentDetailScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        '40 đánh giá',
+                        '40 ${AppString.review}',
                         style: TextStyle(
                           decoration: TextDecoration.underline,
                           fontFamily: defaultFont,
@@ -61,7 +62,7 @@ class CommentDetailScreen extends StatelessWidget {
                       const Padding(
                         padding: EdgeInsets.only(top: 23),
                         child: Text(
-                          '92% hài lòng với sản phẩm',
+                          '92% ${AppString.satisfiedWithProduct}',
                           style: TextStyle(
                               fontFamily: defaultFont,
                               fontWeight: FontWeight.w500,

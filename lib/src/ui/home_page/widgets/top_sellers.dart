@@ -1,3 +1,4 @@
+import 'package:bidu_clone/common/app_strings.dart';
 import 'package:bidu_clone/src/blocs/home_bloc.dart';
 import 'package:bidu_clone/src/models/top_seller.dart';
 import 'package:bidu_clone/src/ui/home_page/widgets/top_seller_item.dart';
@@ -16,7 +17,7 @@ class TopSellers extends StatefulWidget {
 class _TopSellersState extends State<TopSellers> {
   bool isExpanded = false;
   String iconButton = AssetLink.seeMore;
-  String textButton = 'Xem thêm';
+  String textButton = AppString.seeMore;
   late double _topSellerHeight;
   void getTopSellersHeight(List<TopSeller> topSellers) {
     int avatarHeight = 68;
@@ -46,7 +47,7 @@ class _TopSellersState extends State<TopSellers> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    'Top Người Bán',
+                    AppString.topSellers,
                     style: TextStyle(
                         fontFamily: defaultFont,
                         fontWeight: FontWeight.w700,
@@ -78,7 +79,8 @@ class _TopSellersState extends State<TopSellers> {
                         isExpanded = !isExpanded;
                         iconButton =
                             isExpanded ? AssetLink.collapse : AssetLink.seeMore;
-                        textButton = isExpanded ? 'Rút gọn' : 'Xem thêm';
+                        textButton =
+                            isExpanded ? AppString.seeLess : AppString.seeMore;
                       });
                     },
                     child: Container(

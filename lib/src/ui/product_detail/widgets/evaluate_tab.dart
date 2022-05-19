@@ -1,3 +1,4 @@
+import 'package:bidu_clone/common/app_strings.dart';
 import 'package:bidu_clone/common/asset_link.dart';
 import 'package:bidu_clone/common/colors.dart';
 import 'package:bidu_clone/common/font.dart';
@@ -7,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../models/product.dart';
-import '../../../models/product_detail.dart';
 import 'comment_item.dart';
 import 'images_view.dart';
 import 'rating_list.dart';
@@ -27,16 +27,6 @@ class EvaluateTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // fake data because api died
-    // Random random = Random();
-    // List<Map> ratings = [];
-    // for (int i = 5; i >= 1; i--) {
-    //   Map rating = {'rate': i, 'number': random.nextInt(255)};
-    //   ratings.add(rating);
-    // }
-
-    // fake data because api died
-
     final ProductDetailBloc productDetailBloc =
         context.read<ProductDetailBloc>();
     return StreamBuilder<Product>(
@@ -46,12 +36,8 @@ class EvaluateTab extends StatelessWidget {
           List<String> images =
               productSnap.data!.images.map((item) => item.toString()).toList();
           List<FeedBackByStar> ratings;
-          if (productSnap.data is ProductDetail) {
-            ProductDetail productDetail = productSnap.data as ProductDetail;
-            ratings = productDetail.feedbacks.totalByStar;
-          } else {
-            ratings = [];
-          }
+          Product productDetail = productSnap.data!;
+          ratings = productDetail.feedbacks?.totalByStar ?? [];
           // return SizedBox(
           //   height: 700,
           //   child: Padding(
@@ -85,7 +71,7 @@ class EvaluateTab extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
-                          '92% hài lòng với sản phẩm',
+                          '92% ${AppString.satisfiedWithProduct}',
                           style: TextStyle(
                               fontFamily: defaultFont,
                               fontWeight: FontWeight.w500,
@@ -103,7 +89,7 @@ class EvaluateTab extends StatelessWidget {
                                 Container(
                                   margin: const EdgeInsets.only(right: 7.01),
                                   child: Text(
-                                    'Xem tất cả đánh giá',
+                                    AppString.seeAllReviews,
                                     style: TextStyle(
                                         fontFamily: defaultFont,
                                         fontWeight: FontWeight.w500,

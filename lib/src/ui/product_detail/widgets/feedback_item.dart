@@ -1,3 +1,4 @@
+import 'package:bidu_clone/common/app_strings.dart';
 import 'package:bidu_clone/common/font.dart';
 import 'package:flutter/material.dart';
 
@@ -43,14 +44,14 @@ class FeedBackItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                'Hài lòng',
+                AppString.satisfied,
                 style: TextStyle(
                     fontFamily: defaultFont,
                     fontSize: 14,
                     fontWeight: FontWeight.w500),
               ),
               Text(
-                'Chất lượng sản phẩm tuyệt vời',
+                AppString.userReview,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(

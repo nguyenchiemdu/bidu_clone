@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:bidu_clone/common/app_strings.dart';
 import 'package:bidu_clone/src/blocs/home_bloc.dart';
 import 'package:bidu_clone/src/models/category.dart' as category_model;
 import 'package:bidu_clone/src/ui/home_page/widgets/category_item.dart';
@@ -12,7 +13,7 @@ class Category extends StatelessWidget {
   Category({Key? key}) : super(key: key);
   final category_model.Category seeMore = category_model.Category(
       id: 'seemore',
-      name: 'Xem thêm',
+      name: AppString.seeMore,
       avatar: AssetLink.seeMoreCategory,
       priority: 8);
   double getMinHeight(double width) {
@@ -91,7 +92,7 @@ class Category extends StatelessWidget {
               });
         } else {
           return const SizedBox(
-            child: Text('loading'),
+            child: Text(AppString.loading),
           );
         }
       },

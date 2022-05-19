@@ -1,7 +1,6 @@
 import 'package:bidu_clone/common/font.dart';
 import 'package:flutter/material.dart';
-
-import '../../../models/product_detail.dart';
+import '../../../models/product.dart';
 
 class ProductInforItem extends StatelessWidget {
   const ProductInforItem(this.productBasicInfor, {Key? key}) : super(key: key);

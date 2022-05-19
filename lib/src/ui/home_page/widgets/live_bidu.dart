@@ -1,3 +1,4 @@
+import 'package:bidu_clone/common/app_strings.dart';
 import 'package:bidu_clone/common/asset_link.dart';
 import 'package:bidu_clone/common/colors.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +40,7 @@ class LiveBidu extends StatelessWidget {
             child: Padding(
           padding: EdgeInsets.only(left: 12),
           child: Text(
-            'Xem thêm',
+            AppString.seeMore,
             style: TextStyle(
                 fontFamily: defaultFont,
                 fontSize: 14,

@@ -1,3 +1,4 @@
+import 'package:bidu_clone/common/app_strings.dart';
 import 'package:bidu_clone/common/asset_link.dart';
 import 'package:bidu_clone/common/number_format.dart';
 import 'package:bidu_clone/src/blocs/product_detail_bloc.dart';
@@ -67,7 +68,7 @@ class ProductInfor extends StatelessWidget {
               border: Border.all(color: DesignColor.textGrayColor)),
           padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 4),
           child: const Text(
-            'New',
+            AppString.newWord,
             style: TextStyle(
                 fontFamily: defaultFont,
                 fontWeight: FontWeight.w400,
@@ -102,7 +103,7 @@ class ProductInfor extends StatelessWidget {
           Container(
               margin: const EdgeInsets.only(left: 7),
               child: Text(
-                'Đổi trả trong vòng 3 ngày',
+                AppString.returnIn,
                 style: TextStyle(
                     decoration: TextDecoration.underline,
                     fontFamily: defaultFont,
@@ -125,7 +126,7 @@ class ProductInfor extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            'Nhập mã khuyến mãi giảm giá tối đa 200k',
+            AppString.enterDiscountCode,
             style: TextStyle(
                 fontFamily: defaultFont,
                 fontWeight: FontWeight.w500,
@@ -145,7 +146,7 @@ class ProductInfor extends StatelessWidget {
         Container(
           margin: const EdgeInsets.only(left: 16),
           child: const Text(
-            '40 đánh giá',
+            '40 ${AppString.review}',
             style: TextStyle(
               decoration: TextDecoration.underline,
               fontFamily: defaultFont,

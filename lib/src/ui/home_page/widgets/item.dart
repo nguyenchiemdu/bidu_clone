@@ -1,3 +1,4 @@
+import 'package:bidu_clone/common/app_strings.dart';
 import 'package:bidu_clone/common/colors.dart';
 import 'package:bidu_clone/src/models/product.dart';
 import 'package:bidu_clone/src/ui/product_detail/product_detail.dart';
@@ -115,7 +116,7 @@ class ProductItem extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         left: 5, right: 5, top: 2, bottom: 2),
                     child: Text(
-                      'Đảm bảo',
+                      AppString.guaranteed,
                       style: TextStyle(
                           color: DesignColor.textHighlightRed,
                           fontFamily: defaultFont,
@@ -169,7 +170,7 @@ class ProductItem extends StatelessWidget {
                     width: 7.08,
                   ),
                   const Text(
-                    'Việt Nam',
+                    AppString.vietnam,
                     style: TextStyle(
                         fontFamily: defaultFont,
                         fontWeight: FontWeight.w400,
@@ -182,7 +183,7 @@ class ProductItem extends StatelessWidget {
                 ? Padding(
                     padding: const EdgeInsets.only(top: 4),
                     child: Text(
-                      'Đã bán ' + (selled).toString(),
+                      AppString.sold + (selled).toString(),
                       style: TextStyle(
                           color: DesignColor.textProgressGray,
                           fontFamily: defaultFont,

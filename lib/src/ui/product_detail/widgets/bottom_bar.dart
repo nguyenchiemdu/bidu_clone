@@ -1,3 +1,4 @@
+import 'package:bidu_clone/common/app_strings.dart';
 import 'package:bidu_clone/common/asset_link.dart';
 import 'package:bidu_clone/common/font.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +32,7 @@ class BottomBar extends StatelessWidget {
                       children: [
                         SvgPicture.asset(AssetLink.addToCart),
                         Text(
-                          'Thêm vào giỏ',
+                          AppString.addToCart,
                           style: TextStyle(
                               fontFamily: defaultFont,
                               fontSize: 14,
@@ -58,7 +59,7 @@ class BottomBar extends StatelessWidget {
                     color: Colors.transparent,
                     child: Center(
                       child: Text(
-                        'Mua Ngay',
+                        AppString.buyNow,
                         style: TextStyle(
                             fontFamily: defaultFont,
                             fontSize: 16,

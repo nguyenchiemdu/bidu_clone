@@ -1,3 +1,4 @@
+import 'package:bidu_clone/common/app_strings.dart';
 import 'package:bidu_clone/src/blocs/home_bloc.dart';
 import 'package:bidu_clone/src/models/product.dart';
 import 'package:bidu_clone/src/ui/home_page/widgets/item.dart';
@@ -16,7 +17,7 @@ class NewestProducts extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           const Text(
-            'Sản Phẩm Mới Nhất',
+            AppString.latestProduct,
             style: TextStyle(
                 fontSize: 18,
                 fontFamily: defaultFont,
@@ -25,7 +26,7 @@ class NewestProducts extends StatelessWidget {
           Row(
             children: [
               const Text(
-                'Xem thêm',
+                AppString.seeMore,
                 style: TextStyle(
                     fontSize: 12,
                     fontFamily: defaultFont,
@@ -59,9 +60,9 @@ class NewestProducts extends StatelessWidget {
               headLine(),
               Builder(builder: (_) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Text('Loading');
+                  return const Text(AppString.loading);
                 } else if (snapshot.hasError) {
-                  return const Text('API error');
+                  return const Text(AppString.apiError);
                 } else {
                   return Container(
                     margin: const EdgeInsets.only(top: 20),

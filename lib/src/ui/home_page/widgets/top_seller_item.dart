@@ -1,3 +1,4 @@
+import 'package:bidu_clone/common/app_strings.dart';
 import 'package:bidu_clone/common/colors.dart';
 import 'package:bidu_clone/common/number_format.dart';
 import 'package:bidu_clone/src/blocs/home_bloc.dart';
@@ -138,7 +139,7 @@ class TopSellerItem extends StatelessWidget {
           ),
           const Text(' | '),
           Text(
-            seller.followCount.toString() + ' lượt theo dõi',
+            seller.followCount.toString() + AppString.followsCount,
             style: const TextStyle(
                 fontFamily: defaultFont,
                 fontWeight: FontWeight.w400,
@@ -155,7 +156,7 @@ class TopSellerItem extends StatelessWidget {
       child: Row(
         children: [
           const Text(
-            'Xem shop',
+            AppString.seeShop,
             style: TextStyle(
                 fontFamily: defaultFont,
                 fontWeight: FontWeight.w400,

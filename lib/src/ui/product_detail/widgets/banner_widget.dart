@@ -34,8 +34,14 @@ class BannerWidget extends StatelessWidget {
     return StreamBuilder<Product>(
         initialData: productDetailBloc.product,
         stream: productDetailBloc.productStream,
-        builder: ((_, snapshot) {
-          final List listImage = snapshot.data?.images ?? [];
+        builder: ((_, productSnapshot) {
+          Product product;
+          if (!productSnapshot.hasError) {
+            product = productSnapshot.data!;
+          } else {
+            product = productDetailBloc.product;
+          }
+          final List listImage = product.images;
           return GestureDetector(
             onTap: () => pushListImageFullscreen(context, productDetailBloc),
             child: AspectRatio(

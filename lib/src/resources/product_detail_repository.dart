@@ -1,5 +1,7 @@
+import 'dart:async';
+
+import 'package:bidu_clone/src/models/product.dart';
 import 'package:bidu_clone/src/resources/product_detail_cloud_datasource.dart';
-import 'package:flutter/material.dart';
 
 class IProductDetailRepository {
   Future loadProductDetailById(String id) async {}
@@ -9,17 +11,15 @@ class ProductDetailRepository implements IProductDetailRepository {
   IProductDetailDataSource productDetailCloudDataSource;
   ProductDetailRepository(this.productDetailCloudDataSource);
   @override
-  //TODO: luon tra ve ProductDetail
+  //TODO: luon tra ve ProductDetail DONE
   Future loadProductDetailById(String id) async {
+    //TODO: dung rethrow DONE
     try {
-      final productDetail =
+      final Product productDetail =
           await productDetailCloudDataSource.getProductDetailById(id);
       return productDetail;
-    } catch (e, s) {
-      //TODO: dung throw
-      debugPrint(e.toString());
-      debugPrint(s.toString());
-      return e;
+    } catch (e) {
+      rethrow;
     }
   }
 }

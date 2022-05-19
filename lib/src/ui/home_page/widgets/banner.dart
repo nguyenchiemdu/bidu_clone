@@ -1,3 +1,4 @@
+import 'package:bidu_clone/common/app_strings.dart';
 import 'package:bidu_clone/src/blocs/home_bloc.dart';
 import 'package:bidu_clone/src/models/banner.dart' as banner_model;
 import 'package:bidu_clone/src/screen_size.dart';
@@ -29,11 +30,10 @@ class BannerWidget extends StatelessWidget {
           banners = snapshot.data ?? [];
           final Stream<int> indicatorStream =
               context.read<HomeBloc>().bannerIndicatorStream;
-          //TODO: Dung if else DONE
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Text('loading');
+            return const Text(AppString.loading);
           } else if (snapshot.hasError) {
-            return const Text('API error');
+            return const Text(AppString.apiError);
           } else {
             return SizedBox(
               // size of the banner is 750x348

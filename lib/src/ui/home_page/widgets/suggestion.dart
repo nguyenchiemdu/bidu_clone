@@ -1,3 +1,4 @@
+import 'package:bidu_clone/common/app_strings.dart';
 import 'package:bidu_clone/common/asset_link.dart';
 import 'package:bidu_clone/src/blocs/home_bloc.dart';
 import 'package:bidu_clone/src/ui/home_page/widgets/item.dart';
@@ -16,7 +17,7 @@ class Suggestion extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           const Text(
-            'Gợi ý cho bạn',
+            AppString.suggestions,
             style: TextStyle(
                 fontSize: 18,
                 fontFamily: defaultFont,
@@ -25,7 +26,7 @@ class Suggestion extends StatelessWidget {
           Row(
             children: [
               const Text(
-                'Xem thêm',
+                AppString.seeMore,
                 style: TextStyle(
                     fontSize: 12,
                     fontFamily: defaultFont,

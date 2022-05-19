@@ -1,11 +1,12 @@
+import 'package:bidu_clone/common/app_strings.dart';
 import 'package:bidu_clone/src/blocs/product_detail_bloc.dart';
-import 'package:bidu_clone/src/models/product_detail.dart';
 import 'package:bidu_clone/src/ui/product_detail/widgets/product_infor_item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../common/asset_link.dart';
 import '../../../../common/font.dart';
+import '../../../models/product.dart';
 
 class ProductBasicInforWidget extends StatelessWidget {
   ProductBasicInforWidget(this.productBasicInfors, {Key? key})
@@ -19,7 +20,6 @@ class ProductBasicInforWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ProductDetailBloc productDetailBloc = context.read<ProductDetailBloc>();
-    // debugPrint('build 2');
     return StreamBuilder<bool>(
         initialData: productDetailBloc.isProductBasicInforSeemore,
         stream: productDetailBloc.productBasicInforStream,
@@ -47,7 +47,7 @@ class ProductBasicInforWidget extends StatelessWidget {
                       Container(
                         margin: const EdgeInsets.only(top: 15, bottom: 15),
                         child: const Text(
-                          'Thông tin sản phẩm cơ bản',
+                          AppString.productBasicInfor,
                           style: TextStyle(
                               fontFamily: defaultFont,
                               fontSize: 16,

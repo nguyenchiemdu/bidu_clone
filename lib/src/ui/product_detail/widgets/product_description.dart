@@ -1,4 +1,4 @@
-import 'dart:async';
+import 'package:bidu_clone/common/app_strings.dart';
 import 'package:bidu_clone/src/blocs/product_detail_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -67,15 +67,19 @@ class _ProductDescriptionState extends State<ProductDescription>
     }
   }
 
+  late final ProductDetailBloc productDetailBloc;
+  @override
+  //TODO : callback DONE
+  void initState() {
+    super.initState();
+    productDetailBloc = context.read<ProductDetailBloc>();
+    WidgetsBinding.instance?.addPostFrameCallback(
+        (_) => onProductDescriptionHeightChange(productDetailBloc));
+  }
+
   @override
   Widget build(BuildContext context) {
-    // debugPrint('build');
     super.build(context);
-    final ProductDetailBloc productDetailBloc =
-        context.read<ProductDetailBloc>();
-    //TODO : dung stateful widget
-    Future.delayed(Duration.zero,
-        () => onProductDescriptionHeightChange(productDetailBloc));
     return StreamBuilder<bool>(
         initialData: true,
         stream: productDetailBloc.productDescriptionSeemoreStream,
@@ -152,7 +156,7 @@ class _ProductDescriptionState extends State<ProductDescription>
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     const Text(
-                                      'Xem thêm',
+                                      AppString.seeMore,
                                       style: TextStyle(
                                           fontFamily: defaultFont,
                                           fontWeight: FontWeight.w400,

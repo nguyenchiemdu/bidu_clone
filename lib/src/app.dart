@@ -21,10 +21,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
       home: MultiProvider(providers: [
         Provider<HomeCloudDataSource>(
             create: (context) => HomeCloudDataSource()),
@@ -35,9 +31,7 @@ class MyApp extends StatelessWidget {
             dispose: (context, homeBloc) => homeBloc.dispose(),
             update: (context, homeRepository, previous) =>
                 previous ?? HomeBloc(homeRepository))
-      ], child: const MyHomePage()
-          // child: ProductDetailScreen(product),
-          ),
+      ], child: const MyHomePage()),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:bidu_clone/common/app_strings.dart';
 import 'package:bidu_clone/common/colors.dart';
 import 'package:bidu_clone/src/blocs/product_detail_bloc.dart';
 import 'package:bidu_clone/src/screen_size.dart';
@@ -17,7 +18,7 @@ class SuggestionProductDetail extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            'Sản Phẩm Tương Tự',
+            AppString.similarProduct,
             style: TextStyle(
                 fontFamily: defaultFont,
                 fontSize: 18,
@@ -111,7 +112,7 @@ class SuggestionProductDetail extends StatelessWidget {
                     ),
                     onPressed: () {},
                     child: const Text(
-                      'Xem tất cả',
+                      AppString.seeAll,
                       style: TextStyle(
                           fontFamily: defaultFont,
                           fontSize: 12,

@@ -1,10 +1,10 @@
 import 'package:bidu_clone/src/blocs/product_detail_bloc.dart';
-import 'package:bidu_clone/src/models/product_detail.dart';
 import 'package:bidu_clone/src/screen_size.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../common/colors.dart';
 import '../../../../common/font.dart';
+import '../../../models/product.dart';
 
 class ProductPreparationProgress extends StatelessWidget {
   ProductPreparationProgress(this.prepareOrder, {Key? key}) : super(key: key) {

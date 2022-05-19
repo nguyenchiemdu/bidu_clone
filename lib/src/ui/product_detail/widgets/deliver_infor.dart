@@ -1,6 +1,6 @@
+import 'package:bidu_clone/common/app_strings.dart';
 import 'package:bidu_clone/common/font.dart';
 import 'package:bidu_clone/src/blocs/product_detail_bloc.dart';
-import 'package:bidu_clone/src/models/product_detail.dart';
 import 'package:bidu_clone/src/ui/product_detail/widgets/product_preparation_progress.dart';
 import 'package:bidu_clone/src/ui/product_detail/widgets/shipping_method_widget.dart';
 import 'package:flutter/material.dart';
@@ -34,22 +34,21 @@ class DeliverInfor extends StatelessWidget {
         initialData: productDetailBloc.product,
         stream: productDetailBloc.productStream,
         builder: (_, productSnapshot) {
-          final Product? product = productSnapshot.data;
+          Product product;
+          if (!productSnapshot.hasError) {
+            product = productSnapshot.data!;
+          } else {
+            product = productDetailBloc.product;
+          }
           late List<ShippingMethod> shippingMethods;
           late AvgShippingTime avgShippingTime;
           late List<PrepareOrder> timePrepareOrders;
           late String country;
-          if (product is ProductDetail) {
-            shippingMethods = product.shop.shippingMethod;
-            avgShippingTime = product.shop.avgShippingTime;
-            timePrepareOrders = product.timePrepareOrders;
-            country = ProductDetailBloc.getCountryText(product);
-          } else {
-            avgShippingTime = AvgShippingTime(min: 0, max: 0);
-            shippingMethods = [];
-            timePrepareOrders = [];
-            country = 'loading';
-          }
+          shippingMethods = product.shop?.shippingMethod ?? [];
+          avgShippingTime =
+              product.shop?.avgShippingTime ?? AvgShippingTime(min: 0, max: 0);
+          timePrepareOrders = product.timePrepareOrders ?? [];
+          country = ProductDetailBloc.getCountryText(product);
           final List<ShippingMethodWidget> shippingMethodWidgets =
               getShippingMethodWidgets(shippingMethods);
           final List<ProductPreparationProgress>
@@ -72,7 +71,7 @@ class DeliverInfor extends StatelessWidget {
                         Container(
                           margin: const EdgeInsets.only(bottom: 4),
                           child: Text(
-                            'Thông tin giao hàng',
+                            AppString.deliverInfor,
                             style: TextStyle(
                                 fontFamily: defaultFont,
                                 fontSize: 12,
@@ -89,7 +88,7 @@ class DeliverInfor extends StatelessWidget {
                         Container(
                           margin: const EdgeInsets.only(bottom: 4),
                           child: Text(
-                            'Thời gian vận chuyển',
+                            AppString.deliverTime,
                             style: TextStyle(
                                 fontFamily: defaultFont,
                                 fontSize: 12,
@@ -101,7 +100,7 @@ class DeliverInfor extends StatelessWidget {
                           children: [
                             Container(
                               margin: const EdgeInsets.only(bottom: 4),
-                              child: Text('Trung bình',
+                              child: Text(AppString.overall,
                                   style: TextStyle(
                                       fontFamily: defaultFont,
                                       fontSize: 12,
@@ -111,7 +110,7 @@ class DeliverInfor extends StatelessWidget {
                             Container(
                               margin: const EdgeInsets.only(bottom: 4),
                               child: Text(
-                                  ' ${avgShippingTime.min}-${avgShippingTime.max} ngày',
+                                  ' ${avgShippingTime.min}-${avgShippingTime.max} ${AppString.day}',
                                   style: TextStyle(
                                       fontFamily: defaultFont,
                                       fontSize: 12,
@@ -142,7 +141,7 @@ class DeliverInfor extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        child: const Text('Thời gian chuẩn bị hàng'),
+                        child: const Text(AppString.productPreparationTime),
                         margin: const EdgeInsets.only(bottom: 10),
                       ),
                       ...productPreparationProgressWidget

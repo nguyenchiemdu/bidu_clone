@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:bidu_clone/common/app_strings.dart';
 import 'package:bidu_clone/src/blocs/home_bloc.dart';
 import 'package:bidu_clone/src/ui/home_page/widgets/item.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,7 @@ class TopProducts extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: const [
                     Text(
-                      'Top Sản Phẩm',
+                      AppString.topProducts,
                       style: TextStyle(
                           fontSize: 18,
                           fontFamily: defaultFont,

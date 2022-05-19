@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../models/product_detail.dart';
+import '../../../models/product.dart';
 import 'rating_item.dart';
 
 class RatingList extends StatelessWidget {

@@ -1,7 +1,7 @@
+import 'package:bidu_clone/common/app_strings.dart';
 import 'package:bidu_clone/common/number_format.dart';
 import 'package:bidu_clone/src/blocs/product_detail_bloc.dart';
 import 'package:bidu_clone/src/models/product.dart';
-import 'package:bidu_clone/src/models/product_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../common/asset_link.dart';
@@ -21,30 +21,23 @@ class ShopInFor extends StatelessWidget {
         stream: productDetailBloc.productStream,
         builder: (_, snapshot) {
           Product? product = snapshot.data;
-          String shopName = 'Loading';
-          double shopRating = 0;
-          int chatResponseByPercent = 0;
+          String shopName = product?.shop?.name ?? AppString.loading;
+          double shopRating = product?.shop?.shopRating ?? 0;
+          int chatResponseByPercent = product?.shop?.chatResponseByPercent ?? 0;
+          DecorationImage decorationImage;
+          if (product?.shop?.avatarLink != null) {
+            decorationImage =
+                DecorationImage(image: NetworkImage(product!.shop!.avatarLink));
+          } else {
+            decorationImage =
+                DecorationImage(image: AssetImage(AssetLink.shopAvatar));
+          }
           Widget avatarWidget = Container(
             width: kAvatarSize,
             height: kAvatarSize,
-            decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image:
-                    DecorationImage(image: AssetImage(AssetLink.shopAvatar))),
+            decoration:
+                BoxDecoration(shape: BoxShape.circle, image: decorationImage),
           );
-          if (product is ProductDetail) {
-            shopName = product.shop.name;
-            shopRating = product.shop.shopRating;
-            chatResponseByPercent = product.shop.chatResponseByPercent;
-            avatarWidget = Container(
-              width: kAvatarSize,
-              height: kAvatarSize,
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                      image: NetworkImage(product.shop.avatarLink))),
-            );
-          }
           return Container(
             color: Colors.white,
             padding: const EdgeInsets.symmetric(vertical: 19, horizontal: 16),
@@ -94,7 +87,7 @@ class ShopInFor extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 5),
                                     child: Text(
-                                      'Tỷ lệ phản hồi Chat $chatResponseByPercent%',
+                                      '${AppString.chatResponseRate} $chatResponseByPercent%',
                                       style: const TextStyle(
                                           fontFamily: defaultFont,
                                           fontWeight: FontWeight.w400,

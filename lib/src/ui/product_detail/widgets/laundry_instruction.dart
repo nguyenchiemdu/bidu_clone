@@ -1,3 +1,4 @@
+import 'package:bidu_clone/common/app_strings.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../common/asset_link.dart';
@@ -21,7 +22,7 @@ class LaundryInstruction extends StatelessWidget {
                 Container(
                   margin: const EdgeInsets.only(top: 15, bottom: 15),
                   child: const Text(
-                    'Hướng dẫn giặt ủi',
+                    AppString.laundyInstruction,
                     style: TextStyle(
                         fontFamily: defaultFont,
                         fontSize: 16,

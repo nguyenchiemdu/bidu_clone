@@ -3,18 +3,24 @@ import 'dart:async';
 import 'package:bidu_clone/common/number_format.dart';
 import 'package:bidu_clone/src/blocs/base_bloc.dart';
 import 'package:bidu_clone/src/models/product.dart';
-import 'package:bidu_clone/src/models/product_detail.dart';
 import 'package:bidu_clone/src/resources/product_detail_repository.dart';
 import 'package:flutter/material.dart';
 
+import '../../common/app_strings.dart';
+
 class ProductDetailBloc extends BaseBLoC {
-  late Product product;
   IProductDetailRepository productDetailRepository;
   ProductDetailBloc(this.productDetailRepository);
+  late Product product;
+  static const Map<String, String> countryHashMap = {
+    'VN': 'Việt Nam',
+    'KO': 'Hàn Quốc',
+  };
   int _selectedTabBar = 0;
   bool _isSeemore = false;
   bool _isProductBasicInforSeemore = true;
   Color _appBarColor = Colors.transparent;
+
   final _productController = StreamController<Product>.broadcast();
   final _selectedTabBarController = StreamController<int>();
   final _appbarColorController = StreamController<Color>();
@@ -23,10 +29,6 @@ class ProductDetailBloc extends BaseBLoC {
       StreamController<bool>.broadcast();
   final _bannerIndicatorController = StreamController<int>.broadcast();
 
-  static Map<String, String> countryHashMap = {
-    'VN': 'Việt Nam',
-    'KO': 'Hàn Quốc',
-  };
   Stream<Product> get productStream => _productController.stream;
   Stream<int> get selectedTabBarStream => _selectedTabBarController.stream;
   Stream<Color> get appbarColorStream => _appbarColorController.stream;
@@ -35,34 +37,20 @@ class ProductDetailBloc extends BaseBLoC {
   Stream<bool> get productDescriptionSeemoreStream =>
       _productDescriptionSeemoreController.stream;
   Stream<int> get bannerIndicatorStream => _bannerIndicatorController.stream;
-
   bool get isProductBasicInforSeemore => _isProductBasicInforSeemore;
   Color get appBarColor => _appBarColor;
-  // set appBarMaxHeight(double? height) {
-  //   _appBarMaxHeight = height ?? 0;
-  // }
+
+  void initLoad(Product productOld) {
+    product = productOld;
+    loadProductDetailById();
+  }
 
   void changeSelectedTabBar(int index) {
     _selectedTabBar = index;
     _selectedTabBarController.sink.add(_selectedTabBar);
   }
 
-  // void updateTabbarPosition(double position) {
-  //   _tabbarPosition = position;
-  // }
-
   void onScroll(double screenPosition) {
-    // const marginTop = 3;
-    // if (dy < _appBarMaxHeight - marginTop && !_isTabBarPinned) {
-    //   debugPrint('jump');
-    //   // _scrollableController.sink.add(false);
-    //   _isTabBarPinned = true;
-    //   scrollController.jumpTo(_tabbarPosition - _appBarMaxHeight + marginTop);
-    // } else if (dy >= _appBarMaxHeight - marginTop && _isTabBarPinned) {
-    //   debugPrint('unjump');
-    //   _isTabBarPinned = false;
-    //   // _scrollableController.sink.add(true);
-    // }
     if (screenPosition <= 0 && _appBarColor != Colors.transparent) {
       _appBarColor = Colors.transparent;
       _appbarColorController.sink.add(_appBarColor);
@@ -79,15 +67,16 @@ class ProductDetailBloc extends BaseBLoC {
 
   void loadProductDetailById() async {
     String id = product.id;
-    //TODO: catch error
-    var productDetail = await productDetailRepository.loadProductDetailById(id);
-    // debugPrint(productDetail.toString());
-    //TODO :
-    if (productDetail is ProductDetail) {
+    //TODO: catch error DONE, can lam them o cac ham load khac
+    final Product? productDetail = await productDetailRepository
+        .loadProductDetailById(id)
+        .onError((error, stackTrace) {
+      _productController.addError(error!);
+    });
+
+    if (productDetail != null) {
       product = productDetail;
       _productController.sink.add(productDetail);
-    } else {
-      _productController.addError(productDetail);
     }
   }
 
@@ -95,7 +84,7 @@ class ProductDetailBloc extends BaseBLoC {
     late String duration;
     late bool isColorful;
     if (prepareOrder.day.isInteger()) {
-      duration = '${prepareOrder.day} ngày';
+      duration = '${prepareOrder.day} ${AppString.day}';
       if (prepareOrder.day.toInt() == 1) {
         isColorful = true;
       } else {
@@ -103,14 +92,14 @@ class ProductDetailBloc extends BaseBLoC {
       }
     } else {
       isColorful = false;
-      duration = 'Sau 4 ngày';
+      duration = AppString.after4days;
     }
     return [duration, isColorful];
   }
 
-  static String getCountryText(ProductDetail productDetail) {
+  static String getCountryText(Product productDetail) {
     // ProductDetail product;
-    String countryCode = productDetail.shop.country;
+    String countryCode = productDetail.shop?.country ?? 'Loading';
     return countryHashMap[countryCode] ?? countryCode;
   }
 

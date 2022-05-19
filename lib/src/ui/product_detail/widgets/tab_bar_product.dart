@@ -1,3 +1,4 @@
+import 'package:bidu_clone/common/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -5,10 +6,7 @@ import '../../../../common/colors.dart';
 import '../../../../common/font.dart';
 import '../../../blocs/product_detail_bloc.dart';
 
-//TODO : gom lai thanh 1 file String
-const _kProductInfor = 'Thông tin sản phẩm';
-const _kEvaluate = 'Đánh giá (40)';
-const _kChat = 'Trò Chuyện';
+//TODO : gom lai thanh 1 file String  DONE
 
 class TabBarProduct extends StatelessWidget {
   const TabBarProduct({Key? key}) : super(key: key);
@@ -38,13 +36,13 @@ class TabBarProduct extends StatelessWidget {
         labelColor: DesignColor.textBlackColor,
         tabs: const [
           Tab(
-            child: Text(_kProductInfor),
+            child: Text(AppString.productInfor),
           ),
           Tab(
-            child: Text(_kEvaluate),
+            child: Text(AppString.evaluate),
           ),
           Tab(
-            child: Text(_kChat),
+            child: Text(AppString.chat),
           ),
         ],
       ),
