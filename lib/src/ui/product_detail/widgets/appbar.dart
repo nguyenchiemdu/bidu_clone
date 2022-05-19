@@ -4,8 +4,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 
 //TODO: dung sliver appbar or implement prefered sized
-AppBar productDetailAppbar(AsyncSnapshot<Color> appBarColorSnap) => AppBar(
-        // pinned: true,
+SliverAppBar productDetailAppbar(AsyncSnapshot<Color> appBarColorSnap) =>
+    SliverAppBar(
+        pinned: true,
         systemOverlayStyle: const SystemUiOverlayStyle(
           statusBarIconBrightness: Brightness.dark, // For Android (dark icons)
           statusBarBrightness: Brightness.light, // For iOS (dark icons)

@@ -65,27 +65,43 @@ class _DetailPage extends StatelessWidget {
             length: 3,
             child: Scaffold(
                 //TODO: dung chuc nang cua sliver appbar or custom
-                // extendBodyBehindAppBar: true,
-                appBar: productDetailAppbar(appBarColorSnap),
                 body: NotificationListener<ScrollUpdateNotification>(
                   onNotification: (ScrollUpdateNotification notification) =>
                       _onScrollNotification(context, notification),
-                  child: CustomScrollView(
-                    slivers: [
-                      SliverList(
-                          delegate: SliverChildListDelegate([
-                        BannerWidget(),
-                        const ShopInFor(),
-                        const ProductInfor(),
-                        const DeliverInfor(),
-                      ])),
-                      const TabBarProduct(),
-                      SliverList(
-                          delegate:
-                              SliverChildListDelegate([TabBarViewProduct()])),
-                      // Container(height: 5000, color: Colors.red)
-                    ],
-                  ),
+                  child: NestedScrollView(
+                      headerSliverBuilder: ((context, innerBoxIsScrolled) {
+                        return [
+                          productDetailAppbar(appBarColorSnap),
+                          SliverList(
+                            delegate: SliverChildListDelegate([
+                              BannerWidget(),
+                              const ShopInFor(),
+                              const ProductInfor(),
+                              const DeliverInfor(),
+                            ]),
+                          ),
+                          const TabBarProduct()
+                        ];
+                      }),
+                      body: TabBarViewProduct()
+                      // SliverList(
+                      //     delegate:
+                      //         SliverChildListDelegate([TabBarViewProduct()])),
+                      // slivers: [
+                      //   SliverList(
+                      //       delegate: SliverChildListDelegate([
+                      //     BannerWidget(),
+                      //     const ShopInFor(),
+                      //     const ProductInfor(),
+                      //     const DeliverInfor(),
+                      //   ])),
+                      //   const TabBarProduct(),
+                      //   SliverList(
+                      //       delegate:
+                      //           SliverChildListDelegate([TabBarViewProduct()])),
+                      //   // Container(height: 5000, color: Colors.red)
+                      // ],
+                      ),
                 ),
                 bottomNavigationBar: const BottomBar()),
           );
