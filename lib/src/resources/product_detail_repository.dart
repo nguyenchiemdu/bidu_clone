@@ -11,9 +11,8 @@ class ProductDetailRepository implements IProductDetailRepository {
   IProductDetailDataSource productDetailCloudDataSource;
   ProductDetailRepository(this.productDetailCloudDataSource);
   @override
-  //TODO: luon tra ve ProductDetail DONE
   Future loadProductDetailById(String id) async {
-    //TODO: dung rethrow DONE
+    //TODO: luon tra ve ProductDetail ,dung rethrow DONE
     try {
       final Product productDetail =
           await productDetailCloudDataSource.getProductDetailById(id);

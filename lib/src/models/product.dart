@@ -54,7 +54,7 @@ class Product {
                 ProductBasicInfor.fromMap(productBasicInfor))),
         feedbacks: Feedbacks.fromMap(json['feedbacks']));
   }
-  //TODO: DONE
+  //TODO: gop lai thanh Product
 }
 
 class PrepareOrder {

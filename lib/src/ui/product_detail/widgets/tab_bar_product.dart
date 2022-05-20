@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import '../../../../common/colors.dart';
 import '../../../../common/font.dart';
 
-//TODO : gom lai thanh 1 file String  DONE
 const double _kAppbarHeight = 40;
 
+//TODO : dung sliver persisten header, nested DONE
 class TabBarProduct extends StatelessWidget {
   const TabBarProduct(this.controller, {Key? key}) : super(key: key);
   final TabController controller;
@@ -29,7 +29,6 @@ class _MySliverPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
       child: Container(
         color: Colors.white,
         child: TabBar(
-          //TODO: dung Tab controller  thay cho default tab controller
           controller: controller,
           isScrollable: true,
           indicatorColor: DesignColor.textBlackColor,

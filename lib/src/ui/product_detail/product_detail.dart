@@ -40,7 +40,6 @@ class ProductDetailScreen extends StatelessWidget {
   }
 }
 
-//TODO : dung sliver persisten header, nested DONE
 class _DetailPage extends StatefulWidget {
   const _DetailPage({Key? key}) : super(key: key);
 
@@ -88,6 +87,7 @@ class _DetailPageState extends State<_DetailPage>
                   TabBarProduct(controller)
                 ];
               }),
+              //TODO: dung Tab controller  thay cho default tab controller
               body: TabBarView(
                 controller: controller,
                 children: const [

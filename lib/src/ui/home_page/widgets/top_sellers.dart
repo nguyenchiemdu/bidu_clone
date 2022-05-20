@@ -55,7 +55,6 @@ class _TopSellersState extends State<TopSellers> {
                   ),
                   AnimatedContainer(
                     duration: const Duration(milliseconds: 300),
-                    //TODO: animated size de tu dong thay doi chieu cao, dat const o tren, k su dung + DONE 1/2
                     height: _topSellerHeight,
                     child: ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),

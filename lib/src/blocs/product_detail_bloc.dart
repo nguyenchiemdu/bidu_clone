@@ -59,7 +59,7 @@ class ProductDetailBloc extends BaseBLoC {
 
   void loadProductDetailById() async {
     String id = product.id;
-    //TODO: catch error DONE, can lam them o cac ham load khac
+    //TODO: catch error DONE
     final Product? productDetail = await productDetailRepository
         .loadProductDetailById(id)
         .catchError((error) {

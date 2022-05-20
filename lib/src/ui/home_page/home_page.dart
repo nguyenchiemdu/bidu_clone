@@ -69,7 +69,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: SingleChildScrollView(
                     controller: _scrollController,
                     child: Column(
-                      //TODO: (Trung) nếu muốn children của column trải dài bằng chiều rộng của parent thì set crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         BannerWidget(),
                         Category(),

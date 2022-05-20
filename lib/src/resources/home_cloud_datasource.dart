@@ -1,7 +1,5 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-
 import '../../common/server.dart';
 import '../models/banner.dart';
 import 'package:bidu_clone/common/server.dart';
@@ -9,7 +7,6 @@ import 'package:bidu_clone/src/models/banner.dart';
 import 'package:bidu_clone/src/models/category.dart';
 import 'package:bidu_clone/src/models/top_seller.dart';
 import 'package:http/http.dart' as http;
-
 import '../models/product.dart';
 
 class IHomeDataSource {
@@ -59,10 +56,10 @@ class HomeCloudDataSource implements IHomeDataSource {
         return listBanner;
       }
       return [];
-    } catch (e, s) {
+    } catch (e) {
       debugPrint(e.toString());
-      debugPrint(s.toString());
-      return e;
+      // debugPrint(s.toString());
+      rethrow;
     }
   }
 
@@ -78,10 +75,9 @@ class HomeCloudDataSource implements IHomeDataSource {
         return listCategory;
       }
       return [];
-    } catch (e, s) {
+    } catch (e) {
       debugPrint(e.toString());
-      debugPrint(s.toString());
-      return [];
+      rethrow;
     }
   }
 
@@ -97,10 +93,9 @@ class HomeCloudDataSource implements IHomeDataSource {
         return listNewestProduct;
       }
       return [];
-    } catch (e, s) {
+    } catch (e) {
       debugPrint(e.toString());
-      debugPrint(s.toString());
-      return e;
+      rethrow;
     }
   }
 
@@ -116,10 +111,9 @@ class HomeCloudDataSource implements IHomeDataSource {
         return listSuggestion;
       }
       return [];
-    } catch (e, s) {
+    } catch (e) {
       debugPrint(e.toString());
-      debugPrint(s.toString());
-      return [];
+      rethrow;
     }
   }
 
@@ -135,10 +129,9 @@ class HomeCloudDataSource implements IHomeDataSource {
         return listTopProduct;
       }
       return [];
-    } catch (e, s) {
+    } catch (e) {
       debugPrint(e.toString());
-      debugPrint(s.toString());
-      return [];
+      rethrow;
     }
   }
 
@@ -154,10 +147,9 @@ class HomeCloudDataSource implements IHomeDataSource {
         return listTopSeller;
       }
       return [];
-    } catch (e, s) {
+    } catch (e) {
       debugPrint(e.toString());
-      debugPrint(s.toString());
-      return [];
+      rethrow;
     }
   }
 }

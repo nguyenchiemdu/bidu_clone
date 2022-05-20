@@ -1,3 +1,4 @@
+//TODO : gom lai thanh 1 file String  DONE
 class AppString {
   static const backToTop = 'Back to Top';
   static const loading = 'Loading';

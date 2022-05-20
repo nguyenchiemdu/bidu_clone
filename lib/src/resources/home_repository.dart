@@ -1,8 +1,6 @@
 import 'package:bidu_clone/src/models/category.dart';
 import 'package:bidu_clone/src/models/top_seller.dart';
 import 'package:bidu_clone/src/resources/home_cloud_datasource.dart';
-import 'package:flutter/material.dart';
-
 import '../models/product.dart';
 
 class IHomeRepository {
@@ -22,10 +20,8 @@ class HomeRepository implements IHomeRepository {
     try {
       final listBanner = await homeCloudDataSource.getListBanner();
       return listBanner;
-    } catch (e, s) {
-      debugPrint(e.toString());
-      debugPrint(s.toString());
-      return e;
+    } catch (e) {
+      rethrow;
     }
   }
 
@@ -34,10 +30,8 @@ class HomeRepository implements IHomeRepository {
     try {
       final listCategory = await homeCloudDataSource.getListCategory();
       return listCategory;
-    } catch (e, s) {
-      debugPrint(e.toString());
-      debugPrint(s.toString());
-      return [];
+    } catch (e) {
+      rethrow;
     }
   }
 
@@ -47,10 +41,8 @@ class HomeRepository implements IHomeRepository {
       final listNewestProduct =
           await homeCloudDataSource.getListNewestProduct();
       return listNewestProduct;
-    } catch (e, s) {
-      debugPrint(e.toString());
-      debugPrint(s.toString());
-      return e;
+    } catch (e) {
+      rethrow;
     }
   }
 
@@ -59,10 +51,8 @@ class HomeRepository implements IHomeRepository {
     try {
       final listSuggestion = await homeCloudDataSource.getListSuggestion();
       return listSuggestion;
-    } catch (e, s) {
-      debugPrint(e.toString());
-      debugPrint(s.toString());
-      return [];
+    } catch (e) {
+      rethrow;
     }
   }
 
@@ -71,10 +61,8 @@ class HomeRepository implements IHomeRepository {
     try {
       final listTopProduct = await homeCloudDataSource.getListTopProduct();
       return listTopProduct;
-    } catch (e, s) {
-      debugPrint(e.toString());
-      debugPrint(s.toString());
-      return [];
+    } catch (e) {
+      rethrow;
     }
   }
 
@@ -83,10 +71,8 @@ class HomeRepository implements IHomeRepository {
     try {
       final listTopSeller = await homeCloudDataSource.getListTopSeller();
       return listTopSeller;
-    } catch (e, s) {
-      debugPrint(e.toString());
-      debugPrint(s.toString());
-      return [];
+    } catch (e) {
+      rethrow;
     }
   }
 }

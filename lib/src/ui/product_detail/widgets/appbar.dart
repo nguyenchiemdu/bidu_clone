@@ -5,7 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import '../../../blocs/product_detail_bloc.dart';
 
-//TODO: dung sliver appbar or implement prefered sized
+//TODO: dung sliver appbar , nhung chua lam animation thay doi mau duoc
 class ProductDetailAppBar extends StatelessWidget {
   const ProductDetailAppBar({Key? key}) : super(key: key);
   @override
@@ -16,7 +16,6 @@ class ProductDetailAppBar extends StatelessWidget {
         initialData: productDetailBloc.appBarColor,
         stream: productDetailBloc.appbarColorStream,
         builder: (_, appBarColorSnap) {
-          //TODO: set mau tu extend sang collapse
           return SliverAppBar(
               pinned: true,
               systemOverlayStyle: const SystemUiOverlayStyle(

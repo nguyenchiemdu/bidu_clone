@@ -80,45 +80,65 @@ class HomeBloc extends BaseBLoC {
   }
 
   void _loadBanner() async {
-    var listBanner = await homeRepository.loadBanner();
-
-    if (listBanner.runtimeType == List<banner_model.Banner>) {
+    var listBanner = await homeRepository.loadBanner().catchError((error) {
+      _bannerController.addError(error);
+    });
+    if (listBanner != null) {
       //remove two first banner
       listBanner.removeAt(0);
       listBanner.removeAt(0);
       _bannerController.sink.add(listBanner);
-    } else {
-      _bannerController.addError(listBanner);
     }
   }
 
   void _loadCategory() async {
-    final listCategory = await homeRepository.loadCategory();
-    _categoryController.sink.add(listCategory);
+    final listCategory =
+        await homeRepository.loadCategory().catchError((error) {
+      _categoryController.addError(error);
+    });
+    if (listCategory != null) {
+      _categoryController.sink.add(listCategory);
+    }
   }
 
   void _loadNewestProduct() async {
-    final listNewestProduct = await homeRepository.loadNewestProduct();
-    if (listNewestProduct.runtimeType == List<Product>) {
+    final listNewestProduct =
+        await homeRepository.loadNewestProduct().catchError((error) {
+      _newestProductController.addError(error);
+    });
+    if (listNewestProduct != null) {
       _newestProductController.sink.add(listNewestProduct);
-    } else {
-      _newestProductController.addError(listNewestProduct);
     }
   }
 
   void _loadSuggestion() async {
-    final listSuggestion = await homeRepository.loadSuggestion();
-    _suggestionController.sink.add(listSuggestion);
+    final listSuggestion =
+        await homeRepository.loadSuggestion().catchError((error) {
+      _suggestionController.addError(error);
+    });
+    if (listSuggestion != null) {
+      _suggestionController.sink.add(listSuggestion);
+    }
   }
 
   void _loadTopProduct() async {
-    final listTopProduct = await homeRepository.loadTopProduct();
-    _topProductController.sink.add(listTopProduct);
+    final listTopProduct =
+        await homeRepository.loadTopProduct().catchError((error) {
+      _topProductController.addError(error);
+    });
+    if (listTopProduct != null) {
+      _topProductController.sink.add(listTopProduct);
+    }
   }
 
   void _loadTopSeller() async {
-    final listTopSeller = await homeRepository.loadTopSeller();
-    _topSellerController.sink.add(listTopSeller);
+    final listTopSeller =
+        await homeRepository.loadTopSeller().catchError((error) {
+      _topSellerController.addError(error);
+    });
+    if (listTopSeller != null) {
+      _topSellerController.sink.add(listTopSeller);
+    }
   }
 
   @override
