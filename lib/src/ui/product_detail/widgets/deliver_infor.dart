@@ -126,7 +126,14 @@ class DeliverInfor extends StatelessWidget {
                                 child: Image.asset(AssetLink.location)),
                             Padding(
                               padding: const EdgeInsets.only(left: 6.04),
-                              child: Text(country),
+                              child: Text(
+                                country,
+                                style: TextStyle(
+                                    fontFamily: defaultFont,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w400,
+                                    color: DesignColor.textBlackColor),
+                              ),
                             )
                           ],
                         )
@@ -141,7 +148,14 @@ class DeliverInfor extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        child: const Text(AppString.productPreparationTime),
+                        child: Text(
+                          AppString.productPreparationTime,
+                          style: TextStyle(
+                              fontFamily: defaultFont,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                              color: DesignColor.textBlackColor),
+                        ),
                         margin: const EdgeInsets.only(bottom: 10),
                       ),
                       ...productPreparationProgressWidget
